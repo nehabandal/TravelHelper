@@ -20,24 +20,24 @@ public class RegisterServlet extends BaseServlet {
     private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
 
 
-//    @Override
-//    public void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws IOException {
-//
-//        prepareResponse("Register New User", response);
-//
-//        PrintWriter out = response.getWriter();
-//
-//        // error will not be null if we were forwarded her from the post method where something went wrong
-//        String error = request.getParameter("error");
-//        if(error != null) {
-//            String errorMessage = getStatusMessage(error);
-//            out.println("<p style=\"color: red;\">" + errorMessage + "</p>");
-//        }
-//
-//        displayForm(out);
-//        finishResponse(response);
-//    }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        prepareResponse("Register New User", response);
+
+        PrintWriter out = response.getWriter();
+
+        // error will not be null if we were forwarded her from the post method where something went wrong
+        String error = request.getParameter("error");
+        if(error != null) {
+            String errorMessage = getStatusMessage(error);
+            out.println("<p style=\"color: red;\">" + errorMessage + "</p>");
+        }
+
+        displayForm(out);
+        finishResponse(response);
+    }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)

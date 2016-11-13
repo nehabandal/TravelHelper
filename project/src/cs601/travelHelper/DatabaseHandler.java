@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -37,6 +39,8 @@ public class DatabaseHandler {
 	// once you implement it
 	/** Used to retrieve the salt associated with a specific user. */
 	private static final String SALT_SQL = "SELECT usersalt FROM login_users WHERE username = ?";
+
+	private static final String SALT_PASSWORD_SQL = "SELECT usersalt, password FROM login_users WHERE username = ?";
 
 	/** Used to authenticate a user. */
 	private static final String AUTH_SQL = "SELECT username FROM login_users " + "WHERE username = ? AND password = ?";
@@ -251,6 +255,47 @@ public class DatabaseHandler {
 	}
 
 	/**
+	 * Registers a new user, placing the username, password hash, and salt into
+	 * the database if the username does not already exist.
+	 *
+	 * @param user
+	 *            - username of new user
+	 * @param password
+	 *            - password of new user
+	 * @return {@link Status.OK} if registration successful
+	 */
+	public Status authenticateUser(String user, String password) {
+		Status status = Status.ERROR;
+		System.out.println("Authenticating " + user + ".");
+
+		// make sure we have non-null and non-emtpy values for login
+		if (isBlank(user) || isBlank(password)) {
+			status = Status.INVALID_LOGIN;
+			System.err.println("Invalid login for user: " + user);
+			return status;
+		}
+
+		// try to connect to database and test for duplicate user
+		try (Connection connection = db.getConnection()) {
+			Map<String, String> loginDetails = getLoginDetails(connection, user);
+			String usersalt = loginDetails.get("usersalt");
+			String encryptedPassword = loginDetails.get("password");
+			String passhash = getHash(password, usersalt);
+			if (!encryptedPassword.equals(passhash)) {
+				status = Status.INVALID_LOGIN;
+			}
+			else {
+				status = Status.OK;
+			}
+		} catch (SQLException ex) {
+			status = Status.CONNECTION_FAILED;
+			System.out.println("Error while connecting to the database: " + ex);
+		}
+
+		return status;
+	}
+
+	/**
 	 * Gets the salt for a specific user.
 	 *
 	 * @param connection
@@ -279,4 +324,36 @@ public class DatabaseHandler {
 
 		return salt;
 	}
+
+	/**
+	 * Gets the salt for a specific user.
+	 *
+	 * @param connection
+	 *            - active database connection
+	 * @param user
+	 *            - which user to retrieve salt for
+	 * @return salt for the specified user or null if user does not exist
+	 * @throws SQLException
+	 *             if any issues with database connection
+	 */
+	private Map<String, String> getLoginDetails(Connection connection, String user) throws SQLException {
+		assert connection != null;
+		assert user != null;
+
+		Map<String, String> loginDetails = new HashMap<>();
+
+		try (PreparedStatement statement = connection.prepareStatement(SALT_PASSWORD_SQL);) {
+			statement.setString(1, user);
+
+			ResultSet results = statement.executeQuery();
+
+			if (results.next()) {
+				loginDetails.put("usersalt", results.getString("usersalt"));
+				loginDetails.put("password", results.getString("password"));
+			}
+		}
+
+		return loginDetails;
+	}
+
 }
