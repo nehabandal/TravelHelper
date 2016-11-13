@@ -1,0 +1,121 @@
+
+{
+   "html_attributions" : [],
+   "results" : [
+      {
+         "formatted_address" : "3310 Powell St, Emeryville, CA 94608, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.8385554,
+               "lng" : -122.3149178
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 37.83857295000001,
+                  "lng" : -122.3148455
+               },
+               "southwest" : {
+                  "lat" : 37.83853594999999,
+                  "lng" : -122.3149979
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "fe5c87db7efd2c97ed3d09dc851e1d6dd8a503b6",
+         "name" : "Emeryville Marina",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 2760,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/115481058693884237334/photos\"\u003eJason Simmons\u003c/a\u003e"
+               ],
+               "photo_reference" : "CoQBdwAAALUau3cPhFcnLxT0lfZ7hHf2uQ6ZKkrvUG35YRXdpPtmZ0UYOdBXOrangO8pVUvR_lFwbL4gOYGfJCeZ-n9VnGOjFN5A0hZsP4YgloEN9oh7_ymJZO5qBLRf7IjejtFbGKhZdH2CRJukVKTM9k8uyOfXtDntblLNS5NuViVo4zSDEhCMqkrefhOFVO5IKMkJIg1bGhRkfa0ZeVbNI97x15E4bcmf0WItzg",
+               "width" : 4912
+            }
+         ],
+         "place_id" : "ChIJgysBXqp_hYARjIEmNLXRW8g",
+         "rating" : 4.5,
+         "reference" : "CmRSAAAA3KoPmiqoB28s30ilUZawvVO4Vftfo0NM4qevPqBpTxVcn4ipoPqdDnbdVK-0ZLpP79iSc5BSyQZDMG4WQfLpytn2n8xYR18wNTx8xzKiTm8XKYTiX8tRfhp4tkCuYxKLEhCHzKKaLnA6jN7-IDeWCRadGhRRSxgZLx7NbCbgiSFIrggVrV4-iA",
+         "types" : [ "storage", "point_of_interest", "establishment" ]
+      },
+      {
+         "formatted_address" : "W Frontage Rd & Access Rd, Emeryville, CA 94608, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.8402238,
+               "lng" : -122.2981359
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 37.84025774999999,
+                  "lng" : -122.2976823
+               },
+               "southwest" : {
+                  "lat" : 37.84012195,
+                  "lng" : -122.2982871
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+         "id" : "f48c8ba9f5cfa94fc26406171b37f89c036b8c1a",
+         "name" : "Shorebird Park Emeryville",
+         "photos" : [
+            {
+               "height" : 2988,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/108786096630906045308/photos\"\u003eSimon Fong\u003c/a\u003e"
+               ],
+               "photo_reference" : "CoQBdwAAAOiRVNoprDxJyXNK739uAthnu8slGbWO9wrw115HZrfgj_rpkAlODonEMc-H4eYbq_VPTT4KYjTdnEoIXOItSybWK1uOOlzhEdDFS7Yk3xH8h9LAuU5jYY5cReu18C49J25i02GhSTx9JgXAhSlORm8p5N5Vxmh6FEwkJeJdsYxSEhBfiZWGp5OYYSyRjtudRlGdGhQpTVknnA02a3Zc0-7faROgajjYgg",
+               "width" : 5312
+            }
+         ],
+         "place_id" : "ChIJTwiNilp-hYARVlF-bqC50EE",
+         "reference" : "CmRRAAAAb7aBBvZc-AeBYi9Bs8Bf76698q2hKBaothlT0JE97zcd09I3_i0meMt3evSL8dBVqNF-OIpgWI3COlCh6p_4SxD6pLKUBjmxpMZp3LSn-DRbXnlsbHzcd860amTD37dzEhArqeoaFpC3-fhsiLH3mgxcGhQvYp5nmfa7T6128bVFxc3G1wZOhA",
+         "types" : [ "park", "point_of_interest", "establishment" ]
+      },
+      {
+         "formatted_address" : "4055 Hubbard St, Emeryville, CA 94608, United States",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.8296728,
+               "lng" : -122.2889803
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 37.82976325,
+                  "lng" : -122.2887904
+               },
+               "southwest" : {
+                  "lat" : 37.82964265000001,
+                  "lng" : -122.2890436
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+         "id" : "999e57987cb6ea10de08731da3c0d1372e72dc1d",
+         "name" : "Pottery and Beyond",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1536,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/116110769923002239414/photos\"\u003ePottery and Beyond\u003c/a\u003e"
+               ],
+               "photo_reference" : "CoQBcwAAACojmLJ6e21iwULhXO_EjBCQTSorQlUAWoZyeWrKJQ70fBr5fMJF8B9uZlAmh71akGb3UOBaZO5s5DWfJ6O158-5nPINEznkrMiNK0lvLPPJ62_UTM3pL9QDKzYaYWPEMMm6W_FuwEk-5VChcg_rODNvF9LIoJHSjZMz66boVgVrEhCD_s6DU9D0tFjMW8r9mZvLGhTTmBVEM6bxFCvA2Qiam9DmpdokBQ",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJmynQxD9-hYARwbdaxNeX1Oc",
+         "reference" : "CmRSAAAAr0TZJLWrEZ5G8PLmROr37j8gZsdo4YWq7NeeITsc87aJ8xL12IixR9cf_lXWvv-WhDwTgdZxq-udE6r6C33stf9g4a5XNv2NDPKRKDhMAMUA5OSxXtx4L57quAeS_WazEhBjeiy2J1sSyWGjvE9FbhTjGhTgntn9Efu7ABMiXOtmIDZph6E0kA",
+         "types" : [ "park", "store", "point_of_interest", "establishment" ]
+      }
+   ],
+   "status" : "OK"
+}
