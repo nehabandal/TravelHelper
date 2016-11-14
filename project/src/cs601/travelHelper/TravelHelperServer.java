@@ -26,11 +26,13 @@ public class TravelHelperServer {
 
         ResourceHandler resourceHandler = getResourceHandler();
 
+
         HandlerList handlers = new HandlerList();
         server.setHandler(handlers);
         handlers.setHandlers(new Handler[] {
                 resourceHandler,
                 getServletContextHandler(),
+
                 new DefaultHandler()
         });
 
@@ -47,8 +49,10 @@ public class TravelHelperServer {
     private ServletContextHandler getServletContextHandler() {
         ServletContextHandler servletContexthandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         servletContexthandler.addServlet(LoginServlet.class, "/LoginServlet");
-        servletContexthandler.addServlet(SessionServlet.class, "/session");
+        servletContexthandler.addServlet(LogoutServlet.class, "/LogoutServlet");
+        servletContexthandler.addServlet(HotelsServlet.class, "/session");
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
+
 
         return servletContexthandler;
     }
@@ -61,4 +65,5 @@ public class TravelHelperServer {
         resourceHandler.setResourceBase("web");
         return resourceHandler;
     }
+
 }

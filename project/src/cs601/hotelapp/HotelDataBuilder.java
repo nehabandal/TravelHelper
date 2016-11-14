@@ -4,6 +4,7 @@ package cs601.hotelapp;
 //import com.oracle.tools.packager.Log;
 
 import cs601.concurrent.WorkQueue;
+import cs601.travelHelper.DatabaseHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,6 +25,7 @@ public class HotelDataBuilder {
     private WorkQueue workqueue = new WorkQueue();
     private volatile int noOfFilesProcessed = 0;
     private int totalNoOfFiles = 0;
+    private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
 
     //Enter starting line here
     private int startline = 1;
@@ -122,6 +124,13 @@ public class HotelDataBuilder {
                 double lan = Double.parseDouble(Hotel_lng);
 
                 threadSafehd.addHotel(Hotel_Id, hotelName, City, State, Street_Address, lat, lan);
+//                Status status = dbhandler.addHotelDB(Hotel_Id, hotelName, Street_Address,0.0);
+//                if(status == Status.OK) { // registration was successful
+//                    System.out.println("data added");
+//                }
+//                else { // if something went wrong
+//                    System.out.println("Error while adding data");
+//                }
 
             }
         } catch (Exception e) {

@@ -1,22 +1,15 @@
 package cs601.hotelapp;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.file.Path;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.function.IntUnaryOperator;
-
+import cs601.concurrent.ReentrantReadWriteLock;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import cs601.concurrent.ReentrantReadWriteLock;
-import sun.font.TrueTypeFont;
+import java.io.*;
+import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Class ThreadSafeHotelData - a data structure that stores information about

@@ -2,6 +2,7 @@ package cs601.travelHelper;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,8 +22,8 @@ public class LoginServlet extends BaseServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        prepareResponse("Register New User", response);
+            throws IOException, ServletException {
+        prepareResponse("Login to Existing user", response);
 
         // Get data from the textfields of the html form
         String user = request.getParameter("user");
@@ -30,6 +31,7 @@ public class LoginServlet extends BaseServlet {
         // sanitize user input to avoid XSS attacks:
         user = StringEscapeUtils.escapeHtml4(user);
         password = StringEscapeUtils.escapeHtml4(password);
+
 
         // add user's info to the database
         Status status = dbhandler.authenticateUser(user, password);
@@ -39,9 +41,18 @@ public class LoginServlet extends BaseServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             //setting session to expiry in 30 mins
-            session.setMaxInactiveInterval(30*60);
-            response.sendRedirect("/session");
+           session.setMaxInactiveInterval(30*60);
+
+
+           response.sendRedirect("/session");
+//            if(session!=null)
+//            {
+//                response.sendRedirect("");
+//            }
+
+
         }
+
         else { // if something went wrong
             String url = "/login?error=" + status.name();
             url = response.encodeRedirectURL(url);
@@ -49,5 +60,8 @@ public class LoginServlet extends BaseServlet {
             // send a get request  (redirect to the same path)
             response.getWriter().println("no connection");
         }
+
+      //  response.sendRedirect("/logout.html");
+
     }
 }

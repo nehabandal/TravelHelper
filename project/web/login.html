@@ -8,12 +8,28 @@
 
 <form action="LoginServlet" method="post">
 
-    Username: <input type="text" name="user">
+   <!-- Username: <input type="text" name="user">
     <br>
     Password: <input type="password" name="password">
     <br>
-    <input type="submit" value="Login">
+    <input type="submit" value="Login">-->
+    <center>
+        <h1>Enter your Name and Password </h1><br>
+    <table border=1>
+        <tr><td>Enter Your Name :</td>
+            <td><input type="text" name="user" value=""></td>
+        </tr>
+        <tr><td>Enter Your PassWord :</td>
+            <td><input type="password" name="password" value=""></td>
+        </tr>
+        <tr><td align=center><input type="submit" name="Submit" value="Login" ></td>
+            <td align=center><input type="reset" name="reset" value="Refresh"></td>
+            </table>
+
+    </center>
+
 </form>
-<a href="register.html">register</a>
+<a href="register.html">Register</a>
+<!--<a href="logout.html">Logout</a>|-->
 </body>
 </html>

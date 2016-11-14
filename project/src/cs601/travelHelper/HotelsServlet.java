@@ -1,6 +1,5 @@
 package cs601.travelHelper;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,28 +17,44 @@ import java.util.Calendar;
  */
 
 @SuppressWarnings("serial")
-public class SessionServlet extends HttpServlet {
+public class HotelsServlet extends BaseServlet {
 
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		response.setContentType("text/html");
+//		PrintWriter out=response.getWriter();
+//
+//		request.getRequestDispatcher("link.html").include(request, response);
+//
+//		HttpSession session=request.getSession();
+//		session.invalidate();
+//
+//		out.print("You are successfully logged out!");
+//
+//		out.close();
+//	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		HttpSession session = request.getSession();
 
 		String visitDate = (String) session.getAttribute("date");
 		String user = (String) session.getAttribute("user");
+
 		Integer visitCount = (Integer) session.getAttribute("visitCount");
 		if (visitCount == null)
 			visitCount = 0;
 		visitCount = visitCount + 1;
 		session.setAttribute("visitCount", visitCount);
-
 		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_OK);
 		PrintWriter out = response.getWriter();
 
+
 		String title = "Session Servlet";
 		String header = "<!DOCTYPE html\n>" + "	<head>\n" + "<title>" + title + "</title>\n" + "</head>\n";
 
-		String body = "	<body>\n" + "<p>Hello " + user + "! You have visited " + visitCount + " time(s).</p>\n";
+		String body = "	<body>\n" +  "<p>Hello " + user + "! You have visited " + visitCount + " time(s).</p>\n"+"<a href=\"logout.html\">Logout</a>";
+
 		if (visitDate != null) {
 			body = body + "<p> Your last visit was on " + visitDate + "</p>\n";
 		}
@@ -49,12 +64,19 @@ public class SessionServlet extends HttpServlet {
 
 		String page = header + body + footer;
 		out.println(page);
-
 		String format = "yyyy-MM-dd hh:mm a";
 		DateFormat formatter = new SimpleDateFormat(format);
 		visitDate = formatter.format(Calendar.getInstance().getTime());
 		session.setAttribute("date", visitDate);
 
+
+
+
+		//session.invalidate();
+		//String pageToForward = request.getContextPath();
+		//response.sendRedirect(pageToForward);
+
 	}
+
 
 }

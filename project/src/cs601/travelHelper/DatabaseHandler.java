@@ -23,6 +23,9 @@ public class DatabaseHandler {
 	/** Used to determine if login_users table exists. */
 	private static final String TABLES_SQL = "SHOW TABLES LIKE 'login_users';";
 
+	/** Used to determine if hotel table exists. */
+	private static final String TABLES_SQL_Hotel = "SHOW TABLES LIKE 'hotelData';";
+
 	/** Used to create login_users table for this example. */
 	private static final String CREATE_SQL = "CREATE TABLE login_users ("
 			+ "userid INTEGER AUTO_INCREMENT PRIMARY KEY, " + "username VARCHAR(32) NOT NULL UNIQUE, "
@@ -31,6 +34,15 @@ public class DatabaseHandler {
 	/** Used to insert a new user's info into the login_users table */
 	private static final String REGISTER_SQL = "INSERT INTO login_users (username, password, usersalt) "
 			+ "VALUES (?, ?, ?);";
+
+	/** Used to create HotelTable table for this example. */
+	private static final String CREATE_SQL_HOTEL = "CREATE TABLE hotelData ("
+			+ "hotelID INTEGER PRIMARY KEY, " + "hotelName VARCHAR(32) NOT NULL, "
+			+ "address CHAR(64) NOT NULL, " + "rating INTEGER NOT NULL);";
+
+	/** Used to insert a hotel's info into the login_users table */
+	private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address,rating) "
+			+ "VALUES (?, ?, ?, ?);";
 
 	/** Used to determine if a username already exists. */
 	private static final String USER_SQL = "SELECT username FROM login_users WHERE username = ?";
@@ -49,7 +61,7 @@ public class DatabaseHandler {
 	private static final String DELETE_SQL = "DELETE FROM login_users WHERE username = ?";
 
 	/** Used to configure connection to database. */
-	private DatabaseConnector db;
+	private static DatabaseConnector db;
 
 	/** Used to generate password hash salt for user. */
 	private Random random;
@@ -107,12 +119,14 @@ public class DatabaseHandler {
 
 		try (Connection connection = db.getConnection();
 			 Statement statement = connection.createStatement();) {
-			if (!statement.executeQuery(TABLES_SQL).next()) {
+
+			if (!statement.executeQuery(TABLES_SQL).next()|| !statement.executeQuery(TABLES_SQL_Hotel).next()) {
 				// Table missing, must create
+				statement.executeUpdate(CREATE_SQL_HOTEL);
 				statement.executeUpdate(CREATE_SQL);
 
 				// Check if create was successful
-				if (!statement.executeQuery(TABLES_SQL).next()) {
+				if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next()) {
 					status = Status.CREATE_FAILED;
 				} else {
 					status = Status.OK;
@@ -254,6 +268,54 @@ public class DatabaseHandler {
 		return status;
 	}
 
+	/**
+	 * Registers a new user, placing the username, password hash, and salt into
+	 * the database if the username does not already exist.
+	 *
+	 * @param newuser
+	 *            - username of new user
+	 * @param newpass
+	 *            - password of new user
+	 * @return {@link Status.OK} if registration successful
+	 */
+	public static Status addHotelDB(String hotelID, String hotelName, String address, double rating) {
+		Status status = Status.ERROR;
+
+
+		// make sure we have non-null and non-emtpy values for login
+		if (isBlank(hotelID) || isBlank(hotelName)) {
+			status = Status.INVALID_LOGIN;
+			System.out.println("Invalid hotel info");
+			return status;
+		}
+
+		// try to connect to database and test for duplicate user
+		try (Connection connection = db.getConnection();) {
+
+
+			// if okay so far, try to insert new user
+			if (status == Status.OK) {
+
+
+				// add hotel info to the database table
+				try (PreparedStatement statement = connection.prepareStatement(REGISTER_SQL_HOTEL);) {
+					statement.setString(1, hotelID);
+					statement.setString(2, hotelName);
+					statement.setString(3, address);
+					statement.setString(4, String.valueOf(rating));
+
+					statement.executeUpdate();
+
+					status = Status.OK;
+				}
+			}
+		} catch (SQLException ex) {
+			status = Status.CONNECTION_FAILED;
+			System.out.println("Error while connecting to the database: " + ex);
+		}
+
+		return status;
+	}
 	/**
 	 * Registers a new user, placing the username, password hash, and salt into
 	 * the database if the username does not already exist.
