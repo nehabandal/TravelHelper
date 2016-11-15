@@ -26,6 +26,9 @@ public class DatabaseHandler {
 	/** Used to determine if hotel table exists. */
 	private static final String TABLES_SQL_Hotel = "SHOW TABLES LIKE 'hotelData';";
 
+	/** Used to determine if hotel table exists. */
+	private static final String TABLES_SQL_Review = "SHOW TABLES LIKE 'reviewData';";
+
 	/** Used to create login_users table for this example. */
 	private static final String CREATE_SQL = "CREATE TABLE login_users ("
 			+ "userid INTEGER AUTO_INCREMENT PRIMARY KEY, " + "username VARCHAR(32) NOT NULL UNIQUE, "
@@ -37,12 +40,25 @@ public class DatabaseHandler {
 
 	/** Used to create HotelTable table for this example. */
 	private static final String CREATE_SQL_HOTEL = "CREATE TABLE hotelData ("
-			+ "hotelID INTEGER PRIMARY KEY, " + "hotelName VARCHAR(32) NOT NULL, "
-			+ "address CHAR(64) NOT NULL, " + "rating INTEGER NOT NULL);";
+			+ "hotelID INTEGER PRIMARY KEY, " + "hotelName VARCHAR(100) NOT NULL, "
+			+ "address CHAR(64) NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
 
 	/** Used to insert a hotel's info into the login_users table */
 	private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address,rating) "
 			+ "VALUES (?, ?, ?, ?);";
+
+	/** Used to create ReviewTable table for this example. */
+	private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
+			+ "reviewId VARCHAR(100) NOT NULL PRIMARY KEY, "+"hotelId INTEGER NOT NULL," +
+			"reviewTitle VARCHAR(100) NOT NULL, "+"review VARCHAR(2000) NOT NULL,"+"username VARCHAR(100) NOT NULL, "
+			+ "date VARCHAR(100) NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
+
+	/**Altering table for foreign key.*/
+	private static final String ALTER_SQL_REVIEW ="ALTER TABLE reviewData ADD CONSTRAINT fk_hotelID FOREIGN KEY (hotelId) REFERENCES hotelData (hotelId);";
+
+	/** Used to insert a hotel's info into the login_users table */
+	private static final String REGISTER_SQL_REVIEW= "INSERT INTO reviewData (reviewId, hotelId, reviewTitle,review,username,date,rating)"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 	/** Used to determine if a username already exists. */
 	private static final String USER_SQL = "SELECT username FROM login_users WHERE username = ?";
@@ -120,13 +136,15 @@ public class DatabaseHandler {
 		try (Connection connection = db.getConnection();
 			 Statement statement = connection.createStatement();) {
 
-			if (!statement.executeQuery(TABLES_SQL).next()|| !statement.executeQuery(TABLES_SQL_Hotel).next()) {
+			if (!statement.executeQuery(TABLES_SQL).next()|| !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
 				// Table missing, must create
+				statement.executeUpdate(CREATE_SQL_REVIEW);
+				statement.executeUpdate(ALTER_SQL_REVIEW);
 				statement.executeUpdate(CREATE_SQL_HOTEL);
 				statement.executeUpdate(CREATE_SQL);
 
 				// Check if create was successful
-				if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next()) {
+				if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
 					status = Status.CREATE_FAILED;
 				} else {
 					status = Status.OK;
@@ -270,29 +288,16 @@ public class DatabaseHandler {
 
 
 	/**
-	 * Registers a new user, placing the username, password hash, and salt into
-	 * the database if the username does not already exist.
-	 *
-	 * @param newuser
-	 *            - username of new user
-	 * @param newpass
-	 *            - password of new user
-	 * @return {@link Status.OK} if registration successful
+	 adding hotel
 	 */
 	public Status addHotelDB(String hotelID, String hotelName, String address, double rating) {
-		Status status = Status.ERROR;
+		Status status = Status.OK;
 
 
-		// make sure we have non-null and non-emtpy values for login
-
-		// try to connect to database and test for duplicate user
 		try (Connection connection = db.getConnection();) {
-
 
 			// if okay so far, try to insert new user
 			if (status == Status.OK) {
-
-
 				// add hotel info to the database table
 				try (PreparedStatement statement = connection.prepareStatement(REGISTER_SQL_HOTEL);) {
 					statement.setString(1, hotelID);
@@ -312,10 +317,44 @@ public class DatabaseHandler {
 
 		return status;
 	}
+	/**
+	 adding hotel
+	 */
+	public Status addReviewDB(String reviewId, String hotelId,String reviewTitle, String review,
+							  String username,String date,double rating){
+
+		Status status = Status.OK;
+
+
+		try (Connection connection = db.getConnection();) {
+
+			// if okay so far, try to insert new user
+			if (status == Status.OK) {
+				// add hotel info to the database table
+				try (PreparedStatement statement = connection.prepareStatement(REGISTER_SQL_REVIEW);) {
+					statement.setString(1, reviewId);
+					statement.setString(2, hotelId);
+					statement.setString(3, reviewTitle);
+					statement.setString(4, review);
+					statement.setString(5, username);
+					statement.setString(6, date);
+					statement.setString(7, String.valueOf(rating));
+
+					statement.executeUpdate();
+
+					status = Status.OK;
+				}
+			}
+		} catch (SQLException ex) {
+			status = Status.CONNECTION_FAILED;
+			System.out.println("Error while connecting to the database: " + ex);
+		}
+
+		return status;
+	}
 
 
 
-	// add hotel info to the database table
 
 	/**
 	 * Registers a new user, placing the username, password hash, and salt into

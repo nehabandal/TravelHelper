@@ -2,6 +2,7 @@ package cs601.hotelapp;
 
 import cs601.concurrent.ReentrantReadWriteLock;
 import cs601.travelHelper.DatabaseHandler;
+import cs601.travelHelper.Status;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -69,7 +70,10 @@ public class ThreadSafeHotelData {
         lock.lockWrite();
         Address address = new Address(streetAddress, city, state, latitude, longitude);
         Hotel hotel = new Hotel(hotelId, hotelName, address);
-       // Status status=dbhandler.addHotelDB(hotelId, hotelName, streetAddress, 5.0);
+        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,5.0);
+        if(status == Status.OK) { // registration was successful
+            System.out.println("row added");
+        }
 
         try {
             hotelIdTreeMap.put(hotelId, hotel);
@@ -123,6 +127,10 @@ public class ThreadSafeHotelData {
             username = "anonymous";
         }
         Review reviewObject = new Review(reviewId, hotelId, reviewTitle, review, username, dateObject, rating);
+        Status status = dbhandler.addReviewDB(reviewId, hotelId, reviewTitle, review, username, date, rating);
+        if(status == Status.OK) { // registration was successful
+            System.out.println("row added");
+        }
         lock.lockWrite();
         try {
             List<Review> reviewList = reviewCollection.get(hotelId);
@@ -209,14 +217,14 @@ public class ThreadSafeHotelData {
 
     }
 
-    public void mergeReviews(ThreadSafeHotelData threadSafeHotelData) {
+    /*public void mergeReviews(ThreadSafeHotelData threadSafeHotelData) {
         lock.lockWrite();
         try {
             reviewCollection.putAll(threadSafeHotelData.reviewCollection);
         } finally {
             lock.unlockWrite();
         }
-    }
+    }*/
 
     /**
      * Returns a string representing information about the hotel with the given

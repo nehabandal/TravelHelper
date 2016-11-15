@@ -46,7 +46,7 @@ public class HotelDataBuilder {
      *
      * @author npbandal
      */
-
+/*
     public class ReviewLoader implements Runnable {
         private Path file;
 
@@ -62,7 +62,8 @@ public class HotelDataBuilder {
             threadSafehd.mergeReviews(localThreadSafeHotelData);
             ++noOfFilesProcessed;
         }
-    }
+    }*/
+
     /**
      * inner class for multithreading attractions
      *
@@ -144,7 +145,7 @@ public class HotelDataBuilder {
      *             reviews Note that the directory can contain json file, as
      *             well as subfolders (of subfolders etc..) with more json file
      */
-    public synchronized void loadReviews(Path path) {
+    /*public synchronized void loadReviews(Path path) {
 
         List<Path> paths = new ArrayList<>();
         threadSafehd.getReviewFileList(path, paths);
@@ -157,6 +158,15 @@ public class HotelDataBuilder {
             }
         } catch (Exception e) {
             e.getStackTrace();
+        }
+    }*/
+    public void loadReviews(Path path) {
+
+        List<Path> paths = new ArrayList<>();
+        threadSafehd.getReviewFileList(path, paths);
+
+        for (Path p : paths) {
+            threadSafehd.collectReviewData(p);
         }
     }
 

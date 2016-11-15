@@ -19,7 +19,7 @@ import java.util.Calendar;
 @SuppressWarnings("serial")
 public class HotelsServlet extends BaseServlet {
 
-	private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		HttpSession session = request.getSession();
@@ -40,7 +40,8 @@ public class HotelsServlet extends BaseServlet {
 		String title = "Session Servlet";
 		String header = "<!DOCTYPE html\n>" + "	<head>\n" + "<title>" + title + "</title>\n" + "</head>\n";
 
-		String body = "	<body>\n" +  "<p>Hello " + user + "! You have visited " + visitCount + " time(s).</p>\n"+"<a href=\"logout.html\">Logout</a>";
+		String body = "	<body>\n" +  "<p>Hello " + user + "! You have visited " + visitCount + " time(s).</p>\n"+
+				"<a href=\"logout.html\">Logout</a>";
 
 		if (visitDate != null) {
 			body = body + "<p> Your last visit was on " + visitDate + "</p>\n";
@@ -58,5 +59,31 @@ public class HotelsServlet extends BaseServlet {
 
 
 	}
+/*	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		prepareResponse("Register New User", response);
+
+		// Get data from the textfields of the html form
+		String newuser = request.getParameter("user");
+		String newpass = request.getParameter("pass");
+		// sanitize user input to avoid XSS attacks:
+		newuser = StringEscapeUtils.escapeHtml4(newuser);
+		newpass = StringEscapeUtils.escapeHtml4(newpass);
+
+		// add user's info to the database
+		//Status status = dbhandler.addHotelDB()
+
+//		if(status == Status.OK) { // registration was successful
+//			response.getWriter().println("Registered! Database updated.");
+//		}
+		else { // if something went wrong
+			String url = "/register?error=" + status.name();
+			url = response.encodeRedirectURL(url);
+			response.sendRedirect(url);
+			// send a get request  (redirect to the same path)
+			response.getWriter().println("no connection");
+		}
+	}*/
 
 }

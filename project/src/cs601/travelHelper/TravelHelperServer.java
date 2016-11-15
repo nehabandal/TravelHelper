@@ -1,6 +1,8 @@
 package cs601.travelHelper;
 
 
+import cs601.hotelapp.HotelDataBuilder;
+import cs601.hotelapp.ThreadSafeHotelData;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
@@ -18,15 +20,19 @@ public class TravelHelperServer {
 
     public static void main(String[] args) {
         TravelHelperServer server = new TravelHelperServer();
+        ThreadSafeHotelData tdsafe = new ThreadSafeHotelData();
+        HotelDataBuilder data = new HotelDataBuilder(tdsafe);
+       //data.loadHotelInfo("input/hotels200.json");
+       // data.loadReviews(Paths.get("input/reviews"));
+
         server.start();
+
     }
 
     public void start() {
         Server server = new Server(PORT);
 
         ResourceHandler resourceHandler = getResourceHandler();
-
-
         HandlerList handlers = new HandlerList();
         server.setHandler(handlers);
         handlers.setHandlers(new Handler[] {
