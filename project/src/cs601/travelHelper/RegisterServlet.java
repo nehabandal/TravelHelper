@@ -2,6 +2,7 @@ package cs601.travelHelper;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -41,7 +42,8 @@ public class RegisterServlet extends BaseServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException {
+        PrintWriter out = response.getWriter();
         prepareResponse("Register New User", response);
 
         // Get data from the textfields of the html form
@@ -56,7 +58,11 @@ public class RegisterServlet extends BaseServlet {
 
         if(status == Status.OK) { // registration was successful
             response.getWriter().println("Registered! Database updated.");
+
+
         }
+
+
         else { // if something went wrong
             String url = "/register?error=" + status.name();
             url = response.encodeRedirectURL(url);
@@ -64,6 +70,7 @@ public class RegisterServlet extends BaseServlet {
             // send a get request  (redirect to the same path)
             response.getWriter().println("no connection");
         }
+        response.sendRedirect("login.html");
     }
 
 

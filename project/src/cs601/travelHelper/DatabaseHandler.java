@@ -46,6 +46,8 @@ public class DatabaseHandler {
 	/** Used to insert a hotel's info into the login_users table */
 	private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address,rating) "
 			+ "VALUES (?, ?, ?, ?);";
+	/** Select hotel name **/
+	private static final String FETCH_HOTEL = "SELECT hotelName, address, rating FROM hotelData";
 
 	/** Used to create ReviewTable table for this example. */
 	private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
@@ -460,4 +462,34 @@ public class DatabaseHandler {
 		return loginDetails;
 	}
 
+	/**
+	 * Gets the salt for a specific user.
+	 *
+	 * @param connection
+	 *            - active database connection
+	 * @param user
+	 *            - which user to retrieve salt for
+	 * @return salt for the specified user or null if user does not exist
+	 * @throws SQLException
+	 *             if any issues with database connection
+	 */
+//	public Map<String, String> getHotelDetails(Connection connection) throws SQLException {
+//		assert connection != null;
+//
+//
+//		Map<String, String> hoteldetails = new HashMap<>();
+//
+//		try (PreparedStatement statement = connection.prepareStatement(FETCH_HOTEL);) {
+//
+//			ResultSet results = statement.executeQuery();
+//
+//			if (results.next()) {
+//				hoteldetails.put("HotelName",results.getString("hotelName"));
+//				hoteldetails.put("Address",results.getString("address"));
+//				hoteldetails.put("Rating",results.getString("rating"));
+//			}
+//		}
+//
+//		return hoteldetails;
+//	}
 }
