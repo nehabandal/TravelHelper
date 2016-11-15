@@ -19,20 +19,7 @@ import java.util.Calendar;
 @SuppressWarnings("serial")
 public class HotelsServlet extends BaseServlet {
 
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		response.setContentType("text/html");
-//		PrintWriter out=response.getWriter();
-//
-//		request.getRequestDispatcher("link.html").include(request, response);
-//
-//		HttpSession session=request.getSession();
-//		session.invalidate();
-//
-//		out.print("You are successfully logged out!");
-//
-//		out.close();
-//	}
+	private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		HttpSession session = request.getSession();
@@ -70,13 +57,6 @@ public class HotelsServlet extends BaseServlet {
 		session.setAttribute("date", visitDate);
 
 
-
-
-		//session.invalidate();
-		//String pageToForward = request.getContextPath();
-		//response.sendRedirect(pageToForward);
-
 	}
-
 
 }

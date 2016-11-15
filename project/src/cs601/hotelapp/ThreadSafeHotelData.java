@@ -1,6 +1,7 @@
 package cs601.hotelapp;
 
 import cs601.concurrent.ReentrantReadWriteLock;
+import cs601.travelHelper.DatabaseHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,6 +27,7 @@ public class ThreadSafeHotelData {
     private Map<String, Hotel> hotelIdTreeMap = new TreeMap<String, Hotel>();
     private volatile int noOfAttractionFilesProcessed = 0;
     private int totalNoOfAttractionFiles = 0;
+    private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
 
     private Map<String, List<TouristAttraction>> attractionCollection = new TreeMap<String, List<TouristAttraction>>();
     private String attractions_hotel;
@@ -67,7 +69,8 @@ public class ThreadSafeHotelData {
         lock.lockWrite();
         Address address = new Address(streetAddress, city, state, latitude, longitude);
         Hotel hotel = new Hotel(hotelId, hotelName, address);
-        //lock.lockWrite();
+       // Status status=dbhandler.addHotelDB(hotelId, hotelName, streetAddress, 5.0);
+
         try {
             hotelIdTreeMap.put(hotelId, hotel);
         } catch (Exception e) {
@@ -215,7 +218,7 @@ public class ThreadSafeHotelData {
         }
     }
 
-    /*
+    /**
      * Returns a string representing information about the hotel with the given
      * id, including all the reviews for this hotel separated by
      * -------------------- Format of the string: HoteName: hotelId
@@ -224,7 +227,6 @@ public class ThreadSafeHotelData {
      * ReviewTitle ReviewText ...
      *
      * @param hotel id
-     *
      * @return - output string.
      */
     public String toString(String hotelID) {
@@ -399,8 +401,7 @@ public class ThreadSafeHotelData {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-         finally {
+        } finally {
             lock.unlockRead();
         }
 

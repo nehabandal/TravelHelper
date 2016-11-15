@@ -268,6 +268,7 @@ public class DatabaseHandler {
 		return status;
 	}
 
+
 	/**
 	 * Registers a new user, placing the username, password hash, and salt into
 	 * the database if the username does not already exist.
@@ -278,16 +279,11 @@ public class DatabaseHandler {
 	 *            - password of new user
 	 * @return {@link Status.OK} if registration successful
 	 */
-	public static Status addHotelDB(String hotelID, String hotelName, String address, double rating) {
+	public Status addHotelDB(String hotelID, String hotelName, String address, double rating) {
 		Status status = Status.ERROR;
 
 
 		// make sure we have non-null and non-emtpy values for login
-		if (isBlank(hotelID) || isBlank(hotelName)) {
-			status = Status.INVALID_LOGIN;
-			System.out.println("Invalid hotel info");
-			return status;
-		}
 
 		// try to connect to database and test for duplicate user
 		try (Connection connection = db.getConnection();) {
@@ -316,6 +312,11 @@ public class DatabaseHandler {
 
 		return status;
 	}
+
+
+
+	// add hotel info to the database table
+
 	/**
 	 * Registers a new user, placing the username, password hash, and salt into
 	 * the database if the username does not already exist.
@@ -333,7 +334,7 @@ public class DatabaseHandler {
 		// make sure we have non-null and non-emtpy values for login
 		if (isBlank(user) || isBlank(password)) {
 			status = Status.INVALID_LOGIN;
-			System.err.println("Invalid login for user: " + user);
+			System.out.println("Invalid login for user: " + user);
 			return status;
 		}
 
@@ -345,6 +346,8 @@ public class DatabaseHandler {
 			String passhash = getHash(password, usersalt);
 			if (!encryptedPassword.equals(passhash)) {
 				status = Status.INVALID_LOGIN;
+
+				System.out.println("Invalid login for user: " + user);
 			}
 			else {
 				status = Status.OK;

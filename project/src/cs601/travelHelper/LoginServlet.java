@@ -53,15 +53,18 @@ public class LoginServlet extends BaseServlet {
 
         }
 
+
         else { // if something went wrong
-            String url = "/login?error=" + status.name();
-            url = response.encodeRedirectURL(url);
-            response.sendRedirect(url);
+//            String url = "/login?error=" + status.name();
+//            url = response.encodeRedirectURL(url);
+//            response.sendRedirect(url);
             // send a get request  (redirect to the same path)
-            response.getWriter().println("no connection");
+            response.getWriter().println("Invalid Username or Password");
+
+           // response.sendRedirect("login.html");
         }
 
-      //  response.sendRedirect("/logout.html");
+
 
     }
 }
