@@ -2,6 +2,7 @@ package cs601.travelHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -25,9 +26,11 @@ public class ReviewsServlet extends BaseServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         checkLoginState(request, response);
-        int id = Integer.parseInt(request.getParameter("hotelId"));
+        HttpSession session = request.getSession();
+        int hotelId = Integer.parseInt(request.getParameter("hotelId"));
+        session.setAttribute("hotelId", hotelId);
+
         PrintWriter out = response.getWriter();
-        out.println(id);
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
 
@@ -36,7 +39,7 @@ public class ReviewsServlet extends BaseServlet {
             Connection connection = db.getConnection();
 
             PreparedStatement stmt = connection.prepareStatement(REVIEW_QUERY_SQL);
-            stmt.setString(1, String.valueOf(id));
+            stmt.setString(1, String.valueOf(hotelId));
 
             ResultSet rs = stmt.executeQuery();
             out.println("<table border=1 width=50% height=50%>");
@@ -48,10 +51,11 @@ public class ReviewsServlet extends BaseServlet {
                 double rating = rs.getDouble("rating");
 
                 out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td></tr>");
-                //  +"</td><td>"  + "</td><td>" + "</td></tr>");
+
             }
-            // response.sendRedirect();
-            out.println("<a href=\"logout.html\">Logout</a>");
+
+            out.println("<a href=\"logout.html\">Logout</a> &nbsp");
+            out.println("<a href=\"AddReview?hotelId=" + hotelId + "\">Add Review</a>");
             out.println("</table>");
             out.println("</html></body>");
             connection.close();

@@ -4,9 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Demonstrates how to use the HttpSession class to keep track of the number of visits for each client
@@ -90,25 +91,6 @@ public class HotelsServlet extends BaseServlet {
                 url, hotelName, address, city, avgRating);
     }
 
-    public List<HotelList> list() throws SQLException {
-        List<HotelList> reviews = new ArrayList<HotelList>();
 
-        try (
-                Connection connection = db.getConnection();
-                PreparedStatement statement = connection.prepareStatement("select hotelData.hotelName,hotelData.address, avg(rating) as rat from hotelData LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId group by(hotelData.hotelId)");
-                ResultSet resultSet = statement.executeQuery();
-        ) {
-            while (resultSet.next()) {
-                HotelList hotels = new HotelList();
-                hotels.setHotelName(resultSet.getString("hotelName"));
-                hotels.setAddress(resultSet.getString("address"));
-                hotels.setRating(resultSet.getDouble("rat"));
-
-                reviews.add(hotels);
-            }
-        }
-
-        return reviews;
-    }
 
 }
