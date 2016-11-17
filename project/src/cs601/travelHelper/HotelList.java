@@ -8,10 +8,6 @@ public class HotelList {
     private String address;
     private double rating;
 
-    public String getHotelName() {
-        return hotelName;
-    }
-
     public void setHotelName(String hotelName) {
         this.hotelName = hotelName;
     }

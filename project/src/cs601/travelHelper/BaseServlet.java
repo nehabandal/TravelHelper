@@ -1,9 +1,6 @@
 package cs601.travelHelper;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -134,4 +131,12 @@ public class BaseServlet extends HttpServlet {
 
 		return status.toString();
 	}
+
+	protected void checkLoginState(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("/login.html");
+		}
+	}
+
 }
