@@ -41,17 +41,15 @@ public class DatabaseHandler {
 	/** Used to create HotelTable table for this example. */
 	private static final String CREATE_SQL_HOTEL = "CREATE TABLE hotelData ("
 			+ "hotelID INTEGER PRIMARY KEY, " + "hotelName VARCHAR(100) NOT NULL, "
-			+ "address CHAR(64) NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
+			+ "address CHAR(64) NOT NULL,"+ "city VARCHAR(50));";
 
 	/** Used to insert a hotel's info into the login_users table */
-	private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address,rating) "
+	private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address, city) "
 			+ "VALUES (?, ?, ?, ?);";
-	/** Select hotel name **/
-	private static final String FETCH_HOTEL = "SELECT hotelName, address, rating FROM hotelData";
 
 	/** Used to create ReviewTable table for this example. */
 	private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
-			+ "reviewId VARCHAR(100) NOT NULL PRIMARY KEY, "+"hotelId INTEGER NOT NULL," +
+			+"userId INTEGER AUTO_INCREMENT PRIMARY KEY,"+ "reviewId VARCHAR(100) NOT NULL, "+"hotelId INTEGER NOT NULL," +
 			"reviewTitle VARCHAR(100) NOT NULL, "+"review VARCHAR(2000) NOT NULL,"+"username VARCHAR(100) NOT NULL, "
 			+ "date VARCHAR(100) NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
 
@@ -61,6 +59,14 @@ public class DatabaseHandler {
 	/** Used to insert a hotel's info into the login_users table */
 	private static final String REGISTER_SQL_REVIEW= "INSERT INTO reviewData (reviewId, hotelId, reviewTitle,review,username,date,rating)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+
+	/** creating for rating updates**/
+	private static final String CREATE_RATING_UPDATE="create table ratingupdates as select reviewId,hotelId,rating from reviewData;";
+
+	/** UPDATE RATING TABLE **/
+	private static final String UPDATE_RATING = "UPDATE hotelData set rating=(select avg(rating) from ratingupdates where hotelData.hotelID=ratingupdates.hotelId);";
+
 
 	/** Used to determine if a username already exists. */
 	private static final String USER_SQL = "SELECT username FROM login_users WHERE username = ?";
@@ -140,6 +146,7 @@ public class DatabaseHandler {
 
 			if (!statement.executeQuery(TABLES_SQL).next()|| !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
 				// Table missing, must create
+
 				statement.executeUpdate(CREATE_SQL_REVIEW);
 				statement.executeUpdate(ALTER_SQL_REVIEW);
 				statement.executeUpdate(CREATE_SQL_HOTEL);
@@ -154,9 +161,11 @@ public class DatabaseHandler {
 			} else {
 				status = Status.OK;
 			}
+
 		} catch (Exception ex) {
 			status = Status.CREATE_FAILED;
 		}
+
 
 		return status;
 	}
@@ -292,7 +301,7 @@ public class DatabaseHandler {
 	/**
 	 adding hotel
 	 */
-	public Status addHotelDB(String hotelID, String hotelName, String address, double rating) {
+	public Status addHotelDB(String hotelID, String hotelName, String address, String city) {
 		Status status = Status.OK;
 
 
@@ -305,12 +314,16 @@ public class DatabaseHandler {
 					statement.setString(1, hotelID);
 					statement.setString(2, hotelName);
 					statement.setString(3, address);
-					statement.setString(4, String.valueOf(rating));
+					statement.setString(4, city);
+
+					//statement.setString(4, String.valueOf(rating));
 
 					statement.executeUpdate();
 
 					status = Status.OK;
+
 				}
+
 			}
 		} catch (SQLException ex) {
 			status = Status.CONNECTION_FAILED;
@@ -328,12 +341,15 @@ public class DatabaseHandler {
 		Status status = Status.OK;
 
 
+
 		try (Connection connection = db.getConnection();) {
 
 			// if okay so far, try to insert new user
 			if (status == Status.OK) {
-				// add hotel info to the database table
+				// add review info to the database table
 				try (PreparedStatement statement = connection.prepareStatement(REGISTER_SQL_REVIEW);) {
+
+
 					statement.setString(1, reviewId);
 					statement.setString(2, hotelId);
 					statement.setString(3, reviewTitle);
@@ -342,11 +358,16 @@ public class DatabaseHandler {
 					statement.setString(6, date);
 					statement.setString(7, String.valueOf(rating));
 
+
+
 					statement.executeUpdate();
 
 					status = Status.OK;
+
 				}
+
 			}
+
 		} catch (SQLException ex) {
 			status = Status.CONNECTION_FAILED;
 			System.out.println("Error while connecting to the database: " + ex);

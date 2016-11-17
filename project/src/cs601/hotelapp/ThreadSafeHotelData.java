@@ -70,7 +70,7 @@ public class ThreadSafeHotelData {
         lock.lockWrite();
         Address address = new Address(streetAddress, city, state, latitude, longitude);
         Hotel hotel = new Hotel(hotelId, hotelName, address);
-        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,5.0);
+        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city);
         if(status == Status.OK) { // registration was successful
             System.out.println("row added");
         }
@@ -203,7 +203,12 @@ public class ThreadSafeHotelData {
                 boolean IsRecoms = "YES".equals(IsRecom) ? true : false;
                 String Uname = (String) reviewTextJSON.get("userNickname");
                 String date = (String) reviewTextJSON.get("reviewSubmissionTime");
+                //long AvgRating = (long) reviewTextJSON.get("avgOverallRating");
 
+                double AvgRating = 0;
+                if (reviewTextJSON.containsKey("avgOverallRating")) {
+                    AvgRating = ((Number) reviewTextJSON.get("avgOverallRating")).doubleValue();
+                }
                 addReview(HotelID, ReviewID_in, (int) Rating, Title, ReviewText, IsRecoms, date, Uname);
 
             }

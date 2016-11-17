@@ -255,6 +255,7 @@ public class HotelDataBuilder {
                 }
 
 
+
                 workqueue.execute(new AttractionLoader(hotelId, sb.toString()));
 
             } catch (IOException e) {
@@ -269,6 +270,7 @@ public class HotelDataBuilder {
                 } catch (IOException e) {
                     System.out.println("An exception occured while trying to close the streams or the socket: " + e);
                 }
+
 
             }
 

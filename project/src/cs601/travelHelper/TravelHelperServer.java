@@ -23,7 +23,7 @@ public class TravelHelperServer {
         ThreadSafeHotelData tdsafe = new ThreadSafeHotelData();
         HotelDataBuilder data = new HotelDataBuilder(tdsafe);
        //data.loadHotelInfo("input/hotels200.json");
-       // data.loadReviews(Paths.get("input/reviews"));
+        //data.loadReviews(Paths.get("input/reviews"));
 
         server.start();
 
@@ -54,10 +54,12 @@ public class TravelHelperServer {
 
     private ServletContextHandler getServletContextHandler() {
         ServletContextHandler servletContexthandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        servletContexthandler.addServlet(ReviewsServlet.class, "/ReviewsServlet");
         servletContexthandler.addServlet(LoginServlet.class, "/LoginServlet");
         servletContexthandler.addServlet(LogoutServlet.class, "/LogoutServlet");
         servletContexthandler.addServlet(HotelsServlet.class, "/session");
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
+
 
 
         return servletContexthandler;
