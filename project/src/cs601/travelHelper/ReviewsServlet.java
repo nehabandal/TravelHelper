@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  * Created by npbandal on 11/15/16.
  */
 public class ReviewsServlet extends BaseServlet {
-    public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating from reviewData where hotelId= ?";
+    public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ?";
     private DatabaseConnector db;
 
     public ReviewsServlet() {
@@ -42,15 +42,16 @@ public class ReviewsServlet extends BaseServlet {
             stmt.setString(1, String.valueOf(hotelId));
 
             ResultSet rs = stmt.executeQuery();
-            out.println("<table border=1 width=50% height=50%>");
-            out.println("<tr><th>ReviewTitle</th><th>Review</th><th>Username</th><th>Rating</th><tr>");
+            out.println("<table border=1 width=60% height=50%>");
+            out.println("<tr><th>ReviewTitle</th><th>Review</th><th>Username</th><th>Rating</th><th>Date</th><tr>");
             while (rs.next()) {
                 String reviewTitle = rs.getString("reviewTitle");
                 String review = rs.getString("review");
                 String username = rs.getString("username");
                 double rating = rs.getDouble("rating");
+                String date=rs.getString("date");
 
-                out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td></tr>");
+                out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating +"</td><td>" + date + "</td></tr>");
 
             }
 

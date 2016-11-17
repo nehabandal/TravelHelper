@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -51,7 +52,7 @@ public class DatabaseHandler {
 	private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
 			+"userId INTEGER AUTO_INCREMENT PRIMARY KEY,"+ "reviewId VARCHAR(100) NOT NULL, "+"hotelId INTEGER NOT NULL," +
 			"reviewTitle VARCHAR(100) NOT NULL, "+"review VARCHAR(2000) NOT NULL,"+"username VARCHAR(100) NOT NULL, "
-			+ "date VARCHAR(100) NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
+			+ "date DATE NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
 
 	/**Altering table for foreign key.*/
 	private static final String ALTER_SQL_REVIEW ="ALTER TABLE reviewData ADD CONSTRAINT fk_hotelID FOREIGN KEY (hotelId) REFERENCES hotelData (hotelId);";
@@ -335,12 +336,18 @@ public class DatabaseHandler {
 	/**
 	 adding hotel
 	 */
-	public Status addReviewDB(String reviewId, String hotelId,String reviewTitle, String review,
-							  String username,String date,double rating){
+	public Status addReviewDB(String reviewId, String hotelId, String reviewTitle, String review,
+							  String username, String date, double rating)  {
 
 		Status status = Status.OK;
 
-
+		java.util.Date dateObject = null;
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			dateObject = simpleDateFormat.parse(date);
+		} catch (java.text.ParseException e) {
+		}
+		String finalDate=simpleDateFormat.format(dateObject);
 
 		try (Connection connection = db.getConnection();) {
 
@@ -355,7 +362,7 @@ public class DatabaseHandler {
 					statement.setString(3, reviewTitle);
 					statement.setString(4, review);
 					statement.setString(5, username);
-					statement.setString(6, date);
+					statement.setDate(6, java.sql.Date.valueOf(finalDate));
 					statement.setString(7, String.valueOf(rating));
 
 

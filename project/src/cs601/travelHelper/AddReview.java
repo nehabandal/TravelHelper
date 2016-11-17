@@ -48,7 +48,8 @@ public class AddReview extends BaseServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         checkLoginState(request, response);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd'T'hh:mm:ss'Z'");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+
         HttpSession session = request.getSession();
 
         int hotelId = (int) session.getAttribute("hotelId");
@@ -58,7 +59,9 @@ public class AddReview extends BaseServlet {
         String comments = request.getParameter("comments");
         String rating = request.getParameter("rating");
         String reviewId = request.getParameter("id");
-        String date = format.format(new Date());
+        Date date= new Date();
+        String datetest = format.format(date);
+
 
         Status status = dbhandler.addReviewDB(
                 reviewId,
@@ -66,7 +69,7 @@ public class AddReview extends BaseServlet {
                 title,
                 comments,
                 username,
-                date,
+                datetest,
                 Double.parseDouble(rating));
 
         if (status == Status.OK) { // registration was successful
