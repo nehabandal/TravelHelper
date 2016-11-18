@@ -17,7 +17,7 @@ import static java.lang.System.out;
 /**
  * Handles all database-related actions. Uses singleton design pattern. Modified
  * by Prof. Karpenko from the original example of Prof. Engle.
- * 
+ *
  * @see RegisterServer
  */
 public class DatabaseHandler {
@@ -128,7 +128,7 @@ public class DatabaseHandler {
 
 	/**
 	 * Checks to see if a String is null or empty.
-	 * 
+	 *
 	 * @param text
 	 *            - String to check
 	 * @return true if non-null and non-empty
@@ -205,7 +205,7 @@ public class DatabaseHandler {
 		return status;
 	}
 
-		/**
+	/**
 	 * Returns the hex encoding of a byte array.
 	 *
 	 * @param bytes
@@ -294,9 +294,9 @@ public class DatabaseHandler {
 
 				String usersalt = encodeHex(saltBytes, 32); // hash salt
 				String passhash = getHash(newpass, usersalt); // combine
-																// password and
-																// salt and hash
-																// again
+				// password and
+				// salt and hash
+				// again
 
 				// add user info to the database table
 				try (PreparedStatement statement = connection.prepareStatement(REGISTER_SQL);) {
@@ -417,12 +417,12 @@ public class DatabaseHandler {
 	public Status authenticateUser(String user, String password) {
 		Status status = Status.ERROR;
 		out.println("Authenticating " + user + ".");
-    if (isBlank(user) || isBlank(password))
-        {
-            status = Status.MISSING_VALUES;
-            return status;
+		if (isBlank(user) || isBlank(password))
+		{
+			status = Status.MISSING_VALUES;
+			return status;
 
-        }
+		}
 		// make sure we have non-null and non-emtpy values for login
 
 		// try to connect to database and test for duplicate user

@@ -23,7 +23,9 @@ public class AddReview extends BaseServlet {
                     "  Title:<br>\n" +
                     "  <input type=\"text\" name=\"title\">\n" +
                     "  <br>Comments:<br>\n" +
-                    "  <input type=\"text\" name=\"comments\">\n" +
+                    "  <textarea name=\"comments\" rows=\"4\" cols=\"50\">"+
+                    "</textarea>"+
+                   // "  <input type=\"text\" name=\"comments\" size=\"200\">\n" +
                     "  <br>Rating:<br>\n" +
                     "  <input type=\"text\" name=\"rating\">\n" +
                     "  <br>ID:<br>\n" +
@@ -31,6 +33,7 @@ public class AddReview extends BaseServlet {
                     "  <br><br>\n" +
                     "  <input type=\"submit\" value=\"Add Review\">\n" +
                     "</form>\n" +
+
                     "</body>\n" +
                     "</html>\n" +
                     "\n";
