@@ -57,6 +57,7 @@ public class RegisterServlet extends BaseServlet {
         Status status=  dbhandler.registerUser(newuser, newpass);
         if(status == Status.OK) { // registration was successful
             response.getWriter().println("Registered! Database updated.");
+            response.sendRedirect("login.html");
         }
         else if(status==Status.DUPLICATE_USER)
         {
@@ -66,6 +67,7 @@ public class RegisterServlet extends BaseServlet {
         {
             response.getWriter().println("Username and password can't be empty");
         }
+
         else if(status==Status.MISSING_VALUES)
         {
             response.getWriter().println("Password length is less than 8");
@@ -74,7 +76,10 @@ public class RegisterServlet extends BaseServlet {
         {
             response.getWriter().println("Password should contain at least one special character");
         }
-
+else if(status==Status.INVALID_USER)
+        {
+            response.getWriter().println("Special case letters are not allowed for user name");
+        }
         else {
             response.getWriter().println("Please recheck login");
         }
