@@ -43,6 +43,7 @@ public class RegisterServlet extends BaseServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+
         PrintWriter out = response.getWriter();
         prepareResponse("Register New User", response);
 
@@ -53,24 +54,31 @@ public class RegisterServlet extends BaseServlet {
         newuser = StringEscapeUtils.escapeHtml4(newuser);
         newpass = StringEscapeUtils.escapeHtml4(newpass);
 
-        // add user's info to the database
-        Status status = dbhandler.registerUser(newuser, newpass);
-
+        Status status=  dbhandler.registerUser(newuser, newpass);
         if(status == Status.OK) { // registration was successful
             response.getWriter().println("Registered! Database updated.");
-
-
+        }
+        else if(status==Status.DUPLICATE_USER)
+        {
+            response.getWriter().println("User already exist");
+        }
+        else if(status==Status.INVALID_LOGIN)
+        {
+            response.getWriter().println("Username and password can't be empty");
+        }
+        else if(status==Status.MISSING_VALUES)
+        {
+            response.getWriter().println("Password length is less than 8");
+        }
+        else if(status==Status.ERROR)
+        {
+            response.getWriter().println("Password should contain at least one special character");
         }
 
-
-        else { // if something went wrong
-            String url = "/register?error=" + status.name();
-            url = response.encodeRedirectURL(url);
-            response.sendRedirect(url);
-            // send a get request  (redirect to the same path)
-            response.getWriter().println("no connection");
+        else {
+            response.getWriter().println("Please recheck login");
         }
-        response.sendRedirect("login.html");
+        //response.sendRedirect("login.html");
     }
 
 

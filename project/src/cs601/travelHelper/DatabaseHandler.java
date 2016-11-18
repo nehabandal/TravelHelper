@@ -9,6 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.lang.System.out;
 
 /**
  * Handles all database-related actions. Uses singleton design pattern. Modified
@@ -109,7 +113,7 @@ public class DatabaseHandler {
 		}
 
 		if (status != Status.OK) {
-			System.out.println("Error while obtaining a connection to the database: " + status);
+			out.println("Error while obtaining a connection to the database: " + status);
 		}
 	}
 
@@ -186,23 +190,22 @@ public class DatabaseHandler {
 
 		assert connection != null;
 		assert user != null;
-
 		Status status = Status.ERROR;
+
 
 		try (PreparedStatement statement = connection.prepareStatement(USER_SQL);) {
 			statement.setString(1, user);
-
 			ResultSet results = statement.executeQuery();
 			status = results.next() ? Status.DUPLICATE_USER : Status.OK;
 		} catch (SQLException e) {
 			status = Status.SQL_EXCEPTION;
-			System.out.println("Exception occured while processing SQL statement:" + e);
+			out.println("Exception occured while processing SQL statement:" + e);
 		}
 
 		return status;
 	}
 
-	/**
+		/**
 	 * Returns the hex encoding of a byte array.
 	 *
 	 * @param bytes
@@ -237,7 +240,7 @@ public class DatabaseHandler {
 			md.update(salted.getBytes());
 			hashed = encodeHex(md.digest(), 64);
 		} catch (Exception ex) {
-			System.out.println("Unable to properly hash password." + ex);
+			out.println("Unable to properly hash password." + ex);
 		}
 
 		return hashed;
@@ -255,15 +258,30 @@ public class DatabaseHandler {
 	 */
 	public Status registerUser(String newuser, String newpass) {
 		Status status = Status.ERROR;
-		System.out.println("Registering " + newuser + ".");
+
+		Pattern p = Pattern.compile("[^A-Za-z0-9]");
+		Matcher m = p.matcher(newpass);
+		boolean b = m.find();
+
 
 		// make sure we have non-null and non-emtpy values for login
-		if (isBlank(newuser) || isBlank(newpass)) {
+		if (isBlank(newuser) || isBlank(newpass))
+		{
 			status = Status.INVALID_LOGIN;
-			System.out.println("Invalid regiser info");
+			return status;
+
+		}
+		else if(newpass.length()<8)
+		{
+			status=Status.MISSING_VALUES;
+			return status;
+
+		}
+		else if(!b)
+		{
+			status=Status.ERROR;
 			return status;
 		}
-
 		// try to connect to database and test for duplicate user
 		try (Connection connection = db.getConnection();) {
 			status = duplicateUser(connection, newuser);
@@ -292,7 +310,7 @@ public class DatabaseHandler {
 			}
 		} catch (SQLException ex) {
 			status = Status.CONNECTION_FAILED;
-			System.out.println("Error while connecting to the database: " + ex);
+			out.println("Error while connecting to the database: " + ex);
 		}
 
 		return status;
@@ -328,7 +346,7 @@ public class DatabaseHandler {
 			}
 		} catch (SQLException ex) {
 			status = Status.CONNECTION_FAILED;
-			System.out.println("Error while connecting to the database: " + ex);
+			out.println("Error while connecting to the database: " + ex);
 		}
 
 		return status;
@@ -377,7 +395,7 @@ public class DatabaseHandler {
 
 		} catch (SQLException ex) {
 			status = Status.CONNECTION_FAILED;
-			System.out.println("Error while connecting to the database: " + ex);
+			out.println("Error while connecting to the database: " + ex);
 		}
 
 		return status;
@@ -398,12 +416,12 @@ public class DatabaseHandler {
 	 */
 	public Status authenticateUser(String user, String password) {
 		Status status = Status.ERROR;
-		System.out.println("Authenticating " + user + ".");
+		out.println("Authenticating " + user + ".");
 
 		// make sure we have non-null and non-emtpy values for login
 		if (isBlank(user) || isBlank(password)) {
 			status = Status.INVALID_LOGIN;
-			System.out.println("Invalid login for user: " + user);
+			out.println("Invalid login for user: " + user);
 			return status;
 		}
 
@@ -416,14 +434,14 @@ public class DatabaseHandler {
 			if (!encryptedPassword.equals(passhash)) {
 				status = Status.INVALID_LOGIN;
 
-				System.out.println("Invalid login for user: " + user);
+				out.println("Invalid login for user: " + user);
 			}
 			else {
 				status = Status.OK;
 			}
 		} catch (SQLException ex) {
 			status = Status.CONNECTION_FAILED;
-			System.out.println("Error while connecting to the database: " + ex);
+			out.println("Error while connecting to the database: " + ex);
 		}
 
 		return status;
@@ -490,34 +508,5 @@ public class DatabaseHandler {
 		return loginDetails;
 	}
 
-	/**
-	 * Gets the salt for a specific user.
-	 *
-	 * @param connection
-	 *            - active database connection
-	 * @param user
-	 *            - which user to retrieve salt for
-	 * @return salt for the specified user or null if user does not exist
-	 * @throws SQLException
-	 *             if any issues with database connection
-	 */
-//	public Map<String, String> getHotelDetails(Connection connection) throws SQLException {
-//		assert connection != null;
-//
-//
-//		Map<String, String> hoteldetails = new HashMap<>();
-//
-//		try (PreparedStatement statement = connection.prepareStatement(FETCH_HOTEL);) {
-//
-//			ResultSet results = statement.executeQuery();
-//
-//			if (results.next()) {
-//				hoteldetails.put("HotelName",results.getString("hotelName"));
-//				hoteldetails.put("Address",results.getString("address"));
-//				hoteldetails.put("Rating",results.getString("rating"));
-//			}
-//		}
-//
-//		return hoteldetails;
-//	}
+
 }
