@@ -72,7 +72,7 @@ public class DatabaseHandler {
      * Used to create ReviewTable table for this example.
      */
     private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
-            + "userId INTEGER AUTO_INCREMENT PRIMARY KEY," + "reviewId VARCHAR(100) NOT NULL, " + "hotelId INTEGER NOT NULL," +
+             + "reviewId VARCHAR(100) NOT NULL PRIMARY KEY, " + "hotelId INTEGER NOT NULL," +
             "reviewTitle VARCHAR(100) NOT NULL, " + "review VARCHAR(2000) NOT NULL," + "username VARCHAR(100) NOT NULL, "
             + "date DATE NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
 
@@ -188,11 +188,11 @@ public class DatabaseHandler {
 
             if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
                 // Table missing, must create
-
+                statement.executeUpdate(CREATE_SQL);
                 statement.executeUpdate(CREATE_SQL_REVIEW);
                 statement.executeUpdate(ALTER_SQL_REVIEW);
                 statement.executeUpdate(CREATE_SQL_HOTEL);
-                statement.executeUpdate(CREATE_SQL);
+
 
                 // Check if create was successful
                 if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
