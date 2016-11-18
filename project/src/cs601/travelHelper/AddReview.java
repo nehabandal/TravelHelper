@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,8 +30,6 @@ public class AddReview extends BaseServlet {
                    // "  <input type=\"text\" name=\"comments\" size=\"200\">\n" +
                     "  <br>Rating:<br>\n" +
                     "  <input type=\"text\" name=\"rating\">\n" +
-                    "  <br>ID:<br>\n" +
-                    "  <input type=\"text\" name=\"id\">\n" +
                     "  <br><br>\n" +
                     "  <input type=\"submit\" value=\"Add Review\">\n" +
                     "</form>\n" +
@@ -61,11 +61,10 @@ public class AddReview extends BaseServlet {
         String title = request.getParameter("title");
         String comments = request.getParameter("comments");
         String rating = request.getParameter("rating");
-        String reviewId = request.getParameter("id");
         Date date= new Date();
         String datetest = format.format(date);
-
-
+        SecureRandom random = new SecureRandom();
+        String reviewId=new BigInteger(130, random).toString(32);
         Status status = dbhandler.addReviewDB(
                 reviewId,
                 String.valueOf(hotelId),
