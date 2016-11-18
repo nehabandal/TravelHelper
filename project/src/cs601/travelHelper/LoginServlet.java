@@ -41,10 +41,22 @@ public class LoginServlet extends BaseServlet {
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30 * 60);
             response.sendRedirect("/HotelsServlet");
-        } else {
-            // if something went wrong
-            // send a get request  (redirect to the same path)
-            response.getWriter().println("Invalid Username or Password");
+        }
+        else if(status==Status.MISSING_VALUES)
+        {
+            response.getWriter().println("Missing UserName or Password or Both values");
+        }
+        else if(status==Status.INVALID_LOGIN){
+
+            response.getWriter().println("Invalid Password");
+        }
+        else if(status==Status.CONNECTION_FAILED){
+
+            response.getWriter().println("Wrong Credentials");
+        }
+        else
+        {
+            response.getWriter().println("Please check all details again");
         }
     }
 }

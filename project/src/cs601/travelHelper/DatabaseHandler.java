@@ -417,13 +417,13 @@ public class DatabaseHandler {
 	public Status authenticateUser(String user, String password) {
 		Status status = Status.ERROR;
 		out.println("Authenticating " + user + ".");
+    if (isBlank(user) || isBlank(password))
+        {
+            status = Status.MISSING_VALUES;
+            return status;
 
+        }
 		// make sure we have non-null and non-emtpy values for login
-		if (isBlank(user) || isBlank(password)) {
-			status = Status.INVALID_LOGIN;
-			out.println("Invalid login for user: " + user);
-			return status;
-		}
 
 		// try to connect to database and test for duplicate user
 		try (Connection connection = db.getConnection()) {
@@ -436,6 +436,7 @@ public class DatabaseHandler {
 
 				out.println("Invalid login for user: " + user);
 			}
+
 			else {
 				status = Status.OK;
 			}
