@@ -135,7 +135,7 @@ public class BaseServlet extends HttpServlet {
 	protected void checkLoginState(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") == null) {
-			response.sendRedirect("/login.html");
+			response.sendRedirect("/LoginServlet");
 		}
 	}
 

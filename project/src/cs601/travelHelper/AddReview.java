@@ -74,13 +74,13 @@ public class AddReview extends BaseServlet {
                 datetest,
                 Double.parseDouble(rating));
 
+        if(status==Status.ERROR)
+        {
+            response.getWriter().println("Please enter rating less than 5 and more than 1");
+        }
         if (status == Status.OK) { // registration was successful
             response.getWriter().println("Review added successfully!");
             response.sendRedirect("/ReviewsServlet?hotelId=" + hotelId);
-        } else {
-            // if something went wrong
-            // send a get request  (redirect to the same path)
-            response.getWriter().println("Invalid Username or Password");
         }
     }
 }

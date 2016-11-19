@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * A servlet that handles user registration. doGet() method displays an HTML form with a button and
@@ -18,6 +19,53 @@ public class LoginServlet extends BaseServlet {
 
     // DatabaseHandler interacts with the MySQL database
     private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
+    private String innerHtml =
+            "<!DOCTYPE html>\n" +
+                    "<html>\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"US-ASCII\">\n" +
+                    "    <title>Login Page</title>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "\n" +
+                    "<form action=\"/LoginServlet\" method=\"post\">\n" +
+                    "\n" +
+                    "\n" +
+                    "    <center>\n" +
+                    "        <h1> Welcome to TravelHelper - A Hotel Review Website </h1><br>\n" +
+                    "    <table border=1>\n" +
+                    "        <tr><td>Enter Your Name :</td>\n" +
+                    "            <td><input type=\"text\" name=\"user\" value=\"\"></td>\n" +
+                    "        </tr>\n" +
+                    "        <tr><td>Enter Your PassWord :</td>\n" +
+                    "            <td><input type=\"password\" name=\"password\" value=\"\"></td>\n" +
+                    "        </tr>\n" +
+                    "        <tr><td align=center><input type=\"reset\" name=\"reset\" value=\"Refresh\"></td>\n" +
+                    "            <td align=center><input type=\"submit\" name=\"Submit\" value=\"Login\" ></td>\n" +
+                    "\n" +
+                    "            </table>\n" +
+                    "\n" +
+                    "    </center>\n" +
+                    "\n" +
+                    "</form>\n" +
+                    "\n" +
+                    "<a href=\"/RegisterServlet\">Register</a>\n" +
+                    "\n" +
+                    "</body>\n" +
+                    "</html>\n";
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            response.sendRedirect("/HotelsServlet");
+        }
+
+        response.setContentType("text/html");
+        response.setStatus(HttpServletResponse.SC_OK);
+        PrintWriter out = response.getWriter();
+
+        out.println(innerHtml);
+    }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)

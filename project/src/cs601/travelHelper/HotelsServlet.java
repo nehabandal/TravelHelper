@@ -62,7 +62,7 @@ public class HotelsServlet extends BaseServlet {
                 out.println(toTableRow(hotelId, hotelName, address, city, avgRating));
             }
 
-            out.println("<a href=\"logout.html\">Logout</a>");
+            out.println("<a href=\"/LogoutServlet\">Logout</a>");
             out.println("</table>");
             out.println("</html></body>");
 

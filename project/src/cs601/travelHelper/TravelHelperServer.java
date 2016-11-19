@@ -5,9 +5,7 @@ import cs601.hotelapp.HotelDataBuilder;
 import cs601.hotelapp.ThreadSafeHotelData;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
 /**
@@ -32,14 +30,10 @@ public class TravelHelperServer {
     public void start() {
         Server server = new Server(PORT);
 
-        ResourceHandler resourceHandler = getResourceHandler();
         HandlerList handlers = new HandlerList();
         server.setHandler(handlers);
         handlers.setHandlers(new Handler[] {
-                resourceHandler,
                 getServletContextHandler(),
-
-                new DefaultHandler()
         });
 
         try {
@@ -54,25 +48,14 @@ public class TravelHelperServer {
 
     private ServletContextHandler getServletContextHandler() {
         ServletContextHandler servletContexthandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        servletContexthandler.addServlet(ReviewsServlet.class, "/ReviewsServlet");
+        servletContexthandler.addServlet(LoginServlet.class, "/");
         servletContexthandler.addServlet(LoginServlet.class, "/LoginServlet");
         servletContexthandler.addServlet(LogoutServlet.class, "/LogoutServlet");
+        servletContexthandler.addServlet(ReviewsServlet.class, "/ReviewsServlet");
         servletContexthandler.addServlet(HotelsServlet.class, "/HotelsServlet");
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
 
-
-
         return servletContexthandler;
     }
-
-    private ResourceHandler getResourceHandler() {
-        ResourceHandler resourceHandler = new ResourceHandler();
-        resourceHandler.setDirectoriesListed(true);
-        resourceHandler.setWelcomeFiles(new String[]{ "login.html" });
-
-        resourceHandler.setResourceBase("web");
-        return resourceHandler;
-    }
-
 }

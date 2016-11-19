@@ -55,7 +55,7 @@ public class ReviewsServlet extends BaseServlet {
 
             }
 
-            out.println("<a href=\"logout.html\">Logout</a> &nbsp");
+            out.println("<a href=\"/LogoutServlet\">Logout</a> &nbsp");
             out.println("<a href=\"AddReview?hotelId=" + hotelId + "\">Add Review</a>");
             out.println("</table>");
             out.println("</html></body>");

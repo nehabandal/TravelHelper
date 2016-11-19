@@ -392,6 +392,11 @@ public class DatabaseHandler {
 
         Status status = Status.OK;
 
+        if(rating>5 || rating<1)
+        {
+            status=Status.ERROR;
+            return status;
+        }
         java.util.Date dateObject = null;
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -458,7 +463,7 @@ public class DatabaseHandler {
             String usersalt = loginDetails.get("usersalt");
             String encryptedPassword = loginDetails.get("password");
             String passhash = getHash(password, usersalt);
-            if (!encryptedPassword.equals(passhash)) {
+            if (!passhash.equals(encryptedPassword)) {
                 status = Status.INVALID_LOGIN;
 
                 out.println("Invalid login for user: " + user);
