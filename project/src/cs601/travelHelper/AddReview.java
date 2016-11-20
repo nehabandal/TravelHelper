@@ -76,7 +76,7 @@ public class AddReview extends BaseServlet {
 
         if(status==Status.ERROR)
         {
-            response.getWriter().println("Please enter rating less than 5 and more than 1");
+            response.getWriter().println("Please enter rating between 1 to 5");
         }
         if (status == Status.OK) { // registration was successful
             response.getWriter().println("Review added successfully!");

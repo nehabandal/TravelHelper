@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  * Created by npbandal on 11/15/16.
  */
 public class ReviewsServlet extends BaseServlet {
-    public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ?";
+    public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ? order by date";
     private DatabaseConnector db;
 
     public ReviewsServlet() {
