@@ -13,7 +13,6 @@ import java.io.PrintWriter;
  * A servlet that handles user registration. doGet() method displays an HTML form with a button and
  * two textfields: one for the username, one for the password.
  * doPost() processes the form: if the username is not taken, it adds user info to the database.
- *
  */
 @SuppressWarnings("serial")
 public class RegisterServlet extends BaseServlet {
@@ -74,33 +73,21 @@ public class RegisterServlet extends BaseServlet {
         newuser = StringEscapeUtils.escapeHtml4(newuser);
         newpass = StringEscapeUtils.escapeHtml4(newpass);
 
-        Status status=  dbhandler.registerUser(newuser, newpass);
-        if(status == Status.OK) { // registration was successful
+        Status status = dbhandler.registerUser(newuser, newpass);
+        if (status == Status.OK) { // registration was successful
             response.getWriter().println("Registered! Database updated.");
             response.sendRedirect("/LoginServlet");
-        }
-        else if(status==Status.DUPLICATE_USER)
-        {
+        } else if (status == Status.DUPLICATE_USER) {
             response.getWriter().println("User already exist");
-        }
-        else if(status==Status.INVALID_LOGIN)
-        {
+        } else if (status == Status.INVALID_LOGIN) {
             response.getWriter().println("Username and password can't be empty");
-        }
-
-        else if(status==Status.MISSING_VALUES)
-        {
+        } else if (status == Status.MISSING_VALUES) {
             response.getWriter().println("Password length is less than 8");
-        }
-        else if(status==Status.ERROR)
-        {
+        } else if (status == Status.ERROR) {
             response.getWriter().println("Password should contain at least one special character");
-        }
-else if(status==Status.INVALID_USER)
-        {
+        } else if (status == Status.INVALID_USER) {
             response.getWriter().println("Special case letters are not allowed for user name");
-        }
-        else {
+        } else {
             response.getWriter().println("Please recheck login");
         }
     }

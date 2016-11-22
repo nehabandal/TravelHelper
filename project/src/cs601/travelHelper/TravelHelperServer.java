@@ -20,6 +20,8 @@ public class TravelHelperServer {
         TravelHelperServer server = new TravelHelperServer();
         ThreadSafeHotelData tdsafe = new ThreadSafeHotelData();
         HotelDataBuilder data = new HotelDataBuilder(tdsafe);
+       // InsertExisting newinsert=new InsertExisting();
+
        //data.loadHotelInfo("input/hotels200.json");
         //data.loadReviews(Paths.get("input/reviews"));
 

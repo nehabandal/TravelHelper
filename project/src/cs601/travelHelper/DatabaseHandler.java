@@ -72,7 +72,7 @@ public class DatabaseHandler {
      * Used to create ReviewTable table for this example.
      */
     private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
-             + "reviewId VARCHAR(100) NOT NULL PRIMARY KEY, " + "hotelId INTEGER NOT NULL," +
+            + "reviewId VARCHAR(100) NOT NULL PRIMARY KEY, " + "hotelId INTEGER NOT NULL," +
             "reviewTitle VARCHAR(100) NOT NULL, " + "review VARCHAR(2000) NOT NULL," + "username VARCHAR(100) NOT NULL, "
             + "date DATE NOT NULL, " + "rating DOUBLE(5,2) NOT NULL);";
 
@@ -296,7 +296,7 @@ public class DatabaseHandler {
         boolean bu = mu.find();
 
         // make sure we have non-null and non-emtpy values for login
-        if (isBlank(newuser) || isBlank(newpass)) {
+       if (isBlank(newuser) || isBlank(newpass)) {
             status = Status.INVALID_LOGIN;
             return status;
 
