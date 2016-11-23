@@ -10,7 +10,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 
 /**
  * Demonstrates how to use Jetty, servlets and JDBC for user registration. This is a
- * simplified example, and **NOT** secure. 
+ * simplified example, and **NOT** secure.
  * Modified from the example by Prof. Engle.
  */
 public class TravelHelperServer {
@@ -20,9 +20,9 @@ public class TravelHelperServer {
         TravelHelperServer server = new TravelHelperServer();
         ThreadSafeHotelData tdsafe = new ThreadSafeHotelData();
         HotelDataBuilder data = new HotelDataBuilder(tdsafe);
-       // InsertExisting newinsert=new InsertExisting();
+        // InsertExisting newinsert=new InsertExisting();
 
-       //data.loadHotelInfo("input/hotels200.json");
+        //data.loadHotelInfo("input/hotels200.json");
         //data.loadReviews(Paths.get("input/reviews"));
 
         server.start();
@@ -34,7 +34,7 @@ public class TravelHelperServer {
 
         HandlerList handlers = new HandlerList();
         server.setHandler(handlers);
-        handlers.setHandlers(new Handler[] {
+        handlers.setHandlers(new Handler[]{
                 getServletContextHandler(),
         });
 
@@ -48,6 +48,11 @@ public class TravelHelperServer {
         }
     }
 
+    /**
+     * Method which adds all servlet
+     *
+     * @return
+     */
     private ServletContextHandler getServletContextHandler() {
         ServletContextHandler servletContexthandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         servletContexthandler.addServlet(LoginServlet.class, "/");

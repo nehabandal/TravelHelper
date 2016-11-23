@@ -25,9 +25,9 @@ public class AddReview extends BaseServlet {
                     "  Title:<br>\n" +
                     "  <input type=\"text\" name=\"title\">\n" +
                     "  <br>Comments:<br>\n" +
-                    "  <textarea name=\"comments\" rows=\"4\" cols=\"50\">"+
-                    "</textarea>"+
-                   // "  <input type=\"text\" name=\"comments\" size=\"200\">\n" +
+                    "  <textarea name=\"comments\" rows=\"4\" cols=\"50\">" +
+                    "</textarea>" +
+                    // "  <input type=\"text\" name=\"comments\" size=\"200\">\n" +
                     "  <br>Rating:<br>\n" +
                     "  <input type=\"text\" name=\"rating\">\n" +
                     "  <br><br>\n" +
@@ -38,6 +38,13 @@ public class AddReview extends BaseServlet {
                     "</html>\n" +
                     "\n";
 
+    /**
+     * Get method for adding new review it will display form for review field
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         checkLoginState(request, response);
 
@@ -48,6 +55,15 @@ public class AddReview extends BaseServlet {
         out.println(innerHtml);
     }
 
+    /**
+     * Post method for adding new review to reviewData table
+     * Fill fields from Get method and submit request with data and add review to database
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         checkLoginState(request, response);
@@ -61,10 +77,10 @@ public class AddReview extends BaseServlet {
         String title = request.getParameter("title");
         String comments = request.getParameter("comments");
         String rating = request.getParameter("rating");
-        Date date= new Date();
+        Date date = new Date();
         String datetest = format.format(date);
         SecureRandom random = new SecureRandom();
-        String reviewId=new BigInteger(130, random).toString(32);
+        String reviewId = new BigInteger(130, random).toString(32);
         Status status = dbhandler.addReviewDB(
                 reviewId,
                 String.valueOf(hotelId),
@@ -74,8 +90,7 @@ public class AddReview extends BaseServlet {
                 datetest,
                 Double.parseDouble(rating));
 
-        if(status==Status.ERROR)
-        {
+        if (status == Status.ERROR) {
             response.getWriter().println("Please enter rating between 1 to 5");
         }
         if (status == Status.OK) { // registration was successful

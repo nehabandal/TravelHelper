@@ -54,6 +54,13 @@ public class LoginServlet extends BaseServlet {
                     "</body>\n" +
                     "</html>\n";
 
+    /**
+     * GET method which will check user is still login if yes then at any indirect URL take back to hotel list page
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
@@ -67,6 +74,14 @@ public class LoginServlet extends BaseServlet {
         out.println(innerHtml);
     }
 
+    /**
+     * POST method to submit login form,check user is authenticated and then allow login
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -89,21 +104,15 @@ public class LoginServlet extends BaseServlet {
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30 * 60);
             response.sendRedirect("/HotelsServlet");
-        }
-        else if(status==Status.MISSING_VALUES)
-        {
+        } else if (status == Status.MISSING_VALUES) {
             response.getWriter().println("Missing UserName or Password or Both values");
-        }
-        else if(status==Status.INVALID_LOGIN){
+        } else if (status == Status.INVALID_LOGIN) {
 
             response.getWriter().println("Invalid Password");
-        }
-        else if(status==Status.CONNECTION_FAILED){
+        } else if (status == Status.CONNECTION_FAILED) {
 
             response.getWriter().println("Wrong Credentials");
-        }
-        else
-        {
+        } else {
             response.getWriter().println("Please check all details again");
         }
     }

@@ -14,147 +14,149 @@ import java.util.Set;
  * a database.properties file with username, password, database, and hostname.
  * You must also have the tunnel to stargate.cs.usfca.edu running if you are
  * off-campus.
+ *
  * @author Prof. Engle
  */
 public class DatabaseConnector {
 
-	/**
-	 * URI to use when connecting to database. Should be in the format:
-	 * jdbc:subprotocol://hostname/database
-	 */
-	public final String uri;
+    /**
+     * URI to use when connecting to database. Should be in the format:
+     * jdbc:subprotocol://hostname/database
+     */
+    public final String uri;
 
-	/** Properties with username and password for connecting to database. */
-	private final Properties login;
+    /**
+     * Properties with username and password for connecting to database.
+     */
+    private final Properties login;
 
-	/**
-	 * Creates a connector from a "database.properties" file located in the
-	 * current working directory.
-	 *
-	 * @throws IOException if unable to properly parse properties file
-	 * @throws FileNotFoundException if properties file not found
-	 */
-	public DatabaseConnector() throws FileNotFoundException, IOException {
-		this("database.properties");
-	}
+    /**
+     * Creates a connector from a "database.properties" file located in the
+     * current working directory.
+     *
+     * @throws IOException           if unable to properly parse properties file
+     * @throws FileNotFoundException if properties file not found
+     */
+    public DatabaseConnector() throws FileNotFoundException, IOException {
+        this("database.properties");
+    }
 
-	/**
-	 * Creates a connector from the provided database properties file.
-	 *
-	 * @param configPath path to the database properties file
-	 * @throws IOException if unable to properly parse properties file
-	 * @throws FileNotFoundException if properties file not found
-	 */
-	public DatabaseConnector(String configPath)
-			throws FileNotFoundException, IOException {
+    /**
+     * Creates a connector from the provided database properties file.
+     *
+     * @param configPath path to the database properties file
+     * @throws IOException           if unable to properly parse properties file
+     * @throws FileNotFoundException if properties file not found
+     */
+    public DatabaseConnector(String configPath)
+            throws FileNotFoundException, IOException {
 
-		// Try to load the configuration from file
-		Properties config = loadConfig(configPath);
+        // Try to load the configuration from file
+        Properties config = loadConfig(configPath);
 
-		// Create database URI in proper format
-		uri = String.format("jdbc:mysql://%s/%s",
-				config.getProperty("hostname"),
-				config.getProperty("database"));
-		System.out.println("uri = " + uri);
-		// Create database login properties
-		login = new Properties();
-		login.put("user", config.getProperty("username"));
-		login.put("password", config.getProperty("password"));
-	}
+        // Create database URI in proper format
+        uri = String.format("jdbc:mysql://%s/%s",
+                config.getProperty("hostname"),
+                config.getProperty("database"));
+        System.out.println("uri = " + uri);
+        // Create database login properties
+        login = new Properties();
+        login.put("user", config.getProperty("username"));
+        login.put("password", config.getProperty("password"));
+    }
 
-	/**
-	 * Attempts to load properties file with database configuration. Must
-	 * include username, password, database, and hostname.
-	 *
-	 * @param configPath path to database properties file
-	 * @return database properties
-	 * @throws IOException if unable to properly parse properties file
-	 * @throws FileNotFoundException if properties file not found
-	 */
-	private Properties loadConfig(String configPath)
-			throws FileNotFoundException, IOException {
+    /**
+     * Attempts to load properties file with database configuration. Must
+     * include username, password, database, and hostname.
+     *
+     * @param configPath path to database properties file
+     * @return database properties
+     * @throws IOException           if unable to properly parse properties file
+     * @throws FileNotFoundException if properties file not found
+     */
+    private Properties loadConfig(String configPath)
+            throws FileNotFoundException, IOException {
 
-		// Specify which keys must be in properties file
-		Set<String> required = new HashSet<>();
-		required.add("username");
-		required.add("password");
-		required.add("database");
-		required.add("hostname");
+        // Specify which keys must be in properties file
+        Set<String> required = new HashSet<>();
+        required.add("username");
+        required.add("password");
+        required.add("database");
+        required.add("hostname");
 
-		// Load properties file
-		Properties config = new Properties();
-		config.load(new FileReader(configPath));
+        // Load properties file
+        Properties config = new Properties();
+        config.load(new FileReader(configPath));
 
-		// Check that required keys are present
-		if (!config.keySet().containsAll(required)) {
-			String error = "Must provide the following in properties file: ";
-			throw new InvalidPropertiesFormatException(error + required);
-		}
+        // Check that required keys are present
+        if (!config.keySet().containsAll(required)) {
+            String error = "Must provide the following in properties file: ";
+            throw new InvalidPropertiesFormatException(error + required);
+        }
 
-		return config;
-	}
+        return config;
+    }
 
-	/**
-	 * Attempts to connect to database using loaded configuration.
-	 *
-	 * @return database connection
-	 * @throws SQLException if unable to establish database connection
-	 */
-	public Connection getConnection() throws SQLException {
-		Connection dbConnection = DriverManager.getConnection(uri, login);
-		return dbConnection;
-	}
+    /**
+     * Attempts to connect to database using loaded configuration.
+     *
+     * @return database connection
+     * @throws SQLException if unable to establish database connection
+     */
+    public Connection getConnection() throws SQLException {
+        Connection dbConnection = DriverManager.getConnection(uri, login);
+        return dbConnection;
+    }
 
-	/**
-	 * Opens a database connection and returns a set of found tables. Will
-	 * return an empty set if there are no results.
-	 *
-	 * @return set of tables
-	 */
-	public Set<String> getTables(Connection db) throws SQLException {
-		Set<String> tables = new HashSet<>();
+    /**
+     * Opens a database connection and returns a set of found tables. Will
+     * return an empty set if there are no results.
+     *
+     * @return set of tables
+     */
+    public Set<String> getTables(Connection db) throws SQLException {
+        Set<String> tables = new HashSet<>();
 
-		// Create statement and close when done.
-		// Database connection will be closed elsewhere.
-		try (Statement sql = db.createStatement();) {
-			if (sql.execute("SHOW TABLES;")) {
-				ResultSet results = sql.getResultSet();
+        // Create statement and close when done.
+        // Database connection will be closed elsewhere.
+        try (Statement sql = db.createStatement();) {
+            if (sql.execute("SHOW TABLES;")) {
+                ResultSet results = sql.getResultSet();
 
-				while (results.next()) {
-					tables.add(results.getString(1));
-				}
-			}
-		}
+                while (results.next()) {
+                    tables.add(results.getString(1));
+                }
+            }
+        }
 
-		return tables;
-	}
+        return tables;
+    }
 
-	/**
-	 * Opens a database connection, executes a simple statement, and closes
-	 * the database connection.
-	 *
-	 * @return true if all operations successful
-	 */
-	public boolean testConnection() {
-		boolean okay = false;
+    /**
+     * Opens a database connection, executes a simple statement, and closes
+     * the database connection.
+     *
+     * @return true if all operations successful
+     */
+    public boolean testConnection() {
+        boolean okay = false;
 
-		// Open database connection and close when done
-		try (Connection db = getConnection();) {
-			System.out.println("Executing SHOW TABLES...");
-			Set<String> tables = getTables(db);
+        // Open database connection and close when done
+        try (Connection db = getConnection();) {
+            System.out.println("Executing SHOW TABLES...");
+            Set<String> tables = getTables(db);
 
-			if (tables != null) {
-				System.out.print("Found " + tables.size() + " tables: ");
-				System.out.println(tables);
+            if (tables != null) {
+                System.out.print("Found " + tables.size() + " tables: ");
+                System.out.println(tables);
 
-				okay = true;
-			}
-		}
-		catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
+                okay = true;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
 
-		return okay;
-	}
+        return okay;
+    }
 
 }

@@ -43,8 +43,15 @@ public class RegisterServlet extends BaseServlet {
                     "</body>\n" +
                     "</html>\n";
 
+    /**
+     * GET method to generate register form for user
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     * @Override
+     */
 
-    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession();
@@ -59,7 +66,17 @@ public class RegisterServlet extends BaseServlet {
         out.println(innerHtml);
     }
 
-    @Override
+    /**
+     * POST method that will allow submitting user data and register new user after checking all invalidation
+     * update login user table in database
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException
+     * @Override
+     */
+
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 

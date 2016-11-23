@@ -98,14 +98,11 @@ public class DatabaseHandler {
      **/
     private static final String UPDATE_RATING = "UPDATE hotelData set rating=(select avg(rating) from ratingupdates where hotelData.hotelID=ratingupdates.hotelId);";
 
-
     /**
      * Used to determine if a username already exists.
      */
     private static final String USER_SQL = "SELECT username FROM login_users WHERE username = ?";
 
-    // ------------------ constants below will be useful for the login operation
-    // once you implement it
     /**
      * Used to retrieve the salt associated with a specific user.
      */
@@ -190,9 +187,8 @@ public class DatabaseHandler {
                 // Table missing, must create
                 statement.executeUpdate(CREATE_SQL);
                 statement.executeUpdate(CREATE_SQL_HOTEL);
-               statement.executeUpdate(CREATE_SQL_REVIEW);
-               statement.executeUpdate(ALTER_SQL_REVIEW);
-
+                statement.executeUpdate(CREATE_SQL_REVIEW);
+                statement.executeUpdate(ALTER_SQL_REVIEW);
 
 
                 // Check if create was successful
@@ -297,7 +293,7 @@ public class DatabaseHandler {
         boolean bu = mu.find();
 
         // make sure we have non-null and non-emtpy values for login
-       if (isBlank(newuser) || isBlank(newpass)) {
+        if (isBlank(newuser) || isBlank(newpass)) {
             status = Status.INVALID_LOGIN;
             return status;
 
@@ -308,10 +304,8 @@ public class DatabaseHandler {
         } else if (!b) {
             status = Status.ERROR;
             return status;
-        }
-        else if(bu)
-        {
-            status=Status.INVALID_USER;
+        } else if (bu) {
+            status = Status.INVALID_USER;
             return status;
         }
 
@@ -351,9 +345,17 @@ public class DatabaseHandler {
 
 
     /**
-     * adding hotel
+     * adding hotel to hotelData table,
+     *
+     * @param hotelID
+     * @param hotelName
+     * @param address
+     * @param city
+     * @param state
+     * @param country
+     * @return
      */
-    public Status addHotelDB(String hotelID, String hotelName, String address, String city,String state, String country) {
+    public Status addHotelDB(String hotelID, String hotelName, String address, String city, String state, String country) {
         Status status = Status.OK;
 
 
@@ -388,16 +390,24 @@ public class DatabaseHandler {
     }
 
     /**
-     * adding hotel
+     * Adding reviews to reviewData table using query
+     *
+     * @param reviewId
+     * @param hotelId
+     * @param reviewTitle
+     * @param review
+     * @param username
+     * @param date
+     * @param rating
+     * @return
      */
     public Status addReviewDB(String reviewId, String hotelId, String reviewTitle, String review,
                               String username, String date, double rating) {
 
         Status status = Status.OK;
 
-        if(rating>5 || rating<1)
-        {
-            status=Status.ERROR;
+        if (rating > 5 || rating < 1) {
+            status = Status.ERROR;
             return status;
         }
         java.util.Date dateObject = null;
@@ -443,12 +453,11 @@ public class DatabaseHandler {
 
 
     /**
-     * Registers a new user, placing the username, password hash, and salt into
-     * the database if the username does not already exist.
+     * Authenticating a new user at the time of login if username or password goes wrong don't allow to login,
      *
      * @param user     - username of new user
      * @param password - password of new user
-     * @return {@link Status.OK} if registration successful
+     * @return
      */
     public Status authenticateUser(String user, String password) {
         Status status = Status.ERROR;

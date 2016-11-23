@@ -24,6 +24,13 @@ public class ReviewsServlet extends BaseServlet {
         }
     }
 
+    /**
+     * GET method for fetching all reviews for selected hotel, select resultset from database and display reviews for hotel
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         checkLoginState(request, response);
         HttpSession session = request.getSession();
@@ -49,9 +56,9 @@ public class ReviewsServlet extends BaseServlet {
                 String review = rs.getString("review");
                 String username = rs.getString("username");
                 double rating = rs.getDouble("rating");
-                String date=rs.getString("date");
+                String date = rs.getString("date");
 
-                out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating +"</td><td>" + date + "</td></tr>");
+                out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td><td>" + date + "</td></tr>");
 
             }
 

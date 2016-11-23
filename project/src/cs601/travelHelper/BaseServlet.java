@@ -18,125 +18,132 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class BaseServlet extends HttpServlet {
 
-	protected void prepareResponse(String title, HttpServletResponse response) {
-		try {
-			PrintWriter writer = response.getWriter();
+    protected void prepareResponse(String title, HttpServletResponse response) {
+        try {
+            PrintWriter writer = response.getWriter();
 
-			writer.println("<!DOCTYPE html>");
-			writer.println("<html>");
-			writer.println("<head>");
-			writer.println("\t<title>" + title + "</title>");
-			writer.println("</head>");
-			writer.println("<body>");
-		} catch (IOException ex) {
-			System.out.println("IOException while preparing the response: " + ex);
-			return;
-		}
-	}
+            writer.println("<!DOCTYPE html>");
+            writer.println("<html>");
+            writer.println("<head>");
+            writer.println("\t<title>" + title + "</title>");
+            writer.println("</head>");
+            writer.println("<body>");
+        } catch (IOException ex) {
+            System.out.println("IOException while preparing the response: " + ex);
+            return;
+        }
+    }
 
-	protected void finishResponse(HttpServletResponse response) {
-		try {
-			PrintWriter writer = response.getWriter();
+    protected void finishResponse(HttpServletResponse response) {
+        try {
+            PrintWriter writer = response.getWriter();
 
-			writer.println();
-			writer.println("<p style=\"font-size: 10pt; font-style: italic;\">");
-			writer.println("Last updated at " + getDate());
-			writer.println("</p>");
+            writer.println();
+            writer.println("<p style=\"font-size: 10pt; font-style: italic;\">");
+            writer.println("Last updated at " + getDate());
+            writer.println("</p>");
 
-			writer.println("</body>");
-			writer.println("</html>");
+            writer.println("</body>");
+            writer.println("</html>");
 
-			writer.flush();
+            writer.flush();
 
-			response.setStatus(HttpServletResponse.SC_OK);
-			response.flushBuffer();
-		} catch (IOException ex) {
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			return;
-		}
-	}
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.flushBuffer();
+        } catch (IOException ex) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
+        }
+    }
 
-	protected String getDate() {
-		String format = "hh:mm a 'on' EEE, MMM dd, yyyy";
-		DateFormat dateFormat = new SimpleDateFormat(format);
-		return dateFormat.format(Calendar.getInstance().getTime());
-	}
+    protected String getDate() {
+        String format = "hh:mm a 'on' EEE, MMM dd, yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(Calendar.getInstance().getTime());
+    }
 
-	/**
-	 * Return a cookie map from the cookies in the request
-	 * 
-	 * @param request
-	 * @return
-	 */
-	protected Map<String, String> getCookieMap(HttpServletRequest request) {
-		HashMap<String, String> map = new HashMap<String, String>();
+    /**
+     * Return a cookie map from the cookies in the request
+     *
+     * @param request
+     * @return
+     */
+    protected Map<String, String> getCookieMap(HttpServletRequest request) {
+        HashMap<String, String> map = new HashMap<String, String>();
 
-		Cookie[] cookies = request.getCookies();
+        Cookie[] cookies = request.getCookies();
 
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				map.put(cookie.getName(), cookie.getValue());
-			}
-		}
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                map.put(cookie.getName(), cookie.getValue());
+            }
+        }
 
-		return map;
-	}
+        return map;
+    }
 
-	/**
-	 * Clear cookies
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	protected void clearCookies(HttpServletRequest request, HttpServletResponse response) {
-		Cookie[] cookies = request.getCookies();
+    /**
+     * Clear cookies
+     *
+     * @param request
+     * @param response
+     */
+    protected void clearCookies(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
 
-		if (cookies == null) {
-			return;
-		}
+        if (cookies == null) {
+            return;
+        }
 
-		for (Cookie cookie : cookies) {
-			cookie.setValue("");
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
-		}
-	}
+        for (Cookie cookie : cookies) {
+            cookie.setValue("");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+    }
 
-	protected void clearCookie(String cookieName, HttpServletResponse response) {
-		Cookie cookie = new Cookie(cookieName, null);
-		cookie.setMaxAge(0);
-		response.addCookie(cookie);
-	}
+    protected void clearCookie(String cookieName, HttpServletResponse response) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+    }
 
-	protected String getStatusMessage(String errorName) {
-		Status status = null;
+    protected String getStatusMessage(String errorName) {
+        Status status = null;
 
-		try {
-			status = Status.valueOf(errorName);
-		} catch (Exception ex) {
-			status = Status.ERROR;
-		}
+        try {
+            status = Status.valueOf(errorName);
+        } catch (Exception ex) {
+            status = Status.ERROR;
+        }
 
-		return status.toString();
-	}
+        return status.toString();
+    }
 
-	protected String getStatusMessage(int code) {
-		Status status = null;
+    protected String getStatusMessage(int code) {
+        Status status = null;
 
-		try {
-			status = Status.values()[code];
-		} catch (Exception ex) {
-			status = Status.ERROR;
-		}
+        try {
+            status = Status.values()[code];
+        } catch (Exception ex) {
+            status = Status.ERROR;
+        }
 
-		return status.toString();
-	}
+        return status.toString();
+    }
 
-	protected void checkLoginState(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("user") == null) {
-			response.sendRedirect("/LoginServlet");
-		}
-	}
+    /**
+     * checking login session for user, if user is not logged in then go back to login page
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    protected void checkLoginState(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            response.sendRedirect("/LoginServlet");
+        }
+    }
 
 }

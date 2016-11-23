@@ -35,6 +35,13 @@ public class HotelsServlet extends BaseServlet {
 
     }
 
+    /**
+     * Get method that get data from hotelData and display hotel list.
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         checkLoginState(request, response);
 
@@ -57,8 +64,8 @@ public class HotelsServlet extends BaseServlet {
                 String hotelName = rs.getString("hotelName");
                 String address = rs.getString("address");
                 String city = rs.getString("city");
-                String state=rs.getString("state");
-                String country=rs.getString("country");
+                String state = rs.getString("state");
+                String country = rs.getString("country");
                 double avgRating = rs.getDouble("avgRating");
 
 
@@ -83,7 +90,19 @@ public class HotelsServlet extends BaseServlet {
         }
     }
 
-    private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country,double avgRating) {
+    /**
+     * Passing values in URL for displaying reviews for hotel, and displaying list of hotels
+     *
+     * @param hotelId
+     * @param hotelName
+     * @param address
+     * @param city
+     * @param state
+     * @param country
+     * @param avgRating
+     * @return
+     */
+    private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
         String url = "ReviewsServlet?hotelId=" + hotelId;
         return String.format("<tr>" +
                         "<td><a href=\"%s\">%s</a></td>" +
@@ -93,9 +112,8 @@ public class HotelsServlet extends BaseServlet {
                         "<td>%s</td>" +
                         "<td>%1.1f</td>" +
                         "</tr>",
-                url, hotelName, address, city, state,country, avgRating);
+                url, hotelName, address, city, state, country, avgRating);
     }
-
 
 
 }
