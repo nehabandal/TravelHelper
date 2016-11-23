@@ -66,11 +66,11 @@ public class ThreadSafeHotelData {
      * @param longitude
      */
     public void addHotel(String hotelId, String hotelName, String city, String state, String streetAddress,
-                         double latitude, double longitude) {
+                         double latitude, double longitude,String country) {
         lock.lockWrite();
         Address address = new Address(streetAddress, city, state, latitude, longitude);
         Hotel hotel = new Hotel(hotelId, hotelName, address);
-        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city);
+        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city,state,country);
         if(status == Status.OK) { // registration was successful
             System.out.println("row added");
         }

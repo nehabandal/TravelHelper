@@ -60,13 +60,13 @@ public class DatabaseHandler {
      */
     private static final String CREATE_SQL_HOTEL = "CREATE TABLE hotelData ("
             + "hotelID INTEGER PRIMARY KEY, " + "hotelName VARCHAR(100) NOT NULL, "
-            + "address CHAR(64) NOT NULL," + "city VARCHAR(50));";
+            + "address CHAR(64) NOT NULL," + "city VARCHAR(50)," + "state VARCHAR(50)," + "country VARCHAR(50));";
 
     /**
      * Used to insert a hotel's info into the login_users table
      */
-    private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address, city) "
-            + "VALUES (?, ?, ?, ?);";
+    private static final String REGISTER_SQL_HOTEL = "INSERT INTO hotelData (hotelID, hotelName, address, city, state, country) "
+            + "VALUES (?, ?, ?, ?, ?, ?);";
 
     /**
      * Used to create ReviewTable table for this example.
@@ -189,9 +189,10 @@ public class DatabaseHandler {
             if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
                 // Table missing, must create
                 statement.executeUpdate(CREATE_SQL);
-                statement.executeUpdate(CREATE_SQL_REVIEW);
-                statement.executeUpdate(ALTER_SQL_REVIEW);
                 statement.executeUpdate(CREATE_SQL_HOTEL);
+               statement.executeUpdate(CREATE_SQL_REVIEW);
+               statement.executeUpdate(ALTER_SQL_REVIEW);
+
 
 
                 // Check if create was successful
@@ -352,7 +353,7 @@ public class DatabaseHandler {
     /**
      * adding hotel
      */
-    public Status addHotelDB(String hotelID, String hotelName, String address, String city) {
+    public Status addHotelDB(String hotelID, String hotelName, String address, String city,String state, String country) {
         Status status = Status.OK;
 
 
@@ -366,6 +367,8 @@ public class DatabaseHandler {
                     statement.setString(2, hotelName);
                     statement.setString(3, address);
                     statement.setString(4, city);
+                    statement.setString(5, state);
+                    statement.setString(6, country);
 
                     //statement.setString(4, String.valueOf(rating));
 

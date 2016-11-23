@@ -116,15 +116,14 @@ public class HotelDataBuilder {
                 String Street_Address = (String) jsonobject.get("ad");
                 String City = (String) jsonobject.get("ci");
                 String State = (String) jsonobject.get("pr");
-
+                String country = (String) jsonobject.get("c");
                 JSONObject jsonobject1 = (JSONObject) jsonobject.get("ll");
                 String Hotel_lat = (String) jsonobject1.get("lat");
                 double lat = Double.parseDouble(Hotel_lat);
                 String Hotel_lng = (String) jsonobject1.get("lng");
                 double lan = Double.parseDouble(Hotel_lng);
 
-                threadSafehd.addHotel(Hotel_Id, hotelName, City, State, Street_Address, lat, lan);
-
+                threadSafehd.addHotel(Hotel_Id, hotelName, City, State, Street_Address, lat, lan,country);
 
 
 

@@ -5,9 +5,19 @@ public class Address {
 	private String City=new String();
 	private String State=new String();
 	private double Longitude,Latitude;
-	
+	private String country;
 	public Address(String street_Address, String city, String state,
-			double latitude, double longitude) {
+				   double latitude, double longitude,String Country) {
+		super();
+		Street_Address = street_Address;
+		City = city;
+		State = state;
+		Longitude = longitude;
+		Latitude = latitude;
+		this.country=Country;
+	}
+	public Address(String street_Address, String city, String state,
+				   double latitude, double longitude) {
 		super();
 		Street_Address = street_Address;
 		City = city;
@@ -15,7 +25,12 @@ public class Address {
 		Longitude = longitude;
 		Latitude = latitude;
 	}
-
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 	public Address() {
 		super();
 	}
@@ -63,10 +78,9 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [Street_Address=" + Street_Address + ", City=" + City
-				+ ", State=" + State + ", Longitude=" + Longitude
-				+ ", Latitude=" + Latitude + "]";
+				+ ", State=" + State + ", Longitude=" + Longitude+ ", Country=" + country + ", Latitude=" + Latitude + "]";
 	}
-	
-	
+
+
 
 }

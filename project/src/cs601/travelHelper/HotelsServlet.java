@@ -20,7 +20,7 @@ public class HotelsServlet extends BaseServlet {
 
     private DatabaseConnector db;
     private String FETCH_HOTELS_SQL =
-            "select hotelData.hotelId,hotelData.hotelName,hotelData.address,hotelData.city, avg(rating) as avgRating " +
+            "select hotelData.hotelId,hotelData.hotelName,hotelData.address,hotelData.city, hotelData.state, hotelData.country, avg(rating) as avgRating " +
                     "from hotelData " +
                     "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
                     "group by(hotelData.hotelId)";
@@ -50,16 +50,19 @@ public class HotelsServlet extends BaseServlet {
             ResultSet rs = statement.executeQuery(FETCH_HOTELS_SQL);
 
             out.println("<table border=1 width=50% height=50%>");
-            out.println("<tr><th>HotelName</th><th>Address</th><th>City</th><th>Rating</th><tr>");
+            out.println("<tr><th>HotelName</th><th>Address</th><th>City</th><th>State</th><th>Country</th><th>Rating</th><tr>");
 
             while (rs.next()) {
                 int hotelId = rs.getInt("hotelId");
                 String hotelName = rs.getString("hotelName");
                 String address = rs.getString("address");
                 String city = rs.getString("city");
+                String state=rs.getString("state");
+                String country=rs.getString("country");
                 double avgRating = rs.getDouble("avgRating");
 
-                out.println(toTableRow(hotelId, hotelName, address, city, avgRating));
+
+                out.println(toTableRow(hotelId, hotelName, address, city, state, country, avgRating));
             }
 
             out.println("<a href=\"/LogoutServlet\">Logout</a>");
@@ -80,15 +83,17 @@ public class HotelsServlet extends BaseServlet {
         }
     }
 
-    private String toTableRow(int hotelId, String hotelName, String address, String city, double avgRating) {
+    private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country,double avgRating) {
         String url = "ReviewsServlet?hotelId=" + hotelId;
         return String.format("<tr>" +
                         "<td><a href=\"%s\">%s</a></td>" +
                         "<td>%s</td>" +
                         "<td>%s</td>" +
+                        "<td>%s</td>" +
+                        "<td>%s</td>" +
                         "<td>%1.1f</td>" +
                         "</tr>",
-                url, hotelName, address, city, avgRating);
+                url, hotelName, address, city, state,country, avgRating);
     }
 
 
