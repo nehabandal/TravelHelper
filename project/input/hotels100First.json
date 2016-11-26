@@ -1,0 +1,1548 @@
+{
+  "q": "San Francisco",
+  "rid": "d7f1291d-331b-4a07-a456-f2852035f9c5",
+  "rc": "OK",
+  "sr": [
+    {
+      "@type": "hotelResult",
+      "i": "0",
+      "f": "Parc 55 San Francisco - A Hilton Hotel",
+      "d": "Parc 55 <B>San</B> <B>Francisco</B> - A Hilton Hotel",
+      "id": "12539",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.784580",
+        "lng": "-122.408540"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "55 Cyril Magnin St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "1",
+      "f": "Hilton San Francisco Union Square",
+      "d": "Hilton <B>San</B> <B>Francisco</B> Union Square",
+      "id": "25622",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.786160",
+        "lng": "-122.410180"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "333 O'Farrell St.",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "2",
+      "f": "Park Central Hotel San Francisco, a Starwood Hotel",
+      "d": "Park Central Hotel <B>San</B> <B>Francisco</B>, a Starwood Hotel",
+      "id": "491",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.786810",
+        "lng": "-122.402610"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "50 3rd St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "3",
+      "f": "Travelodge San Francisco Airport-North",
+      "d": "Travelodge <B>San</B> <B>Francisco</B> Airport-North",
+      "id": "16955",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.645129",
+        "lng": "-122.404920"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "326 S Airport Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "4",
+      "f": "Hotel Nikko San Francisco",
+      "d": "Hotel Nikko <B>San</B> <B>Francisco</B>",
+      "id": "23406",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.785683",
+        "lng": "-122.409575"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "222 Mason St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "5",
+      "f": "San Francisco Marriott Marquis Union Square",
+      "d": "<B>San</B> <B>Francisco</B> Marriott Marquis Union Square",
+      "id": "8737",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.785060",
+        "lng": "-122.404790"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "780 Mission Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "6",
+      "f": "DoubleTree by Hilton Hotel San Francisco Airport North",
+      "d": "DoubleTree by Hilton Hotel <B>San</B> <B>Francisco</B> Airport North",
+      "id": "599536",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.673436",
+        "lng": "-122.387268"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "5000 Sierra Point Pkwy",
+      "ci": "Brisbane",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "7",
+      "f": "Omni San Francisco Hotel",
+      "d": "Omni <B>San</B> <B>Francisco</B> Hotel",
+      "id": "662368",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.792928",
+        "lng": "-122.402712"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "500 California St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "8",
+      "f": "Holiday Inn San Francisco-Fisherman's Wharf",
+      "d": "Holiday Inn <B>San</B> <B>Francisco</B>-Fisherman's Wharf",
+      "id": "1047",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.806030",
+        "lng": "-122.418440"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1300 Columbus Ave",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "9",
+      "f": "The Fairmont San Francisco",
+      "d": "The Fairmont <B>San</B> <B>Francisco</B>",
+      "id": "18200",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.792290",
+        "lng": "-122.410880"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "950 Mason Street Atop Nob Hill",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "10",
+      "f": "Hyatt Regency San Francisco Airport",
+      "d": "Hyatt Regency <B>San</B> <B>Francisco</B> Airport",
+      "id": "26500",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.593824",
+        "lng": "-122.364268"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1333 Bayshore Hwy",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "11",
+      "f": "Palace Hotel, a Luxury Collection Hotel, San Francisco",
+      "d": "Palace Hotel, a Luxury Collection Hotel, <B>San</B> <B>Francisco</B>",
+      "id": "27274",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.788682",
+        "lng": "-122.401919"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "2 New Montgomery St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "12",
+      "f": "The Opal San Francisco",
+      "d": "The Opal <B>San</B> <B>Francisco</B>",
+      "id": "919198",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.785446",
+        "lng": "-122.421273"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1050 Van Ness Avenue",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "13",
+      "f": "Hilton San Francisco Airport Bayfront",
+      "d": "Hilton <B>San</B> <B>Francisco</B> Airport Bayfront",
+      "id": "12345",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.589480",
+        "lng": "-122.343430"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "600 Airport Blvd",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "14",
+      "f": "The Westin St Francis San Francisco on Union Square",
+      "d": "The Westin St Francis <B>San</B> <B>Francisco</B> on Union Square",
+      "id": "26760",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.787730",
+        "lng": "-122.408220"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "335 Powell Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "15",
+      "f": "InterContinental San Francisco",
+      "d": "InterContinental <B>San</B> <B>Francisco</B>",
+      "id": "1766605",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.781710",
+        "lng": "-122.404700"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "888 Howard Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "16",
+      "f": "San Francisco Airport Marriott Waterfront",
+      "d": "<B>San</B> <B>Francisco</B> Airport Marriott Waterfront",
+      "id": "23838",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.601690",
+        "lng": "-122.370208"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1800 Old Bayshore Hwy",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "17",
+      "f": "Crowne Plaza San Francisco Airport",
+      "d": "Crowne Plaza <B>San</B> <B>Francisco</B> Airport",
+      "id": "28502",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.591072",
+        "lng": "-122.360110"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1177 Airport Blvd",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "18",
+      "f": "La Quinta Inn San Francisco Airport North",
+      "d": "La Quinta Inn <B>San</B> <B>Francisco</B> Airport North",
+      "id": "9329",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.650100",
+        "lng": "-122.408321"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "20 Airport Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "19",
+      "f": "Vagabond Inn Executive San Francisco Airport",
+      "d": "Vagabond Inn Executive <B>San</B> <B>Francisco</B> Airport",
+      "id": "40443",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.599815",
+        "lng": "-122.367883"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1640 Old Bayshore Hwy",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "20",
+      "f": "Grand Hyatt San Francisco Union Square",
+      "d": "Grand Hyatt <B>San</B> <B>Francisco</B> Union Square",
+      "id": "5883",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.789110",
+        "lng": "-122.406820"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "345 Stockton St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "21",
+      "f": "Hilton San Francisco Downtown/Financial District",
+      "d": "Hilton <B>San</B> <B>Francisco</B> Downtown/Financial District",
+      "id": "4302",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.795030",
+        "lng": "-122.404860"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "750 Kearny St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "22",
+      "f": "San Francisco Marriott Union Square",
+      "d": "<B>San</B> <B>Francisco</B> Marriott Union Square",
+      "id": "24468",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.789280",
+        "lng": "-122.408290"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "480 Sutter Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "23",
+      "f": "Club Quarters Hotel in San Francisco",
+      "d": "Club Quarters Hotel in <B>San</B> <B>Francisco</B>",
+      "id": "912982",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.794972",
+        "lng": "-122.400809"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "424 Clay St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "24",
+      "f": "Bay Landing San Francisco Airport Hotel",
+      "d": "Bay Landing <B>San</B> <B>Francisco</B> Airport Hotel",
+      "id": "1110785",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.597986",
+        "lng": "-122.366240"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1550 Bayshore Hwy",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "25",
+      "f": "Holiday Inn San Francisco International Airport",
+      "d": "Holiday Inn <B>San</B> <B>Francisco</B> International Airport",
+      "id": "487",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.646820",
+        "lng": "-122.405510"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "275 S Airport Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "26",
+      "f": "Larkspur Landing South San Francisco - An All-Suite Hotel",
+      "d": "Larkspur Landing South <B>San</B> <B>Francisco</B> - An All-Suite Hotel",
+      "id": "287665",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.658668",
+        "lng": "-122.397560"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "690 Gateway Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "27",
+      "f": "Hyatt Regency San Francisco",
+      "d": "Hyatt Regency <B>San</B> <B>Francisco</B>",
+      "id": "23774",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.793720",
+        "lng": "-122.396440"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "5 Embarcadero Center",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "28",
+      "f": "Embassy Suites San Francisco Airport - Waterfront",
+      "d": "Embassy Suites <B>San</B> <B>Francisco</B> Airport - Waterfront",
+      "id": "42336",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.591192",
+        "lng": "-122.347264"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "150 Anza Blvd",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "29",
+      "f": "San Remo Hotel",
+      "d": "<B>San</B> Remo Hotel",
+      "id": "41833",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.804270",
+        "lng": "-122.413138"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "2237 Mason Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "30",
+      "f": "DoubleTree by Hilton San Francisco Airport",
+      "d": "DoubleTree by Hilton <B>San</B> <B>Francisco</B> Airport",
+      "id": "828",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.591130",
+        "lng": "-122.350410"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "835 Airport Blvd",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "31",
+      "f": "Comfort Inn and Suites San Francisco Airport North",
+      "d": "Comfort Inn and Suites <B>San</B> <B>Francisco</B> Airport North",
+      "id": "20701",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.654433",
+        "lng": "-122.404861"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "121 E Grand Ave",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "32",
+      "f": "Hotel Zelos San Francisco",
+      "d": "Hotel Zelos <B>San</B> <B>Francisco</B>",
+      "id": "225819",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.785398",
+        "lng": "-122.405390"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "12 4th St.",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "33",
+      "f": "Hyatt Centric Fisherman's Wharf San Francisco",
+      "d": "Hyatt Centric Fisherman's Wharf <B>San</B> <B>Francisco</B>",
+      "id": "22500",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.806280",
+        "lng": "-122.416410"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "555 N Point St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "34",
+      "f": "The Marker San Francisco, a Joie de Vivre Hotel",
+      "d": "The Marker <B>San</B> <B>Francisco</B>, a Joie de Vivre Hotel",
+      "id": "15769",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.786980",
+        "lng": "-122.411710"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "501 Geary St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "35",
+      "f": "Hotel Zeppelin San Francisco",
+      "d": "Hotel Zeppelin <B>San</B> <B>Francisco</B>",
+      "id": "5875",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.788030",
+        "lng": "-122.410790"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "545 Post St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "36",
+      "f": "Sofitel San Francisco Bay",
+      "d": "Sofitel <B>San</B> <B>Francisco</B> Bay",
+      "id": "5830",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.522707",
+        "lng": "-122.261983"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "223 Twin Dolphin Dr",
+      "ci": "Redwood City",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "37",
+      "f": "HYATT house Emeryville/San Francisco Bay Area",
+      "d": "HYATT house Emeryville/<B>San</B> <B>Francisco</B> Bay Area",
+      "id": "547988",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.839287",
+        "lng": "-122.293408"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "5800 Shellmound Street",
+      "ci": "Emeryville",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "38",
+      "f": "Red Roof Plus San Francisco Airport",
+      "d": "Red Roof Plus <B>San</B> <B>Francisco</B> Airport",
+      "id": "28200",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.590030",
+        "lng": "-122.349340"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "777 Airport Blvd",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "39",
+      "f": "Axiom Hotel San Francisco",
+      "d": "Axiom Hotel <B>San</B> <B>Francisco</B>",
+      "id": "23581",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.784880",
+        "lng": "-122.408599"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "28 Cyril Magnin Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "40",
+      "f": "W San Francisco",
+      "d": "W <B>San</B> <B>Francisco</B>",
+      "id": "287112",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.785148",
+        "lng": "-122.400555"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "181 3rd St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "41",
+      "f": "Hilton Garden Inn San Francisco Airport North",
+      "d": "Hilton Garden Inn <B>San</B> <B>Francisco</B> Airport North",
+      "id": "296720",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.657933",
+        "lng": "-122.398376"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "670 Gateway Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "42",
+      "f": "Marriott San Francisco Fisherman's Wharf",
+      "d": "Marriott <B>San</B> <B>Francisco</B> Fisherman's Wharf",
+      "id": "20488",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.805610",
+        "lng": "-122.417810"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1250 Columbus Ave",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "43",
+      "f": "San Mateo Marriott San Francisco Airport",
+      "d": "<B>San</B> Mateo Marriott <B>San</B> <B>Francisco</B> Airport",
+      "id": "4044",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.556767",
+        "lng": "-122.300253"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1770 S Amphlett Blvd",
+      "ci": "San Mateo",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "44",
+      "f": "Four Seasons Hotel San Francisco",
+      "d": "Four Seasons Hotel <B>San</B> <B>Francisco</B>",
+      "id": "791769",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.786626",
+        "lng": "-122.404719"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "757 Market St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "45",
+      "f": "Four Points by Sheraton San Francisco Bay Bridge",
+      "d": "Four Points by Sheraton <B>San</B> <B>Francisco</B> Bay Bridge",
+      "id": "17280",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.838623",
+        "lng": "-122.293758"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1603 Powell St",
+      "ci": "Emeryville",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "46",
+      "f": "Marriott Courtyard San Francisco Downtown",
+      "d": "Marriott Courtyard <B>San</B> <B>Francisco</B> Downtown",
+      "id": "693658",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.785816",
+        "lng": "-122.396965"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "299 2nd St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "47",
+      "f": "Hilton Garden Inn San Francisco/Oakland Bay Bridge",
+      "d": "Hilton Garden Inn <B>San</B> <B>Francisco</B>/Oakland Bay Bridge",
+      "id": "10323",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.837773",
+        "lng": "-122.298142"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1800 Powell Street",
+      "ci": "Emeryville",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "48",
+      "f": "Embassy Suites San Francisco Airport - South San Francisco",
+      "d": "Embassy Suites <B>San</B> <B>Francisco</B> Airport - South <B>San</B> <B>Francisco</B>",
+      "id": "2981",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.655776",
+        "lng": "-122.401654"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "250 Gateway Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "49",
+      "f": "Days Inn San Francisco International Airport West",
+      "d": "Days Inn <B>San</B> <B>Francisco</B> International Airport West",
+      "id": "455591",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.612173",
+        "lng": "-122.403153"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1550 El Camino Real",
+      "ci": "San Bruno",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "50",
+      "f": "Le Meridien San Francisco",
+      "d": "Le Meridien <B>San</B> <B>Francisco</B>",
+      "id": "11523",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.794725",
+        "lng": "-122.400265"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "333 Battery St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "51",
+      "f": "The Westin San Francisco Airport",
+      "d": "The Westin <B>San</B> <B>Francisco</B> Airport",
+      "id": "4705",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.604235",
+        "lng": "-122.375922"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1 Old Bayshore Hwy",
+      "ci": "Millbrae",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "52",
+      "f": "JW Marriott San Francisco Union Square",
+      "d": "JW Marriott <B>San</B> <B>Francisco</B> Union Square",
+      "id": "2063",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.788058",
+        "lng": "-122.410261"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "500 Post Street",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "53",
+      "f": "Holiday Inn Civic Center San Francisco",
+      "d": "Holiday Inn Civic Center <B>San</B> <B>Francisco</B>",
+      "id": "18204",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.778140",
+        "lng": "-122.413920"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "50 8th St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "54",
+      "f": "Hampton Inn San Francisco-Airport",
+      "d": "Hampton Inn <B>San</B> <B>Francisco</B>-Airport",
+      "id": "437098",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.656733",
+        "lng": "-122.400771"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "300 Gateway Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "55",
+      "f": "Super 8 San Bruno/San Francisco Airport",
+      "d": "Super 8 <B>San</B> Bruno/<B>San</B> <B>Francisco</B> Airport",
+      "id": "283107",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.621968",
+        "lng": "-122.412012"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "421 El Camino Real",
+      "ci": "San Bruno",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "56",
+      "f": "Argonaut Hotel - a Noble House Hotel",
+      "d": "Argonaut Hotel - a Noble House Hotel",
+      "id": "915510",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.807660",
+        "lng": "-122.420306"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "495 Jefferson St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "57",
+      "f": "The Warwick San Francisco",
+      "d": "The Warwick <B>San</B> <B>Francisco</B>",
+      "id": "876",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.787030",
+        "lng": "-122.411360"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "490 Geary St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "58",
+      "f": "Hampton Inn & Suites San Francisco Airport South-Burlingame",
+      "d": "Hampton Inn & Suites <B>San</B> <B>Francisco</B> Airport South-Burlingame",
+      "id": "897333",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.602151",
+        "lng": "-122.371307"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1755 Bayshore Hwy",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "59",
+      "f": "Americas Best Value Inn & Suites-San Francisco/Golden Gate",
+      "d": "Americas Best Value Inn & Suites-<B>San</B> <B>Francisco</B>/Golden Gate",
+      "id": "910225",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.799383",
+        "lng": "-122.439770"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "2322 Lombard St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "60",
+      "f": "Four Points by Sheraton Hotel & Suites San Francisco Airport",
+      "d": "Four Points by Sheraton Hotel & Suites <B>San</B> <B>Francisco</B> Airport",
+      "id": "790579",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.647312",
+        "lng": "-122.405570"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "264 South Airport Blvd.",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "61",
+      "f": "Travelodge Central San Francisco",
+      "d": "Travelodge Central <B>San</B> <B>Francisco</B>",
+      "id": "40682",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.772402",
+        "lng": "-122.422653"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1707 Market St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "62",
+      "f": "Extended Stay America San Rafael - Francisco Boulevard East",
+      "d": "Extended Stay America <B>San</B> Rafael - <B>Francisco</B> Boulevard East",
+      "id": "1606984",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.949220",
+        "lng": "-122.493590"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1775 Francisco Blvd",
+      "ci": "San Rafael",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "63",
+      "f": "Quality Inn & Suites South San Francisco",
+      "d": "Quality Inn & Suites South <B>San</B> <B>Francisco</B>",
+      "id": "438727",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.642511",
+        "lng": "-122.403311"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "410 S Airport Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "64",
+      "f": "The Ritz-Carlton, San Francisco",
+      "d": "The Ritz-Carlton, <B>San</B> <B>Francisco</B>",
+      "id": "22148",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.791712",
+        "lng": "-122.407436"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "600 Stockton St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "65",
+      "f": "Homewood Suites by Hilton San Francisco Airport North",
+      "d": "Homewood Suites by Hilton <B>San</B> <B>Francisco</B> Airport North",
+      "id": "897225",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.671754",
+        "lng": "-122.388151"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "2000 Shoreline Ct",
+      "ci": "Brisbane",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "66",
+      "f": "Hotel Whitcomb",
+      "d": "Hotel Whitcomb",
+      "id": "22510",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.778345",
+        "lng": "-122.415247"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1231 Market St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "67",
+      "f": "Courtyard San Francisco Fisherman's Wharf",
+      "d": "Courtyard <B>San</B> <B>Francisco</B> Fisherman's Wharf",
+      "id": "422927",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.806926",
+        "lng": "-122.418486"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "580 Beach St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "68",
+      "f": "Francisco Bay Inn",
+      "d": "<B>Francisco</B> Bay Inn",
+      "id": "890830",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.801104",
+        "lng": "-122.426187"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1501 Lombard St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "69",
+      "f": "Hilton Garden Inn San Francisco Airport/Burlingame",
+      "d": "Hilton Garden Inn <B>San</B> <B>Francisco</B> Airport/Burlingame",
+      "id": "519729",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.589830",
+        "lng": "-122.349030"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "765 Airport Blvd",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "70",
+      "f": "Days Inn Novato/San Francisco",
+      "d": "Days Inn Novato/<B>San</B> <B>Francisco</B>",
+      "id": "7942",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "38.133303",
+        "lng": "-122.564154"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "8141 Redwood Blvd",
+      "ci": "Novato",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "71",
+      "f": "Ramada Limited San Francisco Airport North",
+      "d": "Ramada Limited <B>San</B> <B>Francisco</B> Airport North",
+      "id": "790530",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.659130",
+        "lng": "-122.405570"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "721 Airport Blvd",
+      "ci": "South San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "72",
+      "f": "Holiday Inn Express San Francisco Airport South",
+      "d": "Holiday Inn Express <B>San</B> <B>Francisco</B> Airport South",
+      "id": "2336",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.592239",
+        "lng": "-122.362652"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1250 Bayshore Hwy",
+      "ci": "Burlingame",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "73",
+      "f": "Americas Best Value Inn, San Francisco/Pacifica",
+      "d": "Americas Best Value Inn, <B>San</B> <B>Francisco</B>/Pacifica",
+      "id": "904482",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.633118",
+        "lng": "-122.490015"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "2160 Francisco Blvd",
+      "ci": "Pacifica",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "74",
+      "f": "Sheraton Fisherman's Wharf Hotel",
+      "d": "Sheraton Fisherman's Wharf Hotel",
+      "id": "24625",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.806880",
+        "lng": "-122.413800"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "2500 Mason St",
+      "ci": "San Francisco",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "75",
+      "f": "San Francisco Plaza Hotel",
+      "d": "<B>San</B> <B>Francisco</B> Plaza Hotel",
+      "id": "1543026",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "20.672613",
+        "lng": "-103.345367"
+      },
+      "a": "GDL",
+      "amc": "1295",
+      "ad": "Degollado 267",
+      "ci": "Guadalajara",
+      "pr": "JAL",
+      "c": "MEX",
+      "cc": "MX",
+      "ccc": "MEX"
+    },
+    {
+      "@type": "hotelResult",
+      "i": "76",
+      "f": "Courtyard by Marriott San Francisco Airport",
+      "d": "Courtyard by Marriott <B>San</B> <B>Francisco</B> Airport",
+      "id": "25271",
+      "t": "HOTEL",
+      "ll": {
+        "lat": "37.630110",
+        "lng": "-122.419250"
+      },
+      "a": "QSF",
+      "amc": "178305",
+      "ad": "1050 Bayhill Dr",
+      "ci": "San Bruno",
+      "pr": "CA",
+      "c": "USA",
+      "cc": "US",
+      "ccc": "USA"
+    }
+  ]
+}
+
