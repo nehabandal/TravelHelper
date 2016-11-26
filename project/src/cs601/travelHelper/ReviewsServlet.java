@@ -14,6 +14,7 @@ import java.sql.ResultSet;
  */
 public class ReviewsServlet extends BaseServlet {
     public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ? order by date";
+    public static final String ATTRACTION_QUERY_SQL = "select attractionName,rating,address from attractionData where hotelId= ? order by rating";
     private DatabaseConnector db;
 
     public ReviewsServlet() {
@@ -42,34 +43,56 @@ public class ReviewsServlet extends BaseServlet {
         response.setStatus(HttpServletResponse.SC_OK);
 
         out.println("<html><body>");
+        out.println("<a href=\"/LogoutServlet\">Logout</a> &nbsp");
+        out.println("<a href=\"AddReview?hotelId=" + hotelId + "\">Add Review</a>&nbsp");
+        out.println("<a href=\"ModifyReview?hotelId=" + hotelId + "\">Modify Review</a>");
         try {
             Connection connection = db.getConnection();
 
-            PreparedStatement stmt = connection.prepareStatement(REVIEW_QUERY_SQL);
-            stmt.setString(1, String.valueOf(hotelId));
+            PreparedStatement stmtat = connection.prepareStatement(ATTRACTION_QUERY_SQL);
+            stmtat.setString(1, String.valueOf(hotelId));
 
-            ResultSet rs = stmt.executeQuery();
-            out.println("<table border=1 width=60% height=50%>");
-            out.println("<tr><th>ReviewTitle</th><th>Review</th><th>Username</th><th>Rating</th><th>Date</th><tr>");
-            while (rs.next()) {
-                String reviewTitle = rs.getString("reviewTitle");
-                String review = rs.getString("review");
-                String username = rs.getString("username");
-                double rating = rs.getDouble("rating");
-                String date = rs.getString("date");
+            ResultSet rsat = stmtat.executeQuery();
+           // out.println("<table border=1 width=60% height=50%>");
+            out.println("<br><tr><th>AttractionName</th><th>&nbspAddress</th><th>&nbspRating</th><tr><br>");
+            while (rsat.next()) {
+                String attractionName = rsat.getString("attractionName");
+                String address = rsat.getString("address");
+                double rating = rsat.getDouble("rating");
+                //String date = rsat.getString("date");
 
-                out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td><td>" + date + "</td></tr>");
+                out.println("<tr><td>" + attractionName + "</td><td>&nbsp" + address + "</td><td>&nbsp" + rating + "</td></tr><br>");
+
+
 
             }
 
-            out.println("<a href=\"/LogoutServlet\">Logout</a> &nbsp");
-            out.println("<a href=\"AddReview?hotelId=" + hotelId + "\">Add Review</a>");
-            out.println("</table>");
-            out.println("</html></body>");
-            connection.close();
-        } catch (Exception e) {
-            out.println("error");
-        }
+                //  Connection connection = db.getConnection();
+
+                PreparedStatement stmt = connection.prepareStatement(REVIEW_QUERY_SQL);
+                stmt.setString(1, String.valueOf(hotelId));
+
+                ResultSet rs = stmt.executeQuery();
+                out.println("<table border=1 width=60% height=50%>");
+                out.println("<tr><th>ReviewTitle</th><th>Review</th><th>Username</th><th>Rating</th><th>Date</th><tr>");
+                while (rs.next()) {
+                    String reviewTitle = rs.getString("reviewTitle");
+                    String review = rs.getString("review");
+                    String username = rs.getString("username");
+                    double rating = rs.getDouble("rating");
+                    String date = rs.getString("date");
+
+                    out.println("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td><td>" + date + "</td></tr>");
+
+                }
+
+                out.println("</table>");
+                out.println("</html></body>");
+                connection.close();
+            } catch (Exception e) {
+                out.println("error");
+            }
+
 
 
     }

@@ -24,6 +24,9 @@ public class TravelHelperServer {
 
         //data.loadHotelInfo("input/hotels200.json");
         //data.loadReviews(Paths.get("input/reviews"));
+       //data.loadHotelInfo("input/hotels2001st.json");
+       //data.fetchAttractions(2);
+
 
         server.start();
 
@@ -62,6 +65,7 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(HotelsServlet.class, "/HotelsServlet");
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
+        servletContexthandler.addServlet(ModifyReview.class, "/ModifyReview");
 
         return servletContexthandler;
     }

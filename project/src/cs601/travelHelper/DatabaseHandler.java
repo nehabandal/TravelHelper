@@ -42,6 +42,7 @@ public class DatabaseHandler {
      */
     private static final String TABLES_SQL_Review = "SHOW TABLES LIKE 'reviewData';";
 
+    private static final String TABLES_SQL_ATTRACTION = "SHOW TABLES LIKE 'attractionData';";
     /**
      * Used to create login_users table for this example.
      */
@@ -91,12 +92,30 @@ public class DatabaseHandler {
     /**
      * creating for rating updates
      **/
-    private static final String CREATE_RATING_UPDATE = "create table ratingupdates as select reviewId,hotelId,rating from reviewData;";
+    private static final String REVIEW_UPDATE_QUERY = "update reviewData set reviewTitle = ?, review = ?, rating = ?, date = ? where username = ? and reviewId = ?";
 
     /**
      * UPDATE RATING TABLE
      **/
     private static final String UPDATE_RATING = "UPDATE hotelData set rating=(select avg(rating) from ratingupdates where hotelData.hotelID=ratingupdates.hotelId);";
+
+    /**
+     * creating attraction table
+     */
+    private static final String CREATE_SQL_ATTRACTION = "CREATE TABLE attractionData ("
+            + "attractionId VARCHAR(100) NOT NULL, " + "attractionName VARCHAR(100) NOT NULL,"+
+            "rating DOUBLE(5,2) NOT NULL, "+"address VARCHAR(100) NOT NULL, "+"hotelId INTEGER NOT NULL);";
+
+    /**
+     * Altering table for foreign key.
+     */
+    private static final String ALTER_SQL_ATTRACTION = "ALTER TABLE attractionData ADD CONSTRAINT at_hotelID FOREIGN KEY (hotelId) REFERENCES hotelData (hotelId);";
+
+    /**
+     * Used to insert a hotel's info into the login_users table
+     */
+    private static final String REGISTER_SQL_ATTRACTION = "INSERT INTO attractionData (attractionId, attractionName, rating,address,hotelId)"
+            + "VALUES (?, ?, ?, ?, ?);";
 
     /**
      * Used to determine if a username already exists.
@@ -183,16 +202,19 @@ public class DatabaseHandler {
         try (Connection connection = db.getConnection();
              Statement statement = connection.createStatement();) {
 
-            if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
+            if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next() || !statement.executeQuery(TABLES_SQL_ATTRACTION).next()) {
                 // Table missing, must create
-                statement.executeUpdate(CREATE_SQL);
-                statement.executeUpdate(CREATE_SQL_HOTEL);
-                statement.executeUpdate(CREATE_SQL_REVIEW);
-                statement.executeUpdate(ALTER_SQL_REVIEW);
+                //statement.executeUpdate(CREATE_SQL);
+                //statement.executeUpdate(CREATE_SQL_HOTEL);
+                //statement.executeUpdate(CREATE_SQL_REVIEW);
+                //statement.executeUpdate(ALTER_SQL_REVIEW);
+                //statement.executeUpdate(CREATE_SQL_ATTRACTION);
+                //statement.executeUpdate(ALTER_SQL_ATTRACTION);
+
 
 
                 // Check if create was successful
-                if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next()) {
+                if (!statement.executeQuery(TABLES_SQL).next() || !statement.executeQuery(TABLES_SQL_Hotel).next() || !statement.executeQuery(TABLES_SQL_Review).next() || !statement.executeQuery(TABLES_SQL_ATTRACTION).next()) {
                     status = Status.CREATE_FAILED;
                 } else {
                     status = Status.OK;
@@ -433,6 +455,101 @@ public class DatabaseHandler {
                     statement.setString(5, username);
                     statement.setDate(6, java.sql.Date.valueOf(finalDate));
                     statement.setString(7, String.valueOf(rating));
+
+
+                    statement.executeUpdate();
+
+                    status = Status.OK;
+
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            status = Status.CONNECTION_FAILED;
+            out.println("Error while connecting to the database: " + ex);
+        }
+
+        return status;
+    }
+    /**
+     * Adding reviews to reviewData table using query
+     *
+     * @param reviewId
+     * @param hotelId
+     * @param reviewTitle
+     * @param review
+     * @param username
+     * @param date
+     * @param rating
+     * @return
+     */
+    public Status addAttractionDB(String attractionId, String name, double rating, String address, String hotelId)
+    {
+
+        Status status = Status.OK;
+
+        if (rating > 5 || rating < 1) {
+            status = Status.ERROR;
+            return status;
+        }
+
+        try (Connection connection = db.getConnection();) {
+
+            // if okay so far, try to insert new user
+            if (status == Status.OK) {
+                // add review info to the database table
+                try (PreparedStatement statement = connection.prepareStatement(REGISTER_SQL_ATTRACTION);) {
+
+                    statement.setString(1, attractionId);
+                    statement.setString(2, name);
+                    statement.setString(3, String.valueOf(rating));
+                    statement.setString(4, address);
+                    statement.setString(5, hotelId);
+
+                    statement.executeUpdate();
+
+                    status = Status.OK;
+
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            status = Status.CONNECTION_FAILED;
+            out.println("Error while connecting to the database: " + ex);
+        }
+
+        return status;
+    }
+    public Status UpdateReviewDB(String reviewTitle, String review, double rating,String username,String reviewId,String date) {
+
+        Status status = Status.OK;
+
+        if (rating > 5 || rating < 1) {
+            status = Status.ERROR;
+            return status;
+        }
+        java.util.Date dateObject = null;
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            dateObject = simpleDateFormat.parse(date);
+        } catch (java.text.ParseException e) {
+        }
+        String finalDate = simpleDateFormat.format(dateObject);
+        try (Connection connection = db.getConnection();) {
+            // if okay so far, try to update review
+            if (status == Status.OK) {
+                // add review info to the database table
+                try (PreparedStatement statement = connection.prepareStatement(REVIEW_UPDATE_QUERY);) {
+
+
+                    statement.setString(1, reviewTitle);
+                    statement.setString(2, review);
+                    statement.setString(3, String.valueOf(rating));
+                    statement.setDate(4, java.sql.Date.valueOf(finalDate));
+                    statement.setString(5, username);
+                    statement.setString(6, reviewId);
 
 
                     statement.executeUpdate();

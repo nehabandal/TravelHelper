@@ -41,52 +41,6 @@ public class HotelDataBuilder {
         this.workqueue = q;
     }
 
-    /**
-     * inner class for multithreading reviews
-     *
-     * @author npbandal
-     */
-/*
-    public class ReviewLoader implements Runnable {
-        private Path file;
-
-        ReviewLoader(Path p) {
-            file = p;
-        }
-
-        @Override
-        public void run() {
-//            log.info("Processing file: " + file);
-            ThreadSafeHotelData localThreadSafeHotelData = new ThreadSafeHotelData();
-            localThreadSafeHotelData.collectReviewData(file);
-            threadSafehd.mergeReviews(localThreadSafeHotelData);
-            ++noOfFilesProcessed;
-        }
-    }*/
-
-    /**
-     * inner class for multithreading attractions
-     *
-     * @author npbandal
-     */
-    public class AttractionLoader implements Runnable {
-        private String hotelID;
-        private String jsonfile;
-
-        AttractionLoader(String ID, String json) {
-            hotelID = ID;
-            jsonfile = json;
-        }
-
-        @Override
-        public void run() {
-
-            parseAttractions(hotelID, jsonfile);
-
-
-//
-        }
-    }
 
     /**
      * Read the json file with information about the hotels (id, name, address,
@@ -144,21 +98,7 @@ public class HotelDataBuilder {
      *             reviews Note that the directory can contain json file, as
      *             well as subfolders (of subfolders etc..) with more json file
      */
-    /*public synchronized void loadReviews(Path path) {
 
-        List<Path> paths = new ArrayList<>();
-        threadSafehd.getReviewFileList(path, paths);
-        noOfFilesProcessed = 0;
-        totalNoOfFiles = paths.size();
-//        System.out.println("Total no of Review files found: " + totalNoOfFiles);
-        try {
-            for (Path p : paths) {
-                workqueue.execute(new ReviewLoader(p));
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }*/
     public void loadReviews(Path path) {
 
         List<Path> paths = new ArrayList<>();
@@ -212,7 +152,7 @@ public class HotelDataBuilder {
     public synchronized void fetchAttractions(int radiusInMiles) {
 
 
-        String API_KEY = "AIzaSyCNX3xdLNdjL1-S_BxltE3MnmwHFzuTHfI";
+        String API_KEY = "AIzaSyCWbsgJAmVlBpDfAsrrXdqJopuaDXgRBqQ";
         int radiusMet = radiusInMiles * 1609;
         for (String hotelId : threadSafehd.getHotels()) {
             String query = threadSafehd.generateQuery(hotelId);
@@ -253,9 +193,9 @@ public class HotelDataBuilder {
                     linenumber++;
                 }
 
+                parseAttractions(hotelId, sb.toString());
 
-
-                workqueue.execute(new AttractionLoader(hotelId, sb.toString()));
+                //workqueue.execute(new AttractionLoader(hotelId, sb.toString()));
 
             } catch (IOException e) {
                 System.out.println(
@@ -272,8 +212,6 @@ public class HotelDataBuilder {
 
 
             }
-
-
 
 
         }
@@ -344,11 +282,13 @@ public class HotelDataBuilder {
 
             // Load hotel info from hotels200.json
             data.loadHotelInfo("input/hotels200.json");
-            data.loadReviews(Paths.get("input/reviews"));
+            data.fetchAttractions(2);
+        tdsafe.printAttractionsNearEachHotel(Paths.get("attractionoutputnew"));
+         //   data.loadReviews(Paths.get("input/reviews"));
             // Traverse input/reviews directory recursively,
             // find all the json files and load reviews
-            data.loadReviews(Paths.get("input/reviews"));
-            data.printToFile(Paths.get("outputFile_Neha"));
+           // data.loadReviews(Paths.get("input/reviews"));
+            //data.printToFile(Paths.get("outputFile_Neha"));
         }
 
 

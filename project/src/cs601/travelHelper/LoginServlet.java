@@ -34,7 +34,7 @@ public class LoginServlet extends BaseServlet {
                     "    <center>\n" +
                     "        <h1> Welcome to TravelHelper - A Hotel Review Website </h1><br>\n" +
                     "    <table border=1>\n" +
-                    "        <tr><td>Enter Your Name :</td>\n" +
+                    "        <tr><td>Enter User Name :</td>\n" +
                     "            <td><input type=\"text\" name=\"user\" value=\"\"></td>\n" +
                     "        </tr>\n" +
                     "        <tr><td>Enter Your PassWord :</td>\n" +

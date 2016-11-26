@@ -70,10 +70,10 @@ public class ThreadSafeHotelData {
         lock.lockWrite();
         Address address = new Address(streetAddress, city, state, latitude, longitude);
         Hotel hotel = new Hotel(hotelId, hotelName, address);
-        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city,state,country);
-        if(status == Status.OK) { // registration was successful
-            System.out.println("row added");
-        }
+//        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city,state,country);
+//        if(status == Status.OK) { // registration was successful
+//            System.out.println("row added");
+//        }
 
         try {
             hotelIdTreeMap.put(hotelId, hotel);
@@ -317,8 +317,13 @@ public class ThreadSafeHotelData {
      * @param hotelId
      */
     public void addAttraction(String attractionId, String name, double rating, String address, String hotelId) {
-        lock.lockWrite();
+
         TouristAttraction touristattraction = new TouristAttraction(attractionId, name, address, rating);
+        Status status = dbhandler.addAttractionDB(attractionId,name,rating,address,hotelId);
+        if(status == Status.OK) { // registration was successful
+            System.out.println("row added");
+        }
+
         ++noOfAttractionFilesProcessed;
         //ArrayList<TouristAttraction> resultList = null;
 
@@ -334,8 +339,6 @@ public class ThreadSafeHotelData {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            lock.unlockWrite();
         }
 
     }
@@ -349,8 +352,6 @@ public class ThreadSafeHotelData {
      * @return
      */
     public String getAttractions(String hotelId) {
-        lock.lockRead();
-
         Hotel hotel = hotelIdTreeMap.get(hotelId);
 
 
@@ -382,8 +383,6 @@ public class ThreadSafeHotelData {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            lock.unlockRead();
         }
         return sb.toString();
     }
@@ -397,7 +396,7 @@ public class ThreadSafeHotelData {
      * @param filename
      */
     public void printAttractionsNearEachHotel(Path filename) {
-        lock.lockRead();
+
         try {
 
             FileWriter writer = new FileWriter(filename.toFile());
@@ -414,8 +413,6 @@ public class ThreadSafeHotelData {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            lock.unlockRead();
         }
 
     }
