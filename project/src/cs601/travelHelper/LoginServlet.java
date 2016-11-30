@@ -1,6 +1,10 @@
 package cs601.travelHelper;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.context.Context;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -54,25 +58,27 @@ public class LoginServlet extends BaseServlet {
                     "</body>\n" +
                     "</html>\n";
 
-    /**
-     * GET method which will check user is still login if yes then at any indirect URL take back to hotel list page
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    public Template handleRequest(HttpServletRequest request,
+                                  HttpServletResponse response, Context context) {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
-            response.sendRedirect("/HotelsServlet");
+            try {
+                response.sendRedirect("/HotelsServlet");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        response.setContentType("text/html");
-        response.setStatus(HttpServletResponse.SC_OK);
-        PrintWriter out = response.getWriter();
+        VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
+        VelocityContext vc = new VelocityContext();
+        Template template = ve.getTemplate("web/templates/login.vm");
 
-        out.println(innerHtml);
+        context.put("application", "Test Application");
+        // context.put("header", "Velocity Sample Page");
+        return template;
     }
+
 
     /**
      * POST method to submit login form,check user is authenticated and then allow login

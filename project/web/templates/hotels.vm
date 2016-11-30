@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="US-ASCII">
+    <title>Login Page</title>
+</head>
+<body>
+<a href="/LogoutServlet">Logout</a>
+<table border=1 width=50% height=50%>
+    <tr><th>HotelName</th><th>Address</th><th>City</th><th>State</th><th>Country</th><th>Rating</th></tr>
+    #foreach( $hotel in $hotels )
+    <tr>$hotel</tr>
+    #end
+</table>
+
+</body>
+</html>
+

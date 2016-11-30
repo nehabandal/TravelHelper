@@ -1,13 +1,22 @@
 package cs601.travelHelper;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.context.Context;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Demonstrates how to use the HttpSession class to keep track of the number of visits for each client
@@ -35,29 +44,29 @@ public class HotelsServlet extends BaseServlet {
 
     }
 
-    /**
-     * Get method that get data from hotelData and display hotel list.
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        checkLoginState(request, response);
+    public Template handleRequest(HttpServletRequest request,
+                                  HttpServletResponse response, Context context) {
+        try {
+            checkLoginState(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        response.setContentType("text/html");
-        response.setStatus(HttpServletResponse.SC_OK);
-        PrintWriter out = response.getWriter();
+        VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
+        VelocityContext vc = new VelocityContext();
+        Template template = ve.getTemplate("web/templates/hotels.vm");
 
-        out.println("<html><body>");
+        context.put("hotels", getHotelRows());
+        return template;
+    }
+
+    private List<String> getHotelRows() {
+        List<String> hotelRows = new ArrayList<>();
         Connection connection = null;
         try {
             connection = db.getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(FETCH_HOTELS_SQL);
-
-            out.println("<table border=1 width=50% height=50%>");
-            out.println("<tr><th>HotelName</th><th>Address</th><th>City</th><th>State</th><th>Country</th><th>Rating</th><tr>");
 
             while (rs.next()) {
                 int hotelId = rs.getInt("hotelId");
@@ -69,15 +78,9 @@ public class HotelsServlet extends BaseServlet {
                 double avgRating = rs.getDouble("avgRating");
 
 
-                out.println(toTableRow(hotelId, hotelName, address, city, state, country, avgRating));
+                hotelRows.add(toTableRow(hotelId, hotelName, address, city, state, country, avgRating));
             }
-
-            out.println("<a href=\"/LogoutServlet\">Logout</a>");
-            out.println("</table>");
-            out.println("</html></body>");
-
         } catch (Exception e) {
-            out.println("error");
             e.printStackTrace();
         } finally {
             try {
@@ -88,6 +91,7 @@ public class HotelsServlet extends BaseServlet {
                 e.printStackTrace();
             }
         }
+        return hotelRows;
     }
 
     /**
@@ -103,7 +107,7 @@ public class HotelsServlet extends BaseServlet {
      * @return
      */
     private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
-        String url = "ReviewsServlet?hotelId=" + hotelId;
+        String url = "HotelDetailServlet?hotelId=" + hotelId;
         return String.format("<tr>" +
                         "<td><a href=\"%s\">%s</a></td>" +
                         "<td>%s</td>" +

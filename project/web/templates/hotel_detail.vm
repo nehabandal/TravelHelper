@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="US-ASCII">
+    <title>Login Page</title>
+</head>
+<body>
+<a href="/LogoutServlet">Logout</a>&nbsp
+<a href="AddReview?hotelId=$hotelId">Add Review</a>&nbsp
+<a href="ModifyReview?hotelId=$hotelId">Modify Review</a>
+
+<table border=1 width=50% height=50%>
+    <tr><th>Attraction</th><th>Address</th><th>Rating</th></tr>
+    #foreach( $attraction in $attractions )
+        <tr>$attraction</tr>
+    #end
+</table>
+
+<table border=1 width=50% height=50%>
+    <tr><th>ReviewTitle</th><th>Review</th><th>Username</th><th>Rating</th><th>Date</th></tr>
+    #foreach( $review in $reviews )
+    <tr>$review</tr>
+    #end
+</table>
+
+</body>
+</html>
+

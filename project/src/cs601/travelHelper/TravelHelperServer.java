@@ -3,9 +3,8 @@ package cs601.travelHelper;
 
 import cs601.hotelapp.HotelDataBuilder;
 import cs601.hotelapp.ThreadSafeHotelData;
-import org.eclipse.jetty.server.Handler;
+import org.apache.velocity.app.VelocityEngine;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 
 /**
@@ -33,14 +32,15 @@ public class TravelHelperServer {
     }
 
     public void start() {
+        VelocityEngine ve = new VelocityEngine();
+        ve.init();
+
         Server server = new Server(PORT);
 
-        HandlerList handlers = new HandlerList();
-        server.setHandler(handlers);
-        handlers.setHandlers(new Handler[]{
-                getServletContextHandler(),
-        });
+        ServletContextHandler context = getServletContextHandler();
+        server.setHandler(context);
 
+        context.setAttribute("templateEngine", ve);
         try {
             server.start();
             server.join();
@@ -61,7 +61,7 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(LoginServlet.class, "/");
         servletContexthandler.addServlet(LoginServlet.class, "/LoginServlet");
         servletContexthandler.addServlet(LogoutServlet.class, "/LogoutServlet");
-        servletContexthandler.addServlet(ReviewsServlet.class, "/ReviewsServlet");
+        servletContexthandler.addServlet(HotelDetailServlet.class, "/HotelDetailServlet");
         servletContexthandler.addServlet(HotelsServlet.class, "/HotelsServlet");
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(AddReview.class, "/AddReview");

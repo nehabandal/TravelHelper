@@ -1,5 +1,7 @@
 package cs601.travelHelper;
 
+import org.apache.velocity.tools.view.VelocityViewServlet;
+
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +18,7 @@ import java.util.Map;
  * @see RegisterServer
  */
 @SuppressWarnings("serial")
-public class BaseServlet extends HttpServlet {
+public class BaseServlet extends VelocityViewServlet {
 
     protected void prepareResponse(String title, HttpServletResponse response) {
         try {
