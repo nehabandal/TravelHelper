@@ -61,13 +61,14 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(LoginServlet.class, "/");
         servletContexthandler.addServlet(LoginServlet.class, "/LoginServlet");
         servletContexthandler.addServlet(LogoutServlet.class, "/LogoutServlet");
+        servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(HotelDetailServlet.class, "/HotelDetailServlet");
         servletContexthandler.addServlet(HotelsServlet.class, "/HotelsServlet");
-        servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
         servletContexthandler.addServlet(ModifyReview.class, "/ModifyReview");
         servletContexthandler.addServlet(HotelCSS.class, "/HotelCSS");
-       // servletContexthandler.addServlet(ReviewServlet.class, "/ReviewServlet");
+        servletContexthandler.addServlet(ReviewServlet.class, "/ReviewServlet");
+        servletContexthandler.addServlet(AttractionServlet.class, "/AttractionServlet");
 
         return servletContexthandler;
     }

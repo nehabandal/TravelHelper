@@ -7,7 +7,6 @@ import org.apache.velocity.context.Context;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -15,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,16 +23,17 @@ import java.util.List;
  */
 
 @SuppressWarnings("serial")
-public class HotelCSS extends BaseServlet {
+public class FindHotelServlet extends BaseServlet {
 
     private DatabaseConnector db;
     private String FETCH_HOTELS_SQL =
             "select hotelData.hotelId,hotelData.hotelName,hotelData.address,hotelData.city, hotelData.state, hotelData.country, avg(rating) as avgRating " +
                     "from hotelData " +
                     "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
+                    "WHERE hotelData.hotelName=?"+
                     "group by(hotelData.hotelId)";
 
-    public HotelCSS() {
+    public FindHotelServlet() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {

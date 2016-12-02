@@ -62,7 +62,7 @@ public class HotelsServlet extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        context.put("hotels", getHotelRows());
+       // context.put("hotels", getHotelRows());
         //context.put("application", "Test Application");
 
         finishResponse(response);
@@ -70,39 +70,39 @@ public class HotelsServlet extends BaseServlet {
         return template;
     }
 
-    private List<String> getHotelRows() {
-        List<String> hotelRows = new ArrayList<>();
-        Connection connection = null;
-        try {
-            connection = db.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(FETCH_HOTELS_SQL);
-
-            while (rs.next()) {
-                int hotelId = rs.getInt("hotelId");
-                String hotelName = rs.getString("hotelName");
-                String address = rs.getString("address");
-                String city = rs.getString("city");
-                String state = rs.getString("state");
-                String country = rs.getString("country");
-                double avgRating = rs.getDouble("avgRating");
-
-
-                hotelRows.add(toTableRow(hotelId, hotelName, address, city, state, country, avgRating));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return hotelRows;
-    }
+//    private List<String> getHotelRows() {
+//        List<String> hotelRows = new ArrayList<>();
+//        Connection connection = null;
+//        try {
+//            connection = db.getConnection();
+//            Statement statement = connection.createStatement();
+//            ResultSet rs = statement.executeQuery(FETCH_HOTELS_SQL);
+//
+//            while (rs.next()) {
+//                int hotelId = rs.getInt("hotelId");
+//                String hotelName = rs.getString("hotelName");
+//                String address = rs.getString("address");
+//                String city = rs.getString("city");
+//                String state = rs.getString("state");
+//                String country = rs.getString("country");
+//                double avgRating = rs.getDouble("avgRating");
+//
+//
+//                hotelRows.add(toTableRow(hotelId, hotelName, address, city, state, country, avgRating));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                if (connection != null) {
+//                    connection.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return hotelRows;
+//    }
 
     /**
      * Passing values in URL for displaying reviews for hotel, and displaying list of hotels
@@ -116,18 +116,18 @@ public class HotelsServlet extends BaseServlet {
      * @param avgRating
      * @return
      */
-    private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
-        String url = "HotelDetailServlet?hotelId=" + hotelId;
-        return String.format("<tr>" +
-                        "<td><a href=\"%s\">%s</a></td>" +
-                        "<td>%s</td>" +
-                        "<td>%s</td>" +
-                        "<td>%s</td>" +
-                        "<td>%s</td>" +
-                        "<td>%1.1f</td>" +
-                        "</tr>",
-                url, hotelName, address, city, state, country, avgRating);
-    }
+//    private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
+//        String url = "HotelDetailServlet?hotelId=" + hotelId;
+//        return String.format("<tr>" +
+//                        "<td><a href=\"%s\">%s</a></td>" +
+//                        "<td>%s</td>" +
+//                        "<td>%s</td>" +
+//                        "<td>%s</td>" +
+//                        "<td>%s</td>" +
+//                        "<td>%1.1f</td>" +
+//                        "</tr>",
+//                url, hotelName, address, city, state, country, avgRating);
+//    }
 
 
 }

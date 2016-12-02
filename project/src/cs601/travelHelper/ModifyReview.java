@@ -121,7 +121,7 @@ public class ModifyReview extends BaseServlet {
         }
         if (status == Status.OK) { // registration was successful
             response.getWriter().println("Review updated successfully!");
-            response.sendRedirect("/HotelDetailServlet?hotelId=" + hotelId);
+            response.sendRedirect("/ReviewServlet?hotelId=" + hotelId);
         }
     }
 

@@ -19,6 +19,7 @@
             <li><a href="/LoginServlet">Login</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a id="backLink" href="#" onclick="history.back(-1);">Back</a></li>
         </ul>
     </nav>
 </div>

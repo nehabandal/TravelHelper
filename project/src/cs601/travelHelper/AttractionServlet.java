@@ -19,12 +19,12 @@ import java.util.List;
 /**
  * Created by npbandal on 11/15/16.
  */
-public class HotelDetailServlet extends BaseServlet {
+public class AttractionServlet extends BaseServlet {
     public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ? order by date";
     public static final String ATTRACTION_QUERY_SQL = "select attractionName,rating,address from attractionData where hotelId= ? order by rating";
     private DatabaseConnector db;
 
-    public HotelDetailServlet() {
+    public AttractionServlet() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {
@@ -40,22 +40,22 @@ public class HotelDetailServlet extends BaseServlet {
             e.printStackTrace();
         }
         HttpSession session = request.getSession();
-        int hotelId = Integer.parseInt(request.getParameter("hotelId"));
+        int hotelId = (int) session.getAttribute("hotelId");
         session.setAttribute("hotelId", hotelId);
 
-        prepareResponse("review",response);
+        prepareResponse("attraction",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
-        Template template = ve.getTemplate("web/templates/hotel_detailCSS.vm");
+        Template template = ve.getTemplate("web/templates/hotelAttraction_detail.vm");
         PrintWriter out=null;
         try {
             out=response.getWriter();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //context.put("hotelId", hotelId);
+        context.put("hotelId", hotelId);
         //context.put("reviews", getReviewRows(hotelId));
-        //context.put("attractions", getAttractionRows(hotelId));
+        context.put("attractions", getAttractionRows(hotelId));
 
         finishResponse(response);
         return template;
@@ -88,30 +88,30 @@ public class HotelDetailServlet extends BaseServlet {
 //
 //        return reviewRows;
 //    }
-//
-//    private List<String> getAttractionRows(int hotelId) {
-//        List<String> attractionRows = new ArrayList<>();
-//        try {
-//            Connection connection = db.getConnection();
-//
-//            PreparedStatement stmt = connection.prepareStatement(ATTRACTION_QUERY_SQL);
-//            stmt.setString(1, String.valueOf(hotelId));
-//
-//            ResultSet rs = stmt.executeQuery();
-//            // out.println("<table border=1 width=60% height=50%>");
-//            while (rs.next()) {
-//                String attractionName = rs.getString("attractionName");
-//                String address = rs.getString("address");
-//                double rating = rs.getDouble("rating");
-//                //String date = rsat.getString("date");
-//
-//                attractionRows.add("<tr><td>" + attractionName + "</td><td>&nbsp" + address + "</td><td>&nbsp" + rating + "</td></tr><br>");
-//            }
-//            connection.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return attractionRows;
-//    }
+
+    private List<String> getAttractionRows(int hotelId) {
+        List<String> attractionRows = new ArrayList<>();
+        try {
+            Connection connection = db.getConnection();
+
+            PreparedStatement stmt = connection.prepareStatement(ATTRACTION_QUERY_SQL);
+            stmt.setString(1, String.valueOf(hotelId));
+
+            ResultSet rs = stmt.executeQuery();
+            // out.println("<table border=1 width=60% height=50%>");
+            while (rs.next()) {
+                String attractionName = rs.getString("attractionName");
+                String address = rs.getString("address");
+                double rating = rs.getDouble("rating");
+                //String date = rsat.getString("date");
+
+                attractionRows.add("<tr><td>" + attractionName + "</td><td>&nbsp" + address + "</td><td>&nbsp" + rating + "</td></tr><br>");
+            }
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return attractionRows;
+    }
 }
