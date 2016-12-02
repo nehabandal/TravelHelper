@@ -56,19 +56,14 @@ public class RegisterServlet extends BaseServlet {
      * @Override
      */
 
-//    public void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws IOException {
-//        HttpSession session = request.getSession();
-//        if (session.getAttribute("user") != null) {
-//            response.sendRedirect("/HotelsServlet");
-//        }
-//
-//        response.setContentType("text/html");
-//        response.setStatus(HttpServletResponse.SC_OK);
-//        PrintWriter out = response.getWriter();
-//
-//        out.println(innerHtml);
-//    }
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            response.sendRedirect("/HotelsServlet");
+        }
+
+ }
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         HttpSession session = request.getSession();
@@ -80,13 +75,21 @@ public class RegisterServlet extends BaseServlet {
             }
         }
 
+        prepareResponse("Register",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/register.vm");
+        PrintWriter out=null;
+        try {
+            out=response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         context.put("application", "Test Application");
-        // context.put("header", "Velocity Sample Page");
+        finishResponse(response);
         return template;
+
     }
 
 
@@ -109,15 +112,20 @@ public class RegisterServlet extends BaseServlet {
 
         // Get data from the textfields of the html form
         String newuser = request.getParameter("user");
-        String newpass = request.getParameter("pass");
+        String newpass = request.getParameter("password");
         // sanitize user input to avoid XSS attacks:
         newuser = StringEscapeUtils.escapeHtml4(newuser);
         newpass = StringEscapeUtils.escapeHtml4(newpass);
 
         Status status = dbhandler.registerUser(newuser, newpass);
         if (status == Status.OK) { // registration was successful
-            response.getWriter().println("Registered! Database updated.");
-            response.sendRedirect("/LoginServlet");
+           // response.getWriter().println("Registered! Database updated.");
+           //response.sendRedirect("/HotelsServlet");
+//            response.getWriter().println("Welcome: " + newuser);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", newuser);
+            //setting session to expiry in 30 mins
+            response.sendRedirect("/HotelsServlet");
         } else if (status == Status.DUPLICATE_USER) {
             response.getWriter().println("User already exist");
         } else if (status == Status.INVALID_LOGIN) {

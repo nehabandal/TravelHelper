@@ -13,7 +13,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
  * Modified from the example by Prof. Engle.
  */
 public class TravelHelperServer {
-    private static int PORT = 8080;
+    private static int PORT = 8090;
 
     public static void main(String[] args) {
         TravelHelperServer server = new TravelHelperServer();
@@ -23,8 +23,8 @@ public class TravelHelperServer {
 
         //data.loadHotelInfo("input/hotels200.json");
         //data.loadReviews(Paths.get("input/reviews"));
-       //data.loadHotelInfo("input/hotels2001st.json");
-       //data.fetchAttractions(2);
+        //data.loadHotelInfo("input/hotels2001st.json");
+        //data.fetchAttractions(2);
 
 
         server.start();
@@ -66,6 +66,8 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
         servletContexthandler.addServlet(ModifyReview.class, "/ModifyReview");
+        servletContexthandler.addServlet(HotelCSS.class, "/HotelCSS");
+       // servletContexthandler.addServlet(ReviewServlet.class, "/ReviewServlet");
 
         return servletContexthandler;
     }

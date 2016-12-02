@@ -23,6 +23,7 @@ public class LoginServlet extends BaseServlet {
 
     // DatabaseHandler interacts with the MySQL database
     private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
+    BaseServlet bs=new BaseServlet();
     private String innerHtml =
             "<!DOCTYPE html>\n" +
                     "<html>\n" +
@@ -57,7 +58,14 @@ public class LoginServlet extends BaseServlet {
                     "\n" +
                     "</body>\n" +
                     "</html>\n";
-
+//    public void doGet(HttpServletRequest request, HttpServletResponse response)
+//            throws IOException {
+//        HttpSession session = request.getSession();
+//        if (session.getAttribute("user") != null) {
+//            response.sendRedirect("/HotelsServlet");
+//        }
+//
+//    }
 
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
@@ -69,12 +77,26 @@ public class LoginServlet extends BaseServlet {
                 e.printStackTrace();
             }
         }
+//        try {
+//            doGet(request,response);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
+        prepareResponse("Login",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/login.vm");
+        PrintWriter out=null;
+        try {
+            out=response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         context.put("application", "Test Application");
+        //template.merge(vc,out);
+        finishResponse(response);
         // context.put("header", "Velocity Sample Page");
         return template;
     }

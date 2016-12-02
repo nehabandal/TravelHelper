@@ -43,14 +43,21 @@ public class HotelDetailServlet extends BaseServlet {
         int hotelId = Integer.parseInt(request.getParameter("hotelId"));
         session.setAttribute("hotelId", hotelId);
 
-
+        prepareResponse("review",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/hotel_detail.vm");
-
+        PrintWriter out=null;
+        try {
+            out=response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         context.put("hotelId", hotelId);
         context.put("reviews", getReviewRows(hotelId));
         context.put("attractions", getAttractionRows(hotelId));
+
+        finishResponse(response);
         return template;
     }
 

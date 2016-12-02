@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @SuppressWarnings("serial")
-public class HotelsServlet extends BaseServlet {
+public class HotelCSS extends BaseServlet {
 
     private DatabaseConnector db;
     private String FETCH_HOTELS_SQL =
@@ -34,7 +34,7 @@ public class HotelsServlet extends BaseServlet {
                     "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
                     "group by(hotelData.hotelId)";
 
-    public HotelsServlet() {
+    public HotelCSS() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {
@@ -55,7 +55,7 @@ public class HotelsServlet extends BaseServlet {
         prepareResponse("Hotel",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
-        Template template = ve.getTemplate("web/templates/hotelsCSS.vm");
+        Template template = ve.getTemplate("web/templates/hotels.vm");
         PrintWriter out=null;
         try {
             out=response.getWriter();
