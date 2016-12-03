@@ -110,8 +110,8 @@ public class RegisterServlet extends BaseServlet {
 
         Status status = dbhandler.registerUser(newuser, newpass);
         if (status == Status.OK) { // registration was successful
-           // response.getWriter().println("Registered! Database updated.");
-           //response.sendRedirect("/HotelsServlet");
+            // response.getWriter().println("Registered! Database updated.");
+            //response.sendRedirect("/HotelsServlet");
 //            response.getWriter().println("Welcome: " + newuser);
             HttpSession session = request.getSession();
             session.setAttribute("user", newuser);

@@ -51,6 +51,10 @@ public class HotelsServlet extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        HttpSession session=request.getSession();
+//       String username=request.getParameter("user");
+//        session.setAttribute("username",username);
+String username= (String) session.getAttribute("user");
 
         prepareResponse("Hotel",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
@@ -64,7 +68,7 @@ public class HotelsServlet extends BaseServlet {
         }
        // context.put("hotels", getHotelRows());
         //context.put("application", "Test Application");
-
+        context.put("username", username);
         finishResponse(response);
         // context.put("header", "Velocity Sample Page");
         return template;

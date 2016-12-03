@@ -43,6 +43,9 @@ public class HotelDetailServlet extends BaseServlet {
         int hotelId = Integer.parseInt(request.getParameter("hotelId"));
         session.setAttribute("hotelId", hotelId);
 
+        String hotelName = request.getParameter("hotelName");
+        //session.setAttribute("hotelName", hotelName);
+
         prepareResponse("review",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
@@ -53,7 +56,7 @@ public class HotelDetailServlet extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //context.put("hotelId", hotelId);
+        context.put("hotelName", hotelName);
         //context.put("reviews", getReviewRows(hotelId));
         //context.put("attractions", getAttractionRows(hotelId));
 

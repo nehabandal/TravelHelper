@@ -13,7 +13,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
  * Modified from the example by Prof. Engle.
  */
 public class TravelHelperServer {
-    private static int PORT = 8090;
+    private static int PORT = 8095;
 
     public static void main(String[] args) {
         TravelHelperServer server = new TravelHelperServer();

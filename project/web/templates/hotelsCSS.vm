@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">Project name</a>
+            <a class="navbar-brand" href="">Welcome $username</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -51,6 +51,8 @@
 
         </div>
     </div>
+##    <li><a href="Welcome user$username">Add Review</a></li>
+##    <p align="center">Welcome $username </p>
     <p align="center"><a class="btn btn-lg btn-success" href="/HotelCSS" role="button">Get Hotel Here</a></p>
 
 

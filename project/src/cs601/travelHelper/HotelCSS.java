@@ -51,7 +51,6 @@ public class HotelCSS extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         prepareResponse("Hotel",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
@@ -117,7 +116,7 @@ public class HotelCSS extends BaseServlet {
      * @return
      */
     private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
-        String url = "HotelDetailServlet?hotelId="+hotelId;
+        String url = "HotelDetailServlet?hotelId="+hotelId+"&hotelName="+hotelName;
       //  String url = "ReviewServlet?hotelId=" + hotelId;
         return String.format("<tr>" +
                         "<td><a href=\"%s\">%s</a></td>" +
@@ -128,6 +127,7 @@ public class HotelCSS extends BaseServlet {
                         "<td>%1.1f</td>" +
                         "</tr>",
                 url, hotelName, address, city, state, country, avgRating);
+
     }
 
 
