@@ -17,7 +17,7 @@
     <h3 class="text-muted">Project name</h3>
     <nav>
         <ul class="nav nav-justified">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="HomePage">Home</a></li>
             <li><a href="/LoginServlet">Login</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>

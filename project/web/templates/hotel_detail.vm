@@ -46,7 +46,28 @@
 ##        </table>
 ##    </div>
 ##</div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+<!-- Your like button code -->
+<div class="fb-like"
+     data-href="http://www.your-domain.com/your-page.html"
+     data-layout="standard"
+     data-action="like"
+     data-show-faces="true">
+</div>
+##<!-- LikeBtn.com BEGIN -->
+##<span class="likebtn-wrapper" data-identifier="item_1"></span>
+##<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+##
+##<!-- LikeBtn.com END -->
+<script type="text/javascript" src="http://100widgets.com/js_data.php?id=259"></script>
 <div class="col-sm-5 col-sm-offset-2 col-md-10 col-md-offset-2 main">
     <div class="table">
         <table class="table-row-group" style="color: darkblue; font-size: medium" onfocus="break">
@@ -62,7 +83,8 @@
 
             <tbody>
                 #foreach( $review in $reviews )
-                <tr>$review</tr>
+                <tr>$review
+                </tr>
                 #end
             </tbody>
         </table>

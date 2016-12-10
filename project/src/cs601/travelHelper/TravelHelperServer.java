@@ -13,7 +13,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
  * Modified from the example by Prof. Engle.
  */
 public class TravelHelperServer {
-    private static int PORT = 8095;
+    private static int PORT = 8800;
 
     public static void main(String[] args) {
         TravelHelperServer server = new TravelHelperServer();
@@ -69,6 +69,7 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(HotelCSS.class, "/HotelCSS");
         servletContexthandler.addServlet(ReviewServlet.class, "/ReviewServlet");
         servletContexthandler.addServlet(AttractionServlet.class, "/AttractionServlet");
+                servletContexthandler.addServlet(HomePage.class, "/HomePage");
 
         return servletContexthandler;
     }

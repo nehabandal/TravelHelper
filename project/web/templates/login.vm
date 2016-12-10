@@ -1,3 +1,4 @@
+#* @velocityproperties path= *#
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,16 +13,22 @@
 </style>
 <body>
 
-
+<div style="text-align:left; color: indianred">
+##    <input type=button value="TravelHelper.com<" style="border-width:0px;" onclick="">/button>
+    <a href="" style="border-width:0px; ">TravelHelper.com</a>
+    <br />
+    Help to Travel
+</div>
 <div class="masthead">
-        <h3 class="text-muted">Project name</h3>
+##    <a class="navbar-brand" href="">TravelHelper.com</a>
+##    <br /><br />help to travel
         <nav>
             <ul class="nav nav-justified">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="HomePage">Home</a></li>
                 <li><a href="RegisterServlet">Register</a></li>
                 <li><a href="LoginServlet">Login</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="projectname.html">Contact</a></li>
             </ul>
         </nav>
     </div>

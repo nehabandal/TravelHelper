@@ -51,7 +51,7 @@ public class BaseServlet extends VelocityViewServlet {
 
             writer.println();
             writer.println("<p style=\"font-size: 10pt; font-style: italic;\">");
-            writer.println("Last updated at " + getDate());
+            writer.println("You visited this site on " + getDate());
             writer.println("</p>");
 
             writer.println("</body>");
