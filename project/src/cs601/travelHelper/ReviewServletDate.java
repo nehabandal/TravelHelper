@@ -19,13 +19,13 @@ import java.util.List;
 /**
  * Created by npbandal on 11/15/16.
  */
-public class ReviewServlet extends BaseServlet {
+public class ReviewServletDate extends BaseServlet {
 
     public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ? order by date DESC ";
 
     private DatabaseConnector db;
 
-    public ReviewServlet() {
+    public ReviewServletDate() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {

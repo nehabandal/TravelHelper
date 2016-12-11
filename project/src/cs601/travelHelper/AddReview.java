@@ -95,7 +95,7 @@ public class AddReview extends BaseServlet {
         }
         if (status == Status.OK) { // registration was successful
             response.getWriter().println("Review added successfully!");
-            response.sendRedirect("/ReviewServlet?hotelId=" + hotelId);
+            response.sendRedirect("/ReviewServletDate?hotelId=" + hotelId);
         }
     }
 }

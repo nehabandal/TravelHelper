@@ -117,7 +117,7 @@
 //     */
 //    private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
 //        String url = "HotelDetailServlet?hotelId="+hotelId;
-//      //  String url = "ReviewServlet?hotelId=" + hotelId;
+//      //  String url = "ReviewServletDate?hotelId=" + hotelId;
 //        return String.format("<tr>" +
 //                        "<td><a href=\"%s\">%s</a></td>" +
 //                        "<td>%s</td>" +

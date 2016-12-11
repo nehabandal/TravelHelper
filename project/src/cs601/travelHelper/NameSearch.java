@@ -7,15 +7,10 @@ import org.apache.velocity.context.Context;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,16 +20,18 @@ import java.util.List;
  */
 
 @SuppressWarnings("serial")
-public class HotelCSS extends BaseServlet {
+public class NameSearch extends BaseServlet {
 
     private DatabaseConnector db;
+    Connection connection = null;
+    List<String> hotelRows = new ArrayList<>();
     private String FETCH_HOTELS_SQL =
             "select hotelData.hotelId,hotelData.hotelName,hotelData.address,hotelData.city, hotelData.state, hotelData.country, avg(rating) as avgRating " +
                     "from hotelData " +
                     "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
-                    "group by(hotelData.hotelId)";
+                    "where hotelData.hotelName LIKE ?";
 
-    public HotelCSS() {
+    public NameSearch() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {
@@ -51,17 +48,47 @@ public class HotelCSS extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String hotelName=request.getParameter("hotelname");
+
+
         prepareResponse("Hotel",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/hotels.vm");
-        PrintWriter out=null;
+
+
         try {
-            out=response.getWriter();
-        } catch (IOException e) {
+            connection = db.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FETCH_HOTELS_SQL);
+            statement.setString(1,"%" + hotelName + "%");
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int hotelId = rs.getInt("hotelId");
+                String HotelName = rs.getString("hotelName");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                String state = rs.getString("state");
+                String country = rs.getString("country");
+                double avgRating = rs.getDouble("avgRating");
+
+
+                hotelRows.add(toTableRow(hotelId, HotelName, address, city, state, country, avgRating));
+            }
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        context.put("hotels", getHotelRows());
+
+        context.put("hotels", hotelRows);
         //context.put("application", "Test Application");
 
         finishResponse(response);
@@ -69,12 +96,14 @@ public class HotelCSS extends BaseServlet {
         return template;
     }
 
-    private List<String> getHotelRows() {
+    private List<String> getHotelRows(String hotelname) {
         List<String> hotelRows = new ArrayList<>();
         Connection connection = null;
         try {
             connection = db.getConnection();
-            Statement statement = connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement(FETCH_HOTELS_SQL);
+            statement.setString(1,hotelname);
+
             ResultSet rs = statement.executeQuery(FETCH_HOTELS_SQL);
 
             while (rs.next()) {

@@ -16,7 +16,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="AddReview?hotelId=$hotelId">Add Review</a></li>
             <li><a href="ModifyReview?hotelId=$hotelId">Modify Review</a></li>
-            <li><a href="ReviewServletRating?hotelId=$hotelId"><span class="glyphicon glyphicon-sort"></span>Sort By Rating</a></li>
+            <li><a href="ReviewServlet?hotelId=$hotelId"><span class="glyphicon glyphicon-sort"></span>Sort By Date</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="/LogoutServlet">Logout</a></li>
