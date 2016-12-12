@@ -3,7 +3,7 @@
 <head>
     <meta charset="US-ASCII">
     <title>Register Page</title>
-    <script src ="js/validateName.js">
+    <script src ="/static/public/js/validateName.js">
     </script>
 </head>
 <style>

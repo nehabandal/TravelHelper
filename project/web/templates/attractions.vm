@@ -10,17 +10,9 @@
 </style>
 <body>
 
-<div class="masthead">
-    <nav>
-        <ul class="nav nav-justified" style="background-color: aliceblue">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="/LogoutServlet">Logout</a></li>
-            <li><a id="backLink" href="#" onclick="history.back(-1);">Back</a></li>
-        </ul>
-    </nav>
-</div>
+    #include("web/templates/header.vm")
+<br>
+<br>
 
 <div class="col-sm-5 col-sm-offset-2 col-md-10 col-md-offset-2 main">
     <div class="table">

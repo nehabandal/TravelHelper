@@ -9,6 +9,9 @@
     }
 </style>
 <body>
+    #include("web/templates/header.vm")
+<br>
+<br>
 
 <div class="masthead" style="color: darkblue">
     <nav>

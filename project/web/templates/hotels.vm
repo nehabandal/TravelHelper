@@ -19,18 +19,13 @@
 ##        <p><a class="btn btn-lg btn-success" href="/ShowHotelsServlet" role="button">Get started today</a></p>
 ##    </div> action="/FindHotelServlet?hotelName=$hotelName" method="get"
 
+    #include("web/templates/header.vm")
+<br>
+<br>
 <div class="masthead">
-    <nav>
-        <ul class="nav nav-justified">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="/LogoutServlet">Logout</a></li>
-            <li><a id="backLink" href="#" onclick="history.back(-1);">Back</a></li>
-        </ul>
-    </nav>
 
     <div class="container">
+
         <form class="form-signin" action="/NameSearch"  style="width: 300px; margin: 0 auto";">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
