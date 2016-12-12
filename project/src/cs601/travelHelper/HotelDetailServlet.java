@@ -41,6 +41,7 @@ public class HotelDetailServlet extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         HttpSession session = request.getSession();
         int hotelId = Integer.parseInt(request.getParameter("hotelId"));
         session.setAttribute("hotelId", hotelId);

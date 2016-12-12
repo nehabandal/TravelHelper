@@ -78,7 +78,14 @@ public class ReviewServletDate extends BaseServlet {
                 double rating = rs.getDouble("rating");
                 String date = rs.getString("date");
 
-                reviewRows.add("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td><td>" + date + "</td></tr>");
+                reviewRows.add("<tr>" +
+                        "<td>" + reviewTitle + "</td>" +
+                        "<td>" + review + "</td>" +
+                        "<td>" + username + "</td>" +
+                        "<td>" + rating + "</td>" +
+                        "<td>" + date + "</td>" +
+//                        "<a href=\"#\">like</a>";
+                        "</tr>");
 
             }
 

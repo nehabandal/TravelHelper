@@ -39,25 +39,15 @@
 ##
 ##        </div>
 ##    </div>
-<div class="container">
-    <form class="form-signin" action="/Savehotel" style="width: 300px; margin: 0 auto" ;
-    ">
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div id="imaginary_container">
-                <div class="input-group stylish-input-group">
-                    <input type="button" class="form-control" name="saveHotel">
-                    <span class="input-group-addon">
-                        <button type="submit">
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    </form>
-</div>
+##<div class="container">
+##    <form class="form-signin" action="/SaveHotel?hotelName=$hotelName" style="width: 300px; margin: 0 auto" ;">
+##               <input type="submit" class="btn btn-lg btn-success" value="Save Hotel"  name="hotelName">
+##
+##    </form>
+##</div>
 
+<p align="center"><a class="btn btn-lg btn-success" href="SaveHotel?hotelName=$hotelName&hotelId=$hotelId" role="button">Save Hotel</a>
+</p>
 <p align="center"><a class="btn btn-lg btn-success" href="ReviewServlet?hotelId=$hotelId" role="button">Get Reviews</a>
 </p>
 <p align="center"><a class="btn btn-lg btn-success" href="AttractionServlet?hotelId=$hotelId" role="button">Get

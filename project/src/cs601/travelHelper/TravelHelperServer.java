@@ -75,6 +75,11 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(AttractionServlet.class, "/AttractionServlet");
         servletContexthandler.addServlet(HomePage.class, "/HomePage");
         servletContexthandler.addServlet(NameSearch.class, "/NameSearch");
+        servletContexthandler.addServlet(SaveHotel.class, "/SaveHotel");
+        servletContexthandler.addServlet(ShowSaveHotelsServlet.class, "/ShowSaveHotelsServlet");
+        servletContexthandler.addServlet(ClearHotel.class, "/ClearHotel");
+
+
 
         return servletContexthandler;
     }

@@ -68,6 +68,8 @@
             </table>
         </div>
     </div>
+<p align="center"><a class="btn btn-lg btn-success" href="ClearHotel" role="button">Clear list</a>
+</p>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
