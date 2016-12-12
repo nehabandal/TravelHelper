@@ -20,7 +20,6 @@ import java.util.List;
  * Created by npbandal on 11/15/16.
  */
 public class AttractionServlet extends BaseServlet {
-    public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ? order by date";
     public static final String ATTRACTION_QUERY_SQL = "select attractionName,rating,address from attractionData where hotelId= ? order by rating";
     private DatabaseConnector db;
 
@@ -46,7 +45,7 @@ public class AttractionServlet extends BaseServlet {
         prepareResponse("attraction",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
-        Template template = ve.getTemplate("web/templates/hotelAttraction_detail.vm");
+        Template template = ve.getTemplate("web/templates/attractions.vm");
         PrintWriter out=null;
         try {
             out=response.getWriter();
@@ -60,34 +59,6 @@ public class AttractionServlet extends BaseServlet {
         finishResponse(response);
         return template;
     }
-
-//    private List<String> getReviewRows(int hotelId) {
-//        List<String> reviewRows = new ArrayList<>();
-//        try {
-//            Connection connection = db.getConnection();
-//
-//            PreparedStatement stmt = connection.prepareStatement(REVIEW_QUERY_SQL);
-//            stmt.setString(1, String.valueOf(hotelId));
-//
-//            ResultSet rs = stmt.executeQuery();
-//            while (rs.next()) {
-//                String reviewTitle = rs.getString("reviewTitle");
-//                String review = rs.getString("review");
-//                String username = rs.getString("username");
-//                double rating = rs.getDouble("rating");
-//                String date = rs.getString("date");
-//
-//                reviewRows.add("<tr><td>" + reviewTitle + "</td><td>" + review + "</td><td>" + username + "</td><td>" + rating + "</td><td>" + date + "</td></tr>");
-//
-//            }
-//
-//            connection.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return reviewRows;
-//    }
 
     private List<String> getAttractionRows(int hotelId) {
         List<String> attractionRows = new ArrayList<>();

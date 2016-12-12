@@ -47,7 +47,7 @@ public class ReviewServletDate extends BaseServlet {
         prepareResponse("review",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
-        Template template = ve.getTemplate("web/templates/hotel_detail.vm");
+        Template template = ve.getTemplate("web/templates/reviews.vm");
         PrintWriter out=null;
         try {
             out=response.getWriter();

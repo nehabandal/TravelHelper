@@ -62,7 +62,7 @@ public class LoginServlet extends BaseServlet {
 //            throws IOException {
 //        HttpSession session = request.getSession();
 //        if (session.getAttribute("user") != null) {
-//            response.sendRedirect("/HotelsServlet");
+//            response.sendRedirect("/WelcomePageServlet");
 //        }
 //
 //    }
@@ -72,7 +72,7 @@ public class LoginServlet extends BaseServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
             try {
-                response.sendRedirect("/HotelsServlet");
+                response.sendRedirect("/WelcomePageServlet");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -131,7 +131,7 @@ public class LoginServlet extends BaseServlet {
             session.setAttribute("user", user);
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30 * 60);
-            response.sendRedirect("/HotelsServlet");
+            response.sendRedirect("/WelcomePageServlet");
         } else if (status == Status.MISSING_VALUES) {
             response.getWriter().println("Missing UserName or Password or Both values");
         } else if (status == Status.INVALID_LOGIN) {

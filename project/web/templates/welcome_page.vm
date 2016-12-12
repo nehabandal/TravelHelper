@@ -53,7 +53,7 @@
     </div>
 ##    <li><a href="Welcome user$username">Add Review</a></li>
 ##    <p align="center">Welcome $username </p>
-    <p align="center"><a class="btn btn-lg btn-success" href="/HotelCSS" role="button">Get Hotel Here</a></p>
+    <p align="center"><a class="btn btn-lg btn-success" href="/ShowHotelsServlet" role="button">Show Hotels</a></p>
 
 
 </div>

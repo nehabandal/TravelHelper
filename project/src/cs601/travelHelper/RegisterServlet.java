@@ -60,7 +60,7 @@ public class RegisterServlet extends BaseServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
             try {
-                response.sendRedirect("/HotelsServlet");
+                response.sendRedirect("/WelcomePageServlet");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -111,12 +111,12 @@ public class RegisterServlet extends BaseServlet {
         Status status = dbhandler.registerUser(newuser, newpass);
         if (status == Status.OK) { // registration was successful
             // response.getWriter().println("Registered! Database updated.");
-            //response.sendRedirect("/HotelsServlet");
+            //response.sendRedirect("/WelcomePageServlet");
 //            response.getWriter().println("Welcome: " + newuser);
             HttpSession session = request.getSession();
             session.setAttribute("user", newuser);
             //setting session to expiry in 30 mins
-            response.sendRedirect("/HotelsServlet");
+            response.sendRedirect("/WelcomePageServlet");
         } else if (status == Status.DUPLICATE_USER) {
             response.getWriter().println("User already exist");
         } else if (status == Status.INVALID_LOGIN) {

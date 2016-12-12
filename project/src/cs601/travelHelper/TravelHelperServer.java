@@ -63,10 +63,10 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(LogoutServlet.class, "/LogoutServlet");
         servletContexthandler.addServlet(RegisterServlet.class, "/RegisterServlet");
         servletContexthandler.addServlet(HotelDetailServlet.class, "/HotelDetailServlet");
-        servletContexthandler.addServlet(HotelsServlet.class, "/HotelsServlet");
+        servletContexthandler.addServlet(WelcomePageServlet.class, "/WelcomePageServlet");
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
         servletContexthandler.addServlet(ModifyReview.class, "/ModifyReview");
-        servletContexthandler.addServlet(HotelCSS.class, "/HotelCSS");
+        servletContexthandler.addServlet(ShowHotelsServlet.class, "/ShowHotelsServlet");
         servletContexthandler.addServlet(ReviewServletDate.class, "/ReviewServlet");
         servletContexthandler.addServlet(ReviewServletRating.class, "/ReviewServletRating");
         servletContexthandler.addServlet(AttractionServlet.class, "/AttractionServlet");

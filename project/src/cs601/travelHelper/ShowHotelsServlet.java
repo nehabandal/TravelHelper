@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @SuppressWarnings("serial")
-public class HotelCSS extends BaseServlet {
+public class ShowHotelsServlet extends BaseServlet {
 
     private DatabaseConnector db;
     private String FETCH_HOTELS_SQL =
@@ -34,7 +34,7 @@ public class HotelCSS extends BaseServlet {
                     "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
                     "group by(hotelData.hotelId)";
 
-    public HotelCSS() {
+    public ShowHotelsServlet() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {

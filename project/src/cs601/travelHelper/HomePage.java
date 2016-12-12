@@ -29,7 +29,7 @@ public class HomePage extends BaseServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
             try {
-                response.sendRedirect("/HotelsServlet");
+                response.sendRedirect("/WelcomePageServlet");
             } catch (IOException e) {
                 e.printStackTrace();
             }
