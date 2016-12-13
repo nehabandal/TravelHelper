@@ -13,8 +13,12 @@
     }
 </style>
 <body>
+    #include("web/templates/header.vm")
 <div class="container">
-    <div class="login-form-heading">Welcome to Travel Helper</div>
+    <br>
+    <br>
+    <br>
+##    <div class="login-form-heading">Welcome to Travel Helper</div>
     <form class="form-signin login-form" action="/LoginServlet" method="post">
 
     <label for="user" class="sr-only">User Name</label>

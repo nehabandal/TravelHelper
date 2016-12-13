@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    #include("web/templates/title-macro.vm")
 </head>
 <style>
     body {
@@ -9,42 +10,32 @@
     }
 </style>
 <body>
-
     #include("web/templates/header.vm")
-<br>
-<br>
+<div class="content-wrapper">
+    <table id="attractions-table" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr class="thead">
+            <th>Attraction</th>
+            <th>Address</th>
+            <th>Rating</th>
+        </tr>
+        </thead>
 
-<div class="col-sm-5 col-sm-offset-2 col-md-10 col-md-offset-2 main">
-    <div class="table">
-        <table class="table-row-group" style="font-size: medium; color: darkblue" >
-            <thead>
-            <tr class="thead">
-                <th>Attraction</th>
-                <th>Address</th>
-                <th>Rating</th>
-            </tr>
-            </thead>
-
-            <tbody>
-                #foreach( $attraction in $attractions )
-                <tr>$attraction</tr>
-                #end
-            </tbody>
-        </table>
-    </div>
+        <tbody>
+            #foreach( $attraction in $attractions )
+            <tr>$attraction</tr>
+            #end
+        </tbody>
+    </table>
 </div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<script src="../../assets/js/vendor/holder.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
 </body>
+<script>
+    $(document).ready(function () {
+        $('#attractions-table').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]]
+        });
+    });
+</script>
 </html>
 

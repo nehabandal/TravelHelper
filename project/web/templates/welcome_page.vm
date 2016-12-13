@@ -30,8 +30,9 @@
 
         </div>
     </div>
-##    <li><a href="Welcome user$username">Add Review</a></li>
-##    <p align="center">Welcome $username </p>
+
+    <p align="center">Welcome $username </p>
+    <p align="center">Welcome $username, last time you logged in at $timestamp </p>
     <p align="center"><a class="btn btn-lg btn-success" href="/ShowSaveHotelsServlet" role="button">Show Saved hotels</a></p>
     <p align="center"><a class="btn btn-lg btn-success" href="/ShowHotelsServlet" role="button">Show Hotels</a></p>
 

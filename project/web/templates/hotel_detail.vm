@@ -21,30 +21,10 @@
 <h3>Average Rating: $avgRating</h3>
 <h4>Address: $address, $city, $state, $country</h4>
 <a href="$expediaUrl" style="size: 100; color: blue; align-content: center">Expedia</a>
-<iframe src="//www.google.com/maps/embed/v1/place?q=$hotelName,
-      &zoom=17
-      &key=AIzaSyDZFVfI2_DMJqhabrbHSKuA01mK6QHH-Hk">
-</iframe>
-##<div class="container-fluid">
-##    <div class="row">
-##        <div class="col-sm-3 col-md-2 sidebar">
-##            <ul class="nav nav-sidebar" style="color: aliceblue; font-size: medium">
-##
-##                <li class="active"><a href="#"> <span class="sr-only">(current)</span></a></li>
-##
-##                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-##                <li><a href="#">Analytics</a></li>
-##                <li><a href="#">Export</a></li>
-##            </ul>
-##
-##        </div>
-##    </div>
-##<div class="container">
-##    <form class="form-signin" action="/SaveHotel?hotelName=$hotelName" style="width: 300px; margin: 0 auto" ;">
-##               <input type="submit" class="btn btn-lg btn-success" value="Save Hotel"  name="hotelName">
-##
-##    </form>
-##</div>
+##<iframe src="//www.google.com/maps/embed/v1/place?q=$hotelName,
+##      &zoom=17
+##      &key=AIzaSyDZFVfI2_DMJqhabrbHSKuA01mK6QHH-Hk">
+##</iframe>
 
 <p align="center"><a class="btn btn-lg btn-success" href="SaveHotel?hotelName=$hotelName&hotelId=$hotelId" role="button">Save Hotel</a>
 </p>
