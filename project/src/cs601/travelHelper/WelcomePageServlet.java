@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,11 +25,10 @@ import java.util.List;
 public class WelcomePageServlet extends BaseServlet {
 
     private DatabaseConnector db;
-    private String FETCH_HOTELS_SQL =
-            "select hotelData.hotelId,hotelData.hotelName,hotelData.address,hotelData.city, hotelData.state, hotelData.country, avg(rating) as avgRating " +
-                    "from hotelData " +
-                    "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
-                    "group by(hotelData.hotelId)";
+   // private String Login_tracking =""
+   private static final String Insert_SQL_LoginTrack = "insert into login_tracking(user,ts) values(?,now());";
+    private static final String Select_SQL_LoginTrack = "select ts from login_tracking where user=? ORDER by ts desc;";
+
 
     public WelcomePageServlet() {
         try {
@@ -55,20 +51,41 @@ public class WelcomePageServlet extends BaseServlet {
 //       String username=request.getParameter("user");
 //        session.setAttribute("username",username);
         String username = (String) session.getAttribute("user");
-
+        String timestamp=null;
         prepareResponse("Hotel", response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/welcome_page.vm");
         PrintWriter out = null;
         try {
-            out = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Connection connection = db.getConnection();
+            PreparedStatement statement = connection.prepareStatement(Select_SQL_LoginTrack);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                timestamp = rs.getString("ts");
+            }
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
+        try {
+            Connection connection = db.getConnection();
+            PreparedStatement statement = connection.prepareStatement(Insert_SQL_LoginTrack);
+            statement.setString(1, username);
+
+            statement.executeUpdate();
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         // context.put("hotels", getHotelRows());
         //context.put("application", "Test Application");
         context.put("username", username);
+        context.put("timestamp",timestamp);
         finishResponse(response);
         // context.put("header", "Velocity Sample Page");
         return template;

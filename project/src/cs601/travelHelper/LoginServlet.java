@@ -24,48 +24,6 @@ public class LoginServlet extends BaseServlet {
     // DatabaseHandler interacts with the MySQL database
     private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
     BaseServlet bs=new BaseServlet();
-    private String innerHtml =
-            "<!DOCTYPE html>\n" +
-                    "<html>\n" +
-                    "<head>\n" +
-                    "    <meta charset=\"US-ASCII\">\n" +
-                    "    <title>Login Page</title>\n" +
-                    "</head>\n" +
-                    "<body>\n" +
-                    "\n" +
-                    "<form action=\"/LoginServlet\" method=\"post\">\n" +
-                    "\n" +
-                    "\n" +
-                    "    <center>\n" +
-                    "        <h1> Welcome to TravelHelper - A Hotel Review Website </h1><br>\n" +
-                    "    <table border=1>\n" +
-                    "        <tr><td>Enter User Name :</td>\n" +
-                    "            <td><input type=\"text\" name=\"user\" value=\"\"></td>\n" +
-                    "        </tr>\n" +
-                    "        <tr><td>Enter Your PassWord :</td>\n" +
-                    "            <td><input type=\"password\" name=\"password\" value=\"\"></td>\n" +
-                    "        </tr>\n" +
-                    "        <tr><td align=center><input type=\"reset\" name=\"reset\" value=\"Refresh\"></td>\n" +
-                    "            <td align=center><input type=\"submit\" name=\"Submit\" value=\"Login\" ></td>\n" +
-                    "\n" +
-                    "            </table>\n" +
-                    "\n" +
-                    "    </center>\n" +
-                    "\n" +
-                    "</form>\n" +
-                    "\n" +
-                    "<a href=\"/RegisterServlet\">Register</a>\n" +
-                    "\n" +
-                    "</body>\n" +
-                    "</html>\n";
-//    public void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws IOException {
-//        HttpSession session = request.getSession();
-//        if (session.getAttribute("user") != null) {
-//            response.sendRedirect("/WelcomePageServlet");
-//        }
-//
-//    }
 
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
@@ -77,12 +35,6 @@ public class LoginServlet extends BaseServlet {
                 e.printStackTrace();
             }
         }
-//        try {
-//            doGet(request,response);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         prepareResponse("Login",response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();

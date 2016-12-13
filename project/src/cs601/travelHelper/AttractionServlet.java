@@ -76,7 +76,7 @@ public class AttractionServlet extends BaseServlet {
                 double rating = rs.getDouble("rating");
                 //String date = rsat.getString("date");
 
-                attractionRows.add("<tr><td>" + attractionName + "</td><td>&nbsp" + address + "</td><td>&nbsp" + rating + "</td></tr><br>");
+                attractionRows.add("<td>" + attractionName + "</td><td>&nbsp" + address + "</td><td>&nbsp" + rating + "</td>");
             }
             connection.close();
         } catch (Exception e) {

@@ -51,6 +51,7 @@ public class HotelDetailServlet extends BaseServlet {
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/hotel_detail.vm");
         getHotelInfo(hotelId, context);
+
         context.put("expediaUrl", "https://www.expedia.com/h" + hotelId + ".hotel-information");
         finishResponse(response);
         return template;

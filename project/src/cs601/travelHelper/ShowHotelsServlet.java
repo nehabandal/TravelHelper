@@ -118,14 +118,13 @@ public class ShowHotelsServlet extends BaseServlet {
     private String toTableRow(int hotelId, String hotelName, String address, String city, String state, String country, double avgRating) {
         String url = "HotelDetailServlet?hotelId="+hotelId+"&hotelName="+hotelName;
       //  String url = "ReviewServletDate?hotelId=" + hotelId;
-        return String.format("<tr>" +
+        return String.format(
                         "<td><a href=\"%s\">%s</a></td>" +
                         "<td>%s</td>" +
                         "<td>%s</td>" +
                         "<td>%s</td>" +
                         "<td>%s</td>" +
-                        "<td>%1.1f</td>" +
-                        "</tr>",
+                        "<td>%1.1f</td>",
                 url, hotelName, address, city, state, country, avgRating);
 
     }
