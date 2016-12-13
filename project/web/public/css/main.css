@@ -20,3 +20,24 @@
     margin: auto;
     text-align: left;
 }
+
+.data-table-base {
+    width: 98%;
+    margin: auto;
+    background: #fefefe;
+    opacity: 0.8;
+    border: 5px solid white;
+}
+
+tbody > tr:hover {
+    /*background-color: #ddd;*/
+    cursor: pointer;
+}
+
+/*wraps the page content in a div*/
+.content-wrapper {
+    top: 30px;
+    position: relative;
+    width: 97%;
+    margin:auto;
+}
