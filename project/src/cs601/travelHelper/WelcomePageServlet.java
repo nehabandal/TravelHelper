@@ -21,7 +21,6 @@ import java.util.List;
  * Modified from the example of Prof. Rollins.
  */
 
-@SuppressWarnings("serial")
 public class WelcomePageServlet extends BaseServlet {
 
     private DatabaseConnector db;

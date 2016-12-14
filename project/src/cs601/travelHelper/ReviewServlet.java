@@ -19,13 +19,19 @@ import java.util.List;
 /**
  * Created by npbandal on 11/15/16.
  */
-public class ReviewServletDate extends BaseServlet {
+public class ReviewServlet extends BaseServlet {
 
-    public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,rating,date from reviewData where hotelId= ? order by date DESC ";
+    public static final String REVIEW_QUERY_SQL =
+            "select rd.reviewId as reviewId, rd.reviewTitle as reviewTitle, rd.review as review, rd.username as username, rd.rating as rating, rd.date as date, count(rl.user) as likeCount " +
+                    "from reviewData as rd " +
+                    "left outer JOIN reviewLikes as rl " +
+                    "ON rl.reviewId = rd.reviewId " +
+                    "WHERE rd.hotelId = ?" +
+                    "GROUP BY rd.reviewId; ";
 
     private DatabaseConnector db;
 
-    public ReviewServletDate() {
+    public ReviewServlet() {
         try {
             db = new DatabaseConnector("database.properties");
         } catch (IOException e) {
@@ -54,15 +60,19 @@ public class ReviewServletDate extends BaseServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        List<String> reviewIds = new ArrayList<>();
+        List<String> likeCounts = new ArrayList<>();
+
         context.put("hotelId", hotelId);
-        context.put("reviews", getReviewRows(hotelId));
-       // context.put("attractions", getAttractionRows(hotelId));
+        context.put("reviews", getReviewRows(hotelId, reviewIds, likeCounts));
+        context.put("reviewIds", reviewIds);
+        context.put("likeCounts", likeCounts);
 
         finishResponse(response);
         return template;
     }
 
-    private List<String> getReviewRows(int hotelId) {
+    private List<String> getReviewRows(int hotelId, List<String> reviewIds, List<String> likeCounts) {
         List<String> reviewRows = new ArrayList<>();
         try {
             Connection connection = db.getConnection();
@@ -72,6 +82,11 @@ public class ReviewServletDate extends BaseServlet {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                String reviewId = rs.getString("reviewId");
+                reviewIds.add(reviewId);
+                String likeCount = rs.getString("likeCount");
+                likeCounts.add(likeCount);
+
                 String reviewTitle = rs.getString("reviewTitle");
                 String review = rs.getString("review");
                 String username = rs.getString("username");
@@ -84,7 +99,6 @@ public class ReviewServletDate extends BaseServlet {
                         "<td>" + username + "</td>" +
                         "<td>" + rating + "</td>" +
                         "<td>" + date + "</td>"
-//                        "<a href=\"#\">like</a>";
                         );
 
             }

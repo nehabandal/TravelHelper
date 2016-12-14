@@ -1,8 +1,6 @@
 package cs601.travelHelper;
 
 
-import cs601.hotelapp.HotelDataBuilder;
-import cs601.hotelapp.ThreadSafeHotelData;
 import org.apache.velocity.app.VelocityEngine;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -70,16 +68,15 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
         servletContexthandler.addServlet(ModifyReview.class, "/ModifyReview");
         servletContexthandler.addServlet(ShowHotelsServlet.class, "/ShowHotelsServlet");
-        servletContexthandler.addServlet(ReviewServletDate.class, "/ReviewServlet");
-        servletContexthandler.addServlet(ReviewServletRating.class, "/ReviewServletRating");
+        servletContexthandler.addServlet(ReviewServlet.class, "/ReviewServlet");
         servletContexthandler.addServlet(AttractionServlet.class, "/AttractionServlet");
         servletContexthandler.addServlet(HomePage.class, "/HomePage");
         servletContexthandler.addServlet(NameSearch.class, "/NameSearch");
         servletContexthandler.addServlet(SaveHotel.class, "/SaveHotel");
         servletContexthandler.addServlet(ShowSaveHotelsServlet.class, "/ShowSaveHotelsServlet");
         servletContexthandler.addServlet(ClearHotel.class, "/ClearHotel");
-
-
+        servletContexthandler.addServlet(AddReviewLikeServlet.class, "/api/addLike");
+        servletContexthandler.addServlet(GetReviewLikesServlet.class, "/api/getLikeCount");
 
         return servletContexthandler;
     }

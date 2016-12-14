@@ -21,16 +21,25 @@
             <th>Username</th>
             <th>Rating</th>
             <th>Date</th>
+            <th>Like</th>
         </tr>
         </thead>
 
         <tbody>
             #foreach( $review in $reviews )
-            <tr>$review
+            <tr>
+                $review
+                <td>
+                    <span id="button-$reviewIds.get($foreach.index)"
+                          class="btn btn-default glyphicon glyphicon-thumbs-up"
+                          title="$likeCounts.get($foreach.index) users found this review helpful"
+                          onclick="addLike('$reviewIds.get($foreach.index)')"></span>
+                </td>
             </tr>
             #end
         </tbody>
     </table>
+    <a href="/api/addLike?reviewId=10000003588">test link</a>
 </div>
 </body>
 <script>
@@ -40,6 +49,19 @@
             "lengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]]
         });
     });
+    function addLike(reviewId) {
+        var bid = '#button-' + reviewId;
+        var classList = $(bid).attr('class').split(/\s+/);
+        if ($.inArray("active",classList)>=0) {
+            return;
+        }
+        $.get("/api/addLike?reviewId=" + reviewId, function () {
+//            alert("Like added for reviewId: " + reviewId);
+            $(bid).addClass('active')
+            var nReviews = parseInt($(bid).attr('title')) + 1;
+            $(bid).attr('title', nReviews + ' users found this review helpful')
+        });
+    }
 </script>
 </html>
 
