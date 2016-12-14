@@ -21,50 +21,11 @@ import java.util.Map;
 public class BaseServlet extends VelocityViewServlet {
 
     protected void prepareResponse(String title, HttpServletResponse response) {
-        try {
-            PrintWriter writer = response.getWriter();
 
-            writer.println("<!DOCTYPE html>");
-            writer.println("<html>");
-            writer.println("<head>");
-            writer.print("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" "
-                    + "crossorigin=\"anonymous\">");
-
-            writer.print("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\""
-                    + "	integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">");
-
-            writer.print("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
-
-            writer.print("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>");
-            writer.println("\t<title>" + title + "</title>");
-            writer.println("</head>");
-            writer.println("<body>");
-        } catch (IOException ex) {
-            System.out.println("IOException while preparing the response: " + ex);
-            return;
-        }
     }
 
     protected void finishResponse(HttpServletResponse response) {
-        try {
-            PrintWriter writer = response.getWriter();
 
-            writer.println();
-            writer.println("<p style=\"font-size: 10pt; font-style: italic;\">");
-            writer.println("You visited this site on " + getDate());
-            writer.println("</p>");
-
-            writer.println("</body>");
-            writer.println("</html>");
-
-            writer.flush();
-
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.flushBuffer();
-        } catch (IOException ex) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return;
-        }
     }
 
     protected String getDate() {

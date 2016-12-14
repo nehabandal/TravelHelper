@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    #include("web/templates/title-macro.vm")
+    #include("web/templates/header.vm")
 </head>
 <style>
     body {
@@ -10,7 +10,7 @@
     }
 </style>
 <body>
-    #include("web/templates/header.vm")
+    #include("web/templates/nav-bar.vm")
 <div class="content-wrapper">
     <table id="attractions-table" class="display" cellspacing="0" width="100%">
         <thead>

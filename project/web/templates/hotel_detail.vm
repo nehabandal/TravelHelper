@@ -3,7 +3,7 @@
 <head>
     <meta charset="US-ASCII">
     <title>Login Page</title>
-    #include("web/templates/title-macro.vm")
+    #include("web/templates/header.vm")
 </head>
 <style>
     /*body {*/
@@ -13,7 +13,7 @@
     /*}*/
 </style>
 <body>
-    #include("web/templates/header.vm")
+    #include("web/templates/nav-bar.vm")
 
 <div class="content-wrapper">
     <div class="alert alert-info alert-dismissible" id="user-message">

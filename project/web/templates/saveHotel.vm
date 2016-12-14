@@ -19,7 +19,7 @@
 ##        <p><a class="btn btn-lg btn-success" href="/ShowHotelsServlet" role="button">Get started today</a></p>
 ##    </div> action="/FindHotelServlet?hotelName=$hotelName" method="get"
 
-    #include("web/templates/header.vm")
+    #include("web/templates/nav-bar.vm")
 <br>
 <br>
 <div class="masthead">

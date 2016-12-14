@@ -4,7 +4,7 @@
 <head>
     <meta charset="US-ASCII">
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    #include("web/templates/header.vm")
 </head>
 <style>
     body {
@@ -13,7 +13,7 @@
     }
 </style>
 <body>
-    #include("web/templates/header.vm")
+    #include("web/templates/nav-bar.vm")
 <div class="container">
     <br>
     <br>

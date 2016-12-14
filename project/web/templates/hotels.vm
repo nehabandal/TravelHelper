@@ -4,7 +4,7 @@
     <meta charset="US-ASCII">
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-    #include("web/templates/title-macro.vm")
+    #include("web/templates/header.vm")
 </head>
 <style>
     /*body {*/
@@ -14,7 +14,7 @@
 </style>
 <body>
 
-    #include("web/templates/header.vm")
+    #include("web/templates/nav-bar.vm")
 <div class="content-wrapper">
     <div>
 ##        <table class="pure-table data-table-base" id="hotel-table">
