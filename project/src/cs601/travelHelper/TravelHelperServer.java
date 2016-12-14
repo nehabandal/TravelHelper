@@ -1,6 +1,8 @@
 package cs601.travelHelper;
 
 
+import cs601.hotelapp.HotelDataBuilder;
+import cs601.hotelapp.ThreadSafeHotelData;
 import org.apache.velocity.app.VelocityEngine;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -14,11 +16,23 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
  * Modified from the example by Prof. Engle.
  */
 public class TravelHelperServer {
-    private static int PORT = 8800;
+    private static int PORT = 2000;
 
     public static void main(String[] args) {
+//        loadData();
         TravelHelperServer server = new TravelHelperServer();
         server.start();
+    }
+
+    private static void loadData() {
+        ThreadSafeHotelData tdsafe = new ThreadSafeHotelData();
+        HotelDataBuilder data = new HotelDataBuilder(tdsafe);
+//        InsertExisting newinsert = new InsertExisting();
+
+        data.loadHotelInfo("input/hotels200.json");
+//        data.loadReviews(Paths.get("input/reviews"));
+//        data.loadHotelInfo("input/hotels2001st.json");
+//        data.fetchAttractions(2);
     }
 
     public void start() {
@@ -30,7 +44,7 @@ public class TravelHelperServer {
         ServletContextHandler staticContext = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
         staticContext.setContextPath("/static");
-        ResourceHandler resourceHandler  = new ResourceHandler();
+        ResourceHandler resourceHandler = new ResourceHandler();
 
         resourceHandler.setResourceBase("./web/public");
         resourceHandler.setDirectoriesListed(true);
@@ -38,7 +52,7 @@ public class TravelHelperServer {
 
         ServletContextHandler context = getServletContextHandler();
         ContextHandlerCollection contexts = new ContextHandlerCollection();
-        contexts.setHandlers(new Handler[] { staticContext, context });
+        contexts.setHandlers(new Handler[]{staticContext, context});
         server.setHandler(contexts);
 
         context.setAttribute("templateEngine", ve);
