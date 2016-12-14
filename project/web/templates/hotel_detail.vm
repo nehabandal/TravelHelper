@@ -35,7 +35,7 @@
                 <a type="button" class="btn btn-default" href="AttractionServlet?hotelId=$hotelId">
                     <span class="glyphicon glyphicon-tower"></span> Get Attractions
                 </a>
-                <a type="button" class="btn btn-default" href="$expediaUrl">
+                <a type="button" class="btn btn-default" onclick="gotoExpedia('$expediaUrl')" href="#">
                     <span class="glyphicon glyphicon-plane"></span> Expedia
                 </a>
             </div>
@@ -69,6 +69,11 @@
             location.href= redirectUrl;
         }, 1000);
     }
+    function gotoExpedia(redirectUrl) {
+        var res = encodeURI(redirectUrl);
+        location.href= '/api/expedia?url=' + res;
+    }
+
 </script>
 </body>
 </html>

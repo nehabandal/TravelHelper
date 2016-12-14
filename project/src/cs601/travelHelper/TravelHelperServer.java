@@ -88,9 +88,12 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(NameSearch.class, "/NameSearch");
         servletContexthandler.addServlet(SaveHotel.class, "/SaveHotel");
         servletContexthandler.addServlet(ShowSaveHotelsServlet.class, "/ShowSaveHotelsServlet");
+        servletContexthandler.addServlet(ShowExpediaLinksServlet.class, "/ShowExpediaLinksServlet");
+        servletContexthandler.addServlet(DeleteExpediaLinksServlet.class, "/DeleteExpediaLinksServlet");
         servletContexthandler.addServlet(ClearHotel.class, "/ClearHotel");
         servletContexthandler.addServlet(AddReviewLikeServlet.class, "/api/addLike");
         servletContexthandler.addServlet(GetReviewLikesServlet.class, "/api/getLikeCount");
+        servletContexthandler.addServlet(AddExpediaLinksServlet.class, "/api/expedia");
 
         return servletContexthandler;
     }

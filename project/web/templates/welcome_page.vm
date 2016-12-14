@@ -26,6 +26,7 @@
         <p align="center">last log in: $timestamp </p>
         <p align="center">
             <a class="btn btn-lg btn-success" href="/ShowSaveHotelsServlet" role="button">Show saved hotels</a>
+            <a class="btn btn-lg btn-success" href="/ShowExpediaLinksServlet" role="button">Show Expedia Links</a>
             <a class="btn btn-lg btn-success" href="/ShowHotelsServlet" role="button">Show all hotels</a>
         </p>
     </div>
