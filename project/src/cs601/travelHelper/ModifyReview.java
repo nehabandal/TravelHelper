@@ -1,16 +1,20 @@
 package cs601.travelHelper;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.context.Context;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by npbandal on 11/23/16.
@@ -29,71 +33,49 @@ public class ModifyReview extends BaseServlet {
     }
 
     public static final String REVIEW_QUERY_SQL = "select reviewTitle,review,username,reviewId,rating,date from reviewData where username= ? and hotelId= ? order by date";
-    public static final String REVIEW_UPDATE_QUERY_SQL = "update reviewData set reviewTitle = ?, review = ?, rating = ?";
 
-    /**
-     * GET method for fetching all reviews for selected hotel, select resultset from database and display reviews for hotel
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        checkLoginState(request, response);
-        HttpSession session = request.getSession();
-        int hotelId = Integer.parseInt(request.getParameter("hotelId"));
-        session.setAttribute("hotelId", hotelId);
-
-
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/html");
-        response.setStatus(HttpServletResponse.SC_OK);
-
-
-        out.println("<html><body>");
+    public Template handleRequest(HttpServletRequest request,
+                                  HttpServletResponse response, Context context) {
         try {
-            Connection connection = db.getConnection();
-
-            PreparedStatement stmt = connection.prepareStatement(REVIEW_QUERY_SQL);
-            stmt.setString(1, String.valueOf(session.getAttribute("user")));
-            stmt.setString(2, String.valueOf(session.getAttribute("hotelId")));
-            ResultSet rs = stmt.executeQuery();
-            out.println("<a href=\"/LogoutServlet\">Logout</a> &nbsp");
-            out.println("<h1> MODIFY YOUR REVIEW HERE </h1>");
-            while (rs.next()) {
-                String reviewTitle = rs.getString("reviewTitle");
-                String review = rs.getString("review");
-                double rating = rs.getDouble("rating");
-                String reviewId = rs.getString("reviewId");
-                out.println("<!DOCTYPE html>\n" +
-                        "<html>\n" +
-                        "<body>\n" +
-
-                        "\n" +
-                        "<form method=\"post\" id=\"modifyReview\"action=\"ModifyReview\">\n" +
-                        " Title:<br>\n" +
-                        "  <input type=\"text\" name=\"title\" value=\"" + reviewTitle + "\">" + "\n" +
-                        "  <br>Comments:<br>\n" +
-                        "  <textarea name=\"comments\" rows=\"4\" cols=\"50\" >" + review +
-                        "</textarea>" +
-                        "  <br>Rating:<br>\n" +
-                        "  <input type=\"text\" name=\"rating\" value=" + rating + ">\n" +
-                        "  <input type=\"hidden\" name=\"reviewId\" value=" + reviewId + ">\n" +
-                        "  <br><br>\n" +
-                        "  <input type=\"submit\" value=\"Modify Review\">\n" +
-                        "</form>\n" +
-                        "</body>\n" +
-                        "</html>\n" +
-                        "\n");
-
-            }
-            out.println("</body></html>");
-            connection.close();
-        } catch (Exception e) {
-            out.println("error");
+            checkLoginState(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
+        Template template = ve.getTemplate("web/templates/modify-review.vm");
+        HttpSession session = request.getSession();
 
+        try {
+            context.put("reviews", getExistingReviews(
+                    String.valueOf(session.getAttribute("user")),
+                    String.valueOf(session.getAttribute("hotelId"))
+            ));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return template;
+    }
 
+    public List<Map<String, String>> getExistingReviews(String user, String hotelId) throws SQLException {
+        Connection connection = db.getConnection();
+
+        PreparedStatement stmt = connection.prepareStatement(REVIEW_QUERY_SQL);
+        stmt.setString(1, user);
+        stmt.setString(2, hotelId);
+
+        ResultSet rs = stmt.executeQuery();
+        List<Map<String, String>> results = new ArrayList<>();
+        while (rs.next()) {
+            Map<String, String> reviewMap = new HashMap<>();
+            reviewMap.put("reviewTitle", rs.getString("reviewTitle"));
+            reviewMap.put("review", rs.getString("review"));
+            reviewMap.put("rating", rs.getString("rating"));
+            reviewMap.put("reviewId", rs.getString("reviewId"));
+
+            results.add(reviewMap);
+        }
+        connection.close();
+        return results;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)

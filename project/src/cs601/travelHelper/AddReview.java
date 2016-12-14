@@ -1,5 +1,10 @@
 package cs601.travelHelper;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.context.Context;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,43 +21,18 @@ import java.util.Date;
  */
 public class AddReview extends BaseServlet {
     private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
-    private final String innerHtml =
-            "<!DOCTYPE html>\n" +
-                    "<html>\n" +
-                    "<body>\n" +
-                    "\n" +
-                    "<form method=\"post\" id=\"addReview\"action=\"AddReview\">\n" +
-                    "  Title:<br>\n" +
-                    "  <input type=\"text\" name=\"title\">\n" +
-                    "  <br>Comments:<br>\n" +
-                    "  <textarea name=\"comments\" rows=\"4\" cols=\"50\">" +
-                    "</textarea>" +
-                    // "  <input type=\"text\" name=\"comments\" size=\"200\">\n" +
-                    "  <br>Rating:<br>\n" +
-                    "  <input type=\"text\" name=\"rating\">\n" +
-                    "  <br><br>\n" +
-                    "  <input type=\"submit\" value=\"Add Review\">\n" +
-                    "</form>\n" +
 
-                    "</body>\n" +
-                    "</html>\n" +
-                    "\n";
-
-    /**
-     * Get method for adding new review it will display form for review field
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        checkLoginState(request, response);
-
-        response.setContentType("text/html");
-        response.setStatus(HttpServletResponse.SC_OK);
-        PrintWriter out = response.getWriter();
-
-        out.println(innerHtml);
+    public Template handleRequest(HttpServletRequest request,
+                                  HttpServletResponse response, Context context) {
+        try {
+            checkLoginState(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
+        Template template = ve.getTemplate("web/templates/add-review.vm");
+        context.put("application", "Test Application");
+        return template;
     }
 
     /**
