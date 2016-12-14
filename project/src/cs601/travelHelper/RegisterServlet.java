@@ -23,30 +23,6 @@ public class RegisterServlet extends BaseServlet {
 
     // DatabaseHandler interacts with the MySQL database
     private static final DatabaseHandler dbhandler = DatabaseHandler.getInstance();
-//    private final String innerHtml =
-//            "\n" +
-//                    "<!DOCTYPE html>\n" +
-//                    "<html>\n" +
-//                    "<head>\n" +
-//                    "    <title>Register New User</title>\n" +
-//                    "</head>\n" +
-//                    "<body>\n" +
-//                    "<form action=\"/RegisterServlet\" method=\"post\">\n" +
-//                    "    <table border=\"0\">\n" +
-//                    "        <tr>\n" +
-//                    "            <td>Usename:</td>\n" +
-//                    "            <td><input type=\"text\" name=\"user\" size=\"30\"></td>\n" +
-//                    "        </tr>\n" +
-//                    "        <tr>\n" +
-//                    "            <td>Password:</td>\n" +
-//                    "            <td><input type=\"password\" name=\"pass\" size=\"30\"></td>\n" +
-//                    "        </tr>\n" +
-//                    "    </table>\n" +
-//                    "    <p><input type=\"submit\" value=\"Register\"></p>\n" +
-//                    "</form>\n" +
-//                    "</body>\n" +
-//                    "</html>\n";
-
     /**
      * HandleRequest
      * @param request

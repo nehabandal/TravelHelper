@@ -22,12 +22,16 @@
 
 <div class="content-wrapper">
     <div class="row">
-        <p align="center">Welcome $username </p>
-        <p align="center">last log in: $timestamp </p>
+        <h1 align="center">Welcome $username!</h1>
+
+        #if ($timestamp)
+            <p align="center">Last logged in at: $timestamp </p>
+        #end
         <p align="center">
-            <a class="btn btn-lg btn-success" href="/ShowSaveHotelsServlet" role="button">Show saved hotels</a>
-            <a class="btn btn-lg btn-success" href="/ShowExpediaLinksServlet" role="button">Show Expedia Links</a>
-            <a class="btn btn-lg btn-success" href="/ShowHotelsServlet" role="button">Show all hotels</a>
+            <a class="btn btn-default" href="/ShowSaveHotelsServlet" role="button">Show saved hotels</a> &nbsp;
+            <a class="btn btn-default" href="/ShowExpediaLinksServlet" role="button">Show Expedia Links</a> &nbsp;
+            <a class="btn btn-default" href="/ShowHotelsServlet" role="button">Show all hotels</a> &nbsp;
+            <a class="btn btn-default" href="/ShowRecomendedHotelsServlet" role="button">See recommended hotels</a>
         </p>
     </div>
     <div id="map" style="margin: 0 auto; height: 500px; width: 1000px;">
@@ -37,9 +41,8 @@
 <script type="text/javascript">
     var locations = [
         #foreach( $hotel in $hotelData )
-                ["$hotel.get("hotelName")", $hotel.get("latitude"), $hotel.get("longitude")],
-        #end
-    ];
+            ["$hotel.get("hotelName")", $hotel.get("latitude") , $hotel.get("longitude")],
+        #end];
 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
@@ -57,8 +60,8 @@
             map: map
         });
 
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
                 infowindow.setContent(locations[i][0]);
                 infowindow.open(map, marker);
             }

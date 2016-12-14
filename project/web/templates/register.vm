@@ -4,8 +4,8 @@
     <meta charset="US-ASCII">
     <title>Register Page</title>
     #include("web/templates/header.vm")
-    <script src="/static/public/js/validateName.js">
-    </script>
+    <script src="/static/js/validateName.js"></script>
+    <script src="/static/js/jquery.validate.min.js"></script>
 </head>
 <style>
     body {
@@ -14,17 +14,20 @@
     }
 </style>
 <body>
-    #include("web/templates/nav-bar.vm")
 <div class="content-wrapper">
     <div class="container">
-        <h1 class="form-signin-heading">Please Register</h1>
-        <form class="login-form" action="/RegisterServlet" method="post">
+
+        <h2 style="text-align:center;" class="form-signin-heading form-horizontal">Register</h2>
+        <form id="register-form" class="login-form" action="/RegisterServlet" method="post">
+            <div class="control-group">
             <label for="user" class="sr-only">User Name</label>
             <input type="text" name="user" class="form-control" placeholder="User Name" required autofocus>
-
+            </div>
             <p></p>
+            <div class="control-group">
             <label for="password" class="sr-only">Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
             <p></p>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
             <a class="btn btn-lg btn-primary btn-block" href="LoginServet">Login</a>
@@ -32,5 +35,45 @@
     </div>
 </div>
 </body>
+<script>
+    jQuery.validator.addMethod("atLeastOneSpecialChars", function( value, element ) {
+        var regex = new RegExp("^.*[^a-zA-Z0-9].*$");
+        var key = value;
+
+        if (!regex.test(key)) {
+            return false;
+        }
+        return true;
+    }, "Must contain at least 1 special character");
+
+    $(document).ready(function () {
+
+        $('#register-form').validate({
+            rules: {
+                user: {
+                    minlength: 2,
+                    required: true
+                },
+                password: {
+                    required: true,
+                    minlength: 8,
+                    atLeastOneSpecialChars: true
+                },
+//                message: {
+//                    minlength: 2,
+//                    required: true
+//                }
+            },
+            highlight: function (element) {
+                $(element).closest('.control-group').removeClass('success').addClass('error');
+            },
+            success: function (element) {
+                element.text('OK!').addClass('valid')
+                        .closest('.control-group').removeClass('error').addClass('success');
+            }
+        });
+
+    });
+</script>
 </html>
 

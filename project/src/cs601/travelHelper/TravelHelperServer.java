@@ -82,6 +82,7 @@ public class TravelHelperServer {
         servletContexthandler.addServlet(AddReview.class, "/AddReview");
         servletContexthandler.addServlet(ModifyReview.class, "/ModifyReview");
         servletContexthandler.addServlet(ShowHotelsServlet.class, "/ShowHotelsServlet");
+        servletContexthandler.addServlet(ShowRecomendedHotelsServlet.class, "/ShowRecomendedHotelsServlet");
         servletContexthandler.addServlet(ReviewServlet.class, "/ReviewServlet");
         servletContexthandler.addServlet(AttractionServlet.class, "/AttractionServlet");
         servletContexthandler.addServlet(HomePage.class, "/HomePage");

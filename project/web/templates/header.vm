@@ -4,6 +4,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
+<!--
 ##<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css">
 ##
 ##<script
@@ -11,3 +12,4 @@
 ##        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 ##        crossorigin="anonymous"></script>
 ##<script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+-->

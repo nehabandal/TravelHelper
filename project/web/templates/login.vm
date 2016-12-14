@@ -13,9 +13,9 @@
     }
 </style>
 <body>
-    #include("web/templates/nav-bar.vm")
 <div class="content-wrapper">
     <div class="container">
+        <h2 style="text-align:center;" class="form-signin-heading">Login</h2>
         <form class="form-signin login-form" action="/LoginServlet" method="post">
 
             <label for="user" class="sr-only">User Name</label>
@@ -30,7 +30,7 @@
                 </label>
             </div>
             <p></p>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
             <p></p>
             <a class="btn btn-lg btn-primary btn-block" href="RegisterServlet">Register</a>
         </form>
