@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Demonstrates how to use the HttpSession class to keep track of the number of visits for each client
@@ -22,10 +25,15 @@ import java.util.List;
  */
 
 public class WelcomePageServlet extends BaseServlet {
+    private String FETCH_HOTELS_SQL =
+            "select hotelData.hotelId,hotelData.hotelName,hotelData.address,hotelData.city, hotelData.state, hotelData.country, hotelData.latitude, hotelData.longitude, avg(rating) as avgRating " +
+                    "from hotelData " +
+                    "LEFT JOIN reviewData on hotelData.hotelId=reviewData.hotelId " +
+                    "group by(hotelData.hotelId)";
 
     private DatabaseConnector db;
-   // private String Login_tracking =""
-   private static final String Insert_SQL_LoginTrack = "insert into login_tracking(user,ts) values(?,now());";
+    // private String Login_tracking =""
+    private static final String Insert_SQL_LoginTrack = "insert into login_tracking(user,ts) values(?,now());";
     private static final String Select_SQL_LoginTrack = "select ts from login_tracking where user=? ORDER by ts desc;";
 
 
@@ -50,12 +58,11 @@ public class WelcomePageServlet extends BaseServlet {
 //       String username=request.getParameter("user");
 //        session.setAttribute("username",username);
         String username = (String) session.getAttribute("user");
-        String timestamp=null;
+        String timestamp = null;
         prepareResponse("Hotel", response);
         VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
         VelocityContext vc = new VelocityContext();
         Template template = ve.getTemplate("web/templates/welcome_page.vm");
-        PrintWriter out = null;
         try {
             Connection connection = db.getConnection();
             PreparedStatement statement = connection.prepareStatement(Select_SQL_LoginTrack);
@@ -81,12 +88,40 @@ public class WelcomePageServlet extends BaseServlet {
             System.out.println(e);
         }
 
-        // context.put("hotels", getHotelRows());
-        //context.put("application", "Test Application");
         context.put("username", username);
-        context.put("timestamp",timestamp);
+        context.put("timestamp", timestamp);
         finishResponse(response);
-        // context.put("header", "Velocity Sample Page");
+        context.put("hotelData", fetchHotels());
         return template;
     }
+
+    private List<Map<String, String>> fetchHotels() {
+        List<Map<String, String>> result = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = db.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(FETCH_HOTELS_SQL);
+
+            while (rs.next()) {
+                Map<String, String> hotel = new HashMap<>();
+                hotel.put("hotelId", rs.getString("hotelId"));
+                hotel.put("hotelName", rs.getString("hotelName"));
+                hotel.put("address", rs.getString("address"));
+                hotel.put("city", rs.getString("city"));
+                hotel.put("state", rs.getString("state"));
+                hotel.put("country", rs.getString("country"));
+                hotel.put("avgRating", rs.getString("avgRating"));
+                hotel.put("latitude", rs.getString("latitude"));
+                hotel.put("longitude", rs.getString("longitude"));
+
+                result.add(hotel);
+            }
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

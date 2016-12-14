@@ -86,19 +86,11 @@ public class ShowHotelsServlet extends BaseServlet {
                 String country = rs.getString("country");
                 double avgRating = rs.getDouble("avgRating");
 
-
                 hotelRows.add(toTableRow(hotelId, hotelName, address, city, state, country, avgRating));
             }
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return hotelRows;
     }
