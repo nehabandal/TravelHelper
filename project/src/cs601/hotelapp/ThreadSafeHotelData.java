@@ -70,10 +70,11 @@ public class ThreadSafeHotelData {
         lock.lockWrite();
         Address address = new Address(streetAddress, city, state, latitude, longitude);
         Hotel hotel = new Hotel(hotelId, hotelName, address);
-//        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city,state,country);
-//        if(status == Status.OK) { // registration was successful
-//            System.out.println("row added");
-//        }
+//        Status status = dbhandler.addHotelDB(hotelId,hotelName,streetAddress,city,state,country,latitude,longitude);
+        Status status = dbhandler.addLatLongToHotelDB(hotelId,latitude,longitude);
+        if(status == Status.OK) { // registration was successful
+            System.out.println("row added");
+        }
 
         try {
             hotelIdTreeMap.put(hotelId, hotel);

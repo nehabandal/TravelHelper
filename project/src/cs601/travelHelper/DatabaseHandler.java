@@ -70,6 +70,12 @@ public class DatabaseHandler {
             + "VALUES (?, ?, ?, ?, ?, ?);";
 
     /**
+     * Update table
+     */
+    private static final String UPDATE_LAT_LONG_HOTEL_SQL =
+            "UPDATE hotelData SET latitude = ?, longitude = ? WHERE hotelID = ?";
+
+    /**
      * Used to create ReviewTable table for this example.
      */
     private static final String CREATE_SQL_REVIEW = "CREATE TABLE reviewData ("
@@ -375,6 +381,7 @@ public class DatabaseHandler {
      * @param city
      * @param state
      * @param country
+     * @param latitude
      * @return
      */
     public Status addHotelDB(String hotelID, String hotelName, String address, String city, String state, String country) {
@@ -410,6 +417,49 @@ public class DatabaseHandler {
 
         return status;
     }
+
+    /**
+     * adding hotel to hotelData table,
+     *
+     * @param hotelID
+     * @param hotelName
+     * @param address
+     * @param city
+     * @param state
+     * @param country
+     * @param latitude
+     * @return
+     */
+    public Status addLatLongToHotelDB(String hotelID,
+                                      double latitude,
+                                      double longitude
+    ) {
+        Status status = Status.OK;
+
+
+        try (Connection connection = db.getConnection();) {
+
+            // if okay so far, try to insert new user
+            if (status == Status.OK) {
+                // add hotel info to the database table
+                try (PreparedStatement statement = connection.prepareStatement(UPDATE_LAT_LONG_HOTEL_SQL);) {
+                    statement.setDouble(1, latitude);
+                    statement.setDouble(2, longitude);
+                    statement.setString(3, hotelID);
+
+                    statement.executeUpdate();
+
+                    status = Status.OK;
+                }
+            }
+        } catch (SQLException ex) {
+            status = Status.CONNECTION_FAILED;
+            out.println("Error while connecting to the database: " + ex);
+        }
+
+        return status;
+    }
+
 
     /**
      * Adding reviews to reviewData table using query
@@ -472,6 +522,8 @@ public class DatabaseHandler {
 
         return status;
     }
+
+
     /**
      * Adding reviews to reviewData table using query
      *
