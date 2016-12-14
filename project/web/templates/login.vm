@@ -14,29 +14,28 @@
 </style>
 <body>
     #include("web/templates/nav-bar.vm")
-<div class="container">
-    <br>
-    <br>
-    <br>
-##    <div class="login-form-heading">Welcome to Travel Helper</div>
-    <form class="form-signin login-form" action="/LoginServlet" method="post">
+<div class="content-wrapper">
+    <div class="container">
+        <form class="form-signin login-form" action="/LoginServlet" method="post">
 
-    <label for="user" class="sr-only">User Name</label>
-    <input type="text" name="user" class="form-control" placeholder="User Name" required autofocus>
-        <p></p>
-    <label for="password" class="sr-only">Password</label>
-    <input type="password" name="password" class="form-control" placeholder="Password" required>
-        <p></p>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" value="remember-me" style="color: antiquewhite;"> Remember me
-        </label>
+            <label for="user" class="sr-only">User Name</label>
+            <input type="text" name="user" class="form-control" placeholder="User Name" required autofocus>
+            <p></p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <p></p>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me" style="color: antiquewhite;"> Remember me
+                </label>
+            </div>
+            <p></p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p></p>
+            <button class="btn btn-lg btn-primary btn-block" onclick="location.href = 'RegisterServlet';">Register
+            </button>
+        </form>
     </div>
-        <p></p>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p></p>
-    <button class="btn btn-lg btn-primary btn-block" onclick="location.href = 'RegisterServlet';">Register</button>
-    </form>
 </div>
 </body>
 </html>
