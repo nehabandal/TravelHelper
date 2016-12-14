@@ -14,29 +14,6 @@
 <body>
     #include("web/templates/nav-bar.vm")
 <div class="content-wrapper">
-    <div class="masthead">
-
-        <div class="container">
-
-            <form class="form-signin" action="/NameSearch" style="width: 300px; margin: 0 auto" ;
-            ">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <div id="imaginary_container">
-                        <div class="input-group stylish-input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="hotelname">
-                            <span class="input-group-addon">
-                        <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="table">
             <table class="table-row-group" style="font-size: medium; color: aliceblue">

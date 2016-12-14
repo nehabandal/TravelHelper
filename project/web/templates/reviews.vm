@@ -45,7 +45,6 @@
             #end
         </tbody>
     </table>
-    <a href="/api/addLike?reviewId=10000003588">test link</a>
 </div>
 </body>
 <script>
