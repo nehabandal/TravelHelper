@@ -1,15 +1,10 @@
 package cs601.travelHelper;
 
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.context.Context;
-
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -38,8 +33,8 @@ public class SaveHotel extends BaseServlet {
 
     }
 
-    public Template handleRequest(HttpServletRequest request,
-                                  HttpServletResponse response, Context context) {
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             checkLoginState(request, response);
         } catch (IOException e) {
@@ -47,23 +42,9 @@ public class SaveHotel extends BaseServlet {
         }
         String hotelName = request.getParameter("hotelName");
         String hotelId = request.getParameter("hotelId");
-        PrintWriter out= null;
-        try {
-            out = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        out.print(hotelName);
+
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("user");
-
-        prepareResponse("SaveHotel", response);
-        VelocityEngine ve = (VelocityEngine) request.getServletContext().getAttribute("templateEngine");
-        VelocityContext vc = new VelocityContext();
-
-
-        Template template = ve.getTemplate("src/cs601/travelHelper/HotelDetailServlet.java");
-
 
         try {
             Connection connection = db.getConnection();
@@ -72,25 +53,13 @@ public class SaveHotel extends BaseServlet {
             statement.setString(2, hotelName);
             statement.setString(3, user);
 
-
             statement.executeUpdate();
 
-connection.close();
+            connection.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        try {
-            response.sendRedirect("/HotelDetailServlet?hotelId="+hotelId+"&hotelName="+hotelName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-        finishResponse(response);
-        // context.put("header", "Velocity Sample Page");
-        return template;
+        response.sendRedirect("/HotelDetailServlet?hotelId=" + hotelId);
     }
 }
 
