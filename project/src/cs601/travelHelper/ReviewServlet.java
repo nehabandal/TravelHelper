@@ -39,6 +39,13 @@ public class ReviewServlet extends BaseServlet {
         }
     }
 
+    /**
+     * Handle http request with velocity
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {
@@ -72,6 +79,13 @@ public class ReviewServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     * get Reviews data from database
+     * @param hotelId
+     * @param reviewIds
+     * @param likeCounts
+     * @return
+     */
     private List<String> getReviewRows(int hotelId, List<String> reviewIds, List<String> likeCounts) {
         List<String> reviewRows = new ArrayList<>();
         try {

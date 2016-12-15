@@ -70,6 +70,11 @@ public class ShowRecomendedHotelsServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     * Method for fetching recommended hotels
+     * @return
+     */
+
     private List<String> getHotelRows() {
         List<String> hotelRows = new ArrayList<>();
         Connection connection = null;

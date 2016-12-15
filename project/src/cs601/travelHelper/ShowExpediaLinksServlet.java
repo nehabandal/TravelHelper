@@ -40,6 +40,13 @@ public class ShowExpediaLinksServlet extends BaseServlet {
 
     }
 
+    /**
+     * Method to handle http request from velocity
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {
@@ -58,6 +65,11 @@ public class ShowExpediaLinksServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     * Method to fetch expedia link data
+     * @param user
+     * @return
+     */
     private HashSet<String> getRows(String user) {
         HashSet<String> hotelRows = new HashSet<>();
         try {

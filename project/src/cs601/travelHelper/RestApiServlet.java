@@ -41,6 +41,12 @@ public abstract class RestApiServlet extends BaseServlet {
     protected abstract void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception;
 
+    /**
+     * Method to fetch JSON error everytime
+     * @param response
+     * @param message
+     * @throws IOException
+     */
     private void returnErrorJson(HttpServletResponse response, String message) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -51,6 +57,12 @@ public abstract class RestApiServlet extends BaseServlet {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
 
+    /**
+     * Method to send successful response
+     * @param response
+     * @param results
+     * @throws IOException
+     */
     protected void resultJson(HttpServletResponse response, Map<String, String> results) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");

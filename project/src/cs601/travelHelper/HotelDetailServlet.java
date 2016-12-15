@@ -34,6 +34,13 @@ public class HotelDetailServlet extends BaseServlet {
         }
     }
 
+    /**
+     * Handle http request from velocity
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {

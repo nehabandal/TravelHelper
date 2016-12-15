@@ -33,6 +33,13 @@ public class SaveHotel extends BaseServlet {
 
     }
 
+    /**
+     * Method to save hotel into database
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

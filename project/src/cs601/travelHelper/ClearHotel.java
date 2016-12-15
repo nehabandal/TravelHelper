@@ -14,9 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 /**
- * Demonstrates how to use the HttpSession class to keep track of the number of visits for each client
- * (and the date of the last visit).
- * Modified from the example of Prof. Rollins.
+ * Servlet to delete saved hotel data
  */
 
 @SuppressWarnings("serial")
@@ -33,6 +31,14 @@ public class ClearHotel extends BaseServlet {
         }
 
     }
+
+    /**
+     * Get method to delete saved hotel data
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

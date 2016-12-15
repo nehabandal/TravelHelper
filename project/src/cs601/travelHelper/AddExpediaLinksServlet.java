@@ -27,6 +27,14 @@ public class AddExpediaLinksServlet extends RestApiServlet {
         response.sendRedirect(java.net.URLDecoder.decode(url, "UTF-8"));
     }
 
+    /**
+     * method to add expedia links implements RestApiServlet
+     * insert into database
+     * @param username
+     * @param hotelId
+     * @param url
+     * @throws SQLException
+     */
     private void addExpediaLink(String username, Integer hotelId, String url) throws SQLException {
         Connection connection = db.getConnection();
 

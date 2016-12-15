@@ -30,6 +30,12 @@ public class GetReviewLikesServlet extends RestApiServlet {
         System.out.println("# Likes for review: " + reviewCount);
     }
 
+    /**
+     * Method to get review count just to display how many users like that review
+     * @param reviewId
+     * @return
+     * @throws SQLException
+     */
     private int getReviewCount(String reviewId) throws SQLException {
         Connection connection = db.getConnection();
 

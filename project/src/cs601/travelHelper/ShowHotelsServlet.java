@@ -44,6 +44,13 @@ public class ShowHotelsServlet extends BaseServlet {
 
     }
 
+    /**
+     * Method to show hotels
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {
@@ -70,6 +77,10 @@ public class ShowHotelsServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     * method to fetch hotel data from database
+     * @return
+     */
     private List<String> getHotelRows() {
         List<String> hotelRows = new ArrayList<>();
         Connection connection = null;

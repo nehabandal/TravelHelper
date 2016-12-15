@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by npbandal on 12/13/16.
+ * Clear Expedia link history
  */
 public class DeleteExpediaLinksServlet extends RestApiServlet {
     final String DELETE_EXPEDIA_LINKS_SQL = "DELETE FROM expediaLinks WHERE user = ?;";
@@ -32,6 +32,12 @@ public class DeleteExpediaLinksServlet extends RestApiServlet {
         response.sendRedirect("/ShowExpediaLinksServlet");
     }
 
+    /**
+     * Servlet to clear expedia link history
+     * @param user
+     * @return
+     * @throws SQLException
+     */
     private int executeUpdate(String user) throws SQLException {
         Connection connection = db.getConnection();
 

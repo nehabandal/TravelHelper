@@ -65,6 +65,11 @@ public class NameSearch extends BaseServlet {
         return template;
     }
 
+    /**
+     * Method to fetch data if it finds search
+     * @param hotelname
+     * @return
+     */
     private HashSet<String> getHotelRows(String hotelname) {
         try {
             connection = db.getConnection();

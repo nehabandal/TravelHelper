@@ -574,6 +574,17 @@ public class DatabaseHandler {
 
         return status;
     }
+
+    /**
+     * Method to update review table
+     * @param reviewTitle
+     * @param review
+     * @param rating
+     * @param username
+     * @param reviewId
+     * @param date
+     * @return
+     */
     public Status UpdateReviewDB(String reviewTitle, String review, double rating,String username,String reviewId,String date) {
 
         Status status = Status.OK;

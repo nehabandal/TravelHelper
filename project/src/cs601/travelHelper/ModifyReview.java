@@ -56,6 +56,13 @@ public class ModifyReview extends BaseServlet {
         return template;
     }
 
+    /**
+     * Method to take reviews given by user
+     * @param user
+     * @param hotelId
+     * @return
+     * @throws SQLException
+     */
     public List<Map<String, String>> getExistingReviews(String user, String hotelId) throws SQLException {
         Connection connection = db.getConnection();
 
@@ -78,6 +85,13 @@ public class ModifyReview extends BaseServlet {
         return results;
     }
 
+    /**
+     * Post method to modify review
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         checkLoginState(request, response);

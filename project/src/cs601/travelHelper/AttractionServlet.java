@@ -31,6 +31,13 @@ public class AttractionServlet extends BaseServlet {
         }
     }
 
+    /**
+     * Method handleRequest works with velocity and http request
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {
@@ -60,6 +67,11 @@ public class AttractionServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     * fetch attractions from database for specific hotelId
+     * @param hotelId
+     * @return
+     */
     private List<String> getAttractionRows(int hotelId) {
         List<String> attractionRows = new ArrayList<>();
         try {

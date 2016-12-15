@@ -47,6 +47,14 @@ public class WelcomePageServlet extends BaseServlet {
 
     }
 
+    /**
+     * Method for welcome page servlet
+     * And here we are keeping track of last login through login_tracking table in database
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {
@@ -95,6 +103,10 @@ public class WelcomePageServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     *
+     * @return
+     */
     private List<Map<String, String>> fetchHotels() {
         List<Map<String, String>> result = new ArrayList<>();
         Connection connection = null;

@@ -16,9 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * Demonstrates how to use the HttpSession class to keep track of the number of visits for each client
- * (and the date of the last visit).
- * Modified from the example of Prof. Rollins.
+ * servlet to fetch saved hotels
  */
 
 @SuppressWarnings("serial")
@@ -40,6 +38,13 @@ public class ShowSaveHotelsServlet extends BaseServlet {
 
     }
 
+    /**
+     * handle request works with velocity to handle http request
+     * @param request
+     * @param response
+     * @param context
+     * @return
+     */
     public Template handleRequest(HttpServletRequest request,
                                   HttpServletResponse response, Context context) {
         try {
@@ -61,6 +66,11 @@ public class ShowSaveHotelsServlet extends BaseServlet {
         return template;
     }
 
+    /**
+     * fetching saved hotel data from database,
+     * @param user
+     * @return
+     */
     private HashSet<String> getHotelRows(String user) {
         HashSet<String> hotelRows = new HashSet<>();
         try {

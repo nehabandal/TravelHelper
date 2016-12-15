@@ -29,6 +29,12 @@ public class AddReviewLikeServlet extends RestApiServlet {
         System.out.println("Review: " + reviewId + " liked by user: " + username);
     }
 
+    /**
+     * Servlet to add review likes into database
+     * @param reviewId
+     * @param username
+     * @throws SQLException
+     */
     private void addReviewLike(String reviewId, String username) throws SQLException {
         Connection connection = db.getConnection();
 
