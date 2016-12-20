@@ -1,1 +1,2 @@
 The goal of the project is to implement a website with a subset of the functionality of tripadvisor (or oyster.com, hotels.com), where users can register, login, create a profile,write and edit hotel reviews, as well as search for hotels by the city, read reviews written by other people, search for the nearby tourist attractions and so on,
+Code is in Java (CSS and Javascript for the front end),use a Velocity template engine to generate web pages,worked with Jetty/Servlets,MySql Database,different libraries like jqueries,datatables,bootstrap.
