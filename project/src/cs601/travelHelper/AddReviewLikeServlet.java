@@ -43,6 +43,7 @@ public class AddReviewLikeServlet extends RestApiServlet {
         stmt.setString(2, String.valueOf(username));
 
         int result = stmt.executeUpdate();
+
         System.out.println("ExecuteUpdate return value: " + result);
         connection.close();
     }
